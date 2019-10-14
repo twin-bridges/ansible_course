@@ -1,0 +1,10 @@
+---
+- name: Simple ping
+  gather_facts: False
+  hosts: cisco
+  tasks:
+    - ping:
+
+    - ansible.builtin.ping:
+
+    - ansible.legacy.ping:

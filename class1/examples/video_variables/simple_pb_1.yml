@@ -1,0 +1,12 @@
+---
+- name: Print out variables
+  hosts: cisco
+  gather_facts: no
+  vars:
+    dns1: 8.8.8.8
+    dns2: 8.8.4.4
+  tasks:
+    - debug:
+        msg: "{{ dns1 }}"
+    - debug:
+        msg: "{{ dns2 }}"

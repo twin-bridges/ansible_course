@@ -1,0 +1,13 @@
+---
+
+- name: Ping cisco1
+  hosts: cisco1
+  gather_facts: False
+  tasks:
+   - ping:
+
+- name: Ping cisco2
+  hosts: cisco2
+  gather_facts: False
+  tasks:
+   - ping:
