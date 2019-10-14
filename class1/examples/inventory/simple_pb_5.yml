@@ -1,6 +1,9 @@
 ---
+# Execute using
+# ansible-playbook simple_pb_5.yml -i ./ansible-hosts_3.ini 
 - name: Print out variables
   hosts: cisco:arista5
+  gather_facts: False
   tasks:
     - debug:
         msg: "{{ ansible_host }}"

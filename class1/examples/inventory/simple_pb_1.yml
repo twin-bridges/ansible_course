@@ -1,4 +1,6 @@
 ---
+# Execute using
+# ansible-playbook simple_pb_1.yml -i ./ansible-hosts_2.ini 
 - name: Simple ping
   gather_facts: False
   hosts: cisco
