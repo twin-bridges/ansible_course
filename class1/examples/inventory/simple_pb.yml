@@ -1,5 +1,6 @@
 ---
 - name: Print out variables
+  gather_facts: False
   hosts: cisco
   tasks:
     - debug:
