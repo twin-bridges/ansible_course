@@ -1,6 +1,7 @@
 ---
 - name: Print out variables
   hosts: cisco:arista
+  gather_facts: False
   tasks:
     - debug:
         msg: "{{ ntp1 }}"
