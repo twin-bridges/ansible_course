@@ -1,0 +1,34 @@
+- hosts: arista5
+  gather_facts: True
+  module_defaults:
+    eos_facts:
+      gather_subset: min
+      gather_network_resources:
+      - interfaces
+      - l3_interfaces
+      - l2_interfaces
+      - lldp_global
+      - lldp_interfaces
+      - vlans
+  tags: play1
+  tasks:
+    - eos_facts:
+
+- name: example of facts being pushed right back to device.
+  hosts: arista5
+  gather_facts: false
+  tags: play2
+  tasks:
+  - name: grab arista eos facts
+    eos_facts:
+      gather_subset: min
+      gather_network_resources: l3_interfaces
+
+  - name: ensure that the IP address information is accurate
+    eos_l3_interfaces:
+      config: "{{ ansible_network_resources.l3_interfaces }}"
+    register: result
+
+  - name: ensure config did not change
+    assert:
+      that: not result.changed

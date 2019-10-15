@@ -1,0 +1,25 @@
+---
+- name: NXOS Example
+  hosts: nxos
+  gather_facts: False
+  vars:
+    vlans:
+      - vlan_id: 550
+        admin_state: up
+        name: BLACK
+      - vlan_id: 551
+        admin_state: up
+        name: ORANGE
+      - vlan_id: 552
+        admin_state: up
+        name: PINK
+
+  tasks:
+    - name: Configure NEXUS VLANs
+      vars:
+        ansible_connection: httpapi
+      nxos_vlan:
+        vlan_id: "{{ item.vlan_id }}"
+        admin_state: "{{ item.admin_state }}"
+        name: "{{ item.name }}"
+      loop: "{{ vlans }}"

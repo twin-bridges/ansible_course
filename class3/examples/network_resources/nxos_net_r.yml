@@ -1,0 +1,14 @@
+- hosts: nxos1
+  gather_facts: False
+  module_defaults:
+    nxos_facts:
+      gather_subset: min
+      gather_network_resources:
+      - interfaces
+      - l3_interfaces
+      - l2_interfaces
+      - lldp_global
+      - vlans
+
+  tasks:
+    - nxos_facts:
