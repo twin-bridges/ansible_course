@@ -1,0 +1,19 @@
+---
+- name: EOS Example
+  gather_facts: False
+  hosts: arista
+
+  tasks:
+    - name: SSH Fact Gathering
+      eos_facts:
+
+    - name: EAPI Fact Gathering
+      vars:
+        ansible_connection: httpapi
+      eos_facts:
+
+    - name: Execute Show Command (eapi)
+      vars:
+        ansible_connection: httpapi
+      eos_command:
+        commands: show arp

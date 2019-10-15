@@ -1,0 +1,10 @@
+---
+- name: EOS Example
+  hosts: arista5
+  gather_facts: False
+  tasks:
+    - eos_facts:
+
+    - eos_facts:
+      vars: 
+        ansible_connection: httpapi
