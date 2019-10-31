@@ -1,0 +1,7 @@
+---
+- name: Exercise 3b
+  hosts: localhost
+  gather_facts: False
+  tasks:
+    - debug:
+        var: ansible_host
