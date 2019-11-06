@@ -18,4 +18,5 @@
 
     - name: Debug an ansible_fact from cisco5
       debug:
-        var: ansible_net_version
+        msg: "{{ ansible_net_serialnum }}"
+        # var: ansible_net_version
