@@ -1,0 +1,10 @@
+---
+- name: Hello we're going print this to the screen
+  hosts: arista:cisco:nxos1
+  gather_facts: False
+  tasks:
+    - ping:
+
+    - ping:
+
+    - ping:
