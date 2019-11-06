@@ -1,0 +1,9 @@
+---
+combining_data_types:
+  - nested_dict:
+      really_nested_key: reallynestedvalue
+      another_list:
+        - 1
+        - two
+      another_nested_dict:
+        withinterestingkeys: andverycoolvalues
