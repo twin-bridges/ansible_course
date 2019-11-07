@@ -5,7 +5,7 @@
   vars_prompt:
     - name: bgp_asn
       prompt: "Enter BGP AS Number: "
-      private: no
+      private: yes
 
   tasks:
 
