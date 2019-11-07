@@ -10,5 +10,5 @@
     - name: Install Netmiko
       pip: 
         name: netmiko
-        virtualenv: /home/kbyers/applied_python
-        version: 1.2.8
+        virtualenv: /home/ktbyers/VENV/py3_venv
+        version: 2.4.2
