@@ -1,6 +1,0 @@
----
-- name: Print out variables
-  hosts: cisco1:cisco2
-  tasks:
-    - debug:
-        msg: "{{ as_number }}"
