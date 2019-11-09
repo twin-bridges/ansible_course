@@ -4,14 +4,12 @@
   gather_facts: False
   tasks:
     - ios_facts:
-      tags: facts_only
 
     - debug:
         var: ansible_net_model
 
-    - ios_command:
-        commands: show ip int brief
-      register: output
-
     - debug:
-        msg: "{{ output.stdout_lines }}"
+        msg:
+          - "{{ ansible_net_serialnum }}"
+          - "{{ ansible_net_system }}"
+          - "{{ ansible_net_version }}"

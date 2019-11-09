@@ -1,0 +1,23 @@
+---
+- name: IOS Example
+  hosts: cisco5:cisco6
+  gather_facts: False
+  tasks:
+    - ios_command:
+        commands:
+          - command: clear counters gigabitEthernet1
+            # Regular expression for "prompt"--simplify
+            # Clear "show interface" counters on this interface [confirm] 
+            prompt: confirm
+            answer: "y"
+      register: output
+
+    - debug:
+        var: output
+
+    - ios_command:
+        commands: show interfaces gigabitEthernet1
+      register: output
+
+    - debug:
+        msg: "{{ output.stdout[0] }}"

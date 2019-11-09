@@ -1,0 +1,13 @@
+---
+- name: EOS Example
+  gather_facts: False
+  hosts: arista
+
+  tasks:
+    - name: Show command using pipe json
+      eos_command:
+        commands: show interfaces | json
+      register: output
+
+    - debug:
+        var: output.stdout[0]["interfaces"]

@@ -8,15 +8,9 @@
     - debug:
         var: ansible_net_model
 
-    - ios_command:
+    - name: Executing command
+      ios_command:
         commands: show ip int brief
-      register: output
-
-    - debug:
-        msg: "{{ output.stdout_lines[0][5] }}"
-
-    - cli_command:
-        command: show ip int brief
       register: output
 
     - debug:

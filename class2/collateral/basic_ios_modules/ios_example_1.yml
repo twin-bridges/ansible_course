@@ -1,6 +1,6 @@
 ---
 - name: IOS Example
-  gather_facts: no
   hosts: cisco
+  gather_facts: no
   tasks:
     - ios_facts:
