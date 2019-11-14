@@ -1,0 +1,11 @@
+---
+- name: Exercise 3a
+  hosts: nxos
+  gather_facts: False
+  tasks:
+    - name: Gather show version output
+      nxos_command:
+        commands: show version
+      register: show_version
+    - debug:
+        var: show_version
