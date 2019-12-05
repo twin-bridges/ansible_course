@@ -11,7 +11,7 @@ def subprocess_runner(cmd_list, exercise_dir):
 
 def test_class1_ex1a():
     base_path = "../class1/exercises/exercise1"
-    cmd_list = ["python", "print_yaml.py", "exercise1a.yaml"]
+    cmd_list = ["python", "print_yaml.py", "exercise1a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "['thingone', 2, 3, 'thingfour', 'lastthing']" in std_out
@@ -21,7 +21,7 @@ def test_class1_ex1a():
 
 def test_class1_ex1b():
     base_path = "../class1/exercises/exercise1"
-    cmd_list = ["python", "print_yaml.py", "exercise1b.yaml"]
+    cmd_list = ["python", "print_yaml.py", "exercise1b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "['thingone', 2, 3, 'thingfour', 'lastthing']" in std_out
@@ -31,7 +31,7 @@ def test_class1_ex1b():
 
 def test_class1_ex1c():
     base_path = "../class1/exercises/exercise1"
-    cmd_list = ["python", "print_yaml.py", "exercise1c.yaml"]
+    cmd_list = ["python", "print_yaml.py", "exercise1c.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert (
@@ -44,7 +44,7 @@ def test_class1_ex1c():
 
 def test_class1_ex1d():
     base_path = "../class1/exercises/exercise1"
-    cmd_list = ["python", "print_yaml.py", "exercise1d.yaml"]
+    cmd_list = ["python", "print_yaml.py", "exercise1d.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert (
@@ -57,7 +57,7 @@ def test_class1_ex1d():
 
 def test_class1_ex1e():
     base_path = "../class1/exercises/exercise1"
-    cmd_list = ["python", "print_yaml.py", "exercise1e.yaml"]
+    cmd_list = ["python", "print_yaml.py", "exercise1e.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert (
@@ -71,7 +71,7 @@ def test_class1_ex1e():
 
 def test_class1_ex1f():
     base_path = "../class1/exercises/exercise1"
-    cmd_list = ["python", "print_yaml.py", "exercise1f.yaml"]
+    cmd_list = ["python", "print_yaml.py", "exercise1f.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert r"['1042', '{This is a dictionary thingy!}', '\\athing', 'True']" in std_out
@@ -147,7 +147,7 @@ def test_class1_ex2c():
 
 def test_class1_ex3a():
     base_path = "../class1/exercises/exercise3"
-    cmd_list = ["ansible-playbook", "-i", "inventory.ini", "exercise3a.yaml"]
+    cmd_list = ["ansible-playbook", "-i", "inventory.ini", "exercise3a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert (
@@ -160,7 +160,7 @@ def test_class1_ex3a():
 
 def test_class1_ex3b():
     base_path = "../class1/exercises/exercise3"
-    cmd_list = ["ansible-playbook", "-i", "inventory.ini", "exercise3b.yaml"]
+    cmd_list = ["ansible-playbook", "-i", "inventory.ini", "exercise3b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert (
@@ -173,7 +173,7 @@ def test_class1_ex3b():
 
 def test_class1_ex3c():
     base_path = "../class1/exercises/exercise3"
-    cmd_list = ["ansible-playbook", "-i", "inventory.ini", "exercise3c.yaml"]
+    cmd_list = ["ansible-playbook", "-i", "inventory.ini", "exercise3c.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert (
