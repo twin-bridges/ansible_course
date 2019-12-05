@@ -30,7 +30,7 @@ def test_class2_ex1b():
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
-    assert "\"ansible_host\": \"arista5.lasthop.io\"" in std_out
+    assert '"ansible_host": "arista5.lasthop.io"' in std_out
     assert (
         "arista5                    : ok=5    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -45,10 +45,10 @@ def test_class2_ex1c():
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
-    assert "\"ansible_host\": \"arista5.lasthop.io\"" in std_out
-    assert "\"ansible_network_os\": \"eos\"" in std_out
-    assert "\"ansible_host\": \"arista5.lasthop.io\"" in std_out
-    assert "\"desired_eos_version\": \"4.18.3\""
+    assert '"ansible_host": "arista5.lasthop.io"' in std_out
+    assert '"ansible_network_os": "eos"' in std_out
+    assert '"ansible_host": "arista5.lasthop.io"' in std_out
+    assert '"desired_eos_version": "4.18.3"'
     assert (
         "arista5                    : ok=6    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -63,10 +63,10 @@ def test_class2_ex1d():
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
-    assert "\"ansible_host\": \"arista5.lasthop.io\"" in std_out
-    assert "\"ansible_network_os\": \"eos\"" in std_out
-    assert "\"ansible_host\": \"arista5.lasthop.io\"" in std_out
-    assert "\"desired_eos_version\": \"4.21.1\""
+    assert '"ansible_host": "arista5.lasthop.io"' in std_out
+    assert '"ansible_network_os": "eos"' in std_out
+    assert '"ansible_host": "arista5.lasthop.io"' in std_out
+    assert '"desired_eos_version": "4.21.1"'
     assert (
         "arista5                    : ok=6    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -81,11 +81,11 @@ def test_class2_ex1e():
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
-    assert "\"ansible_host\": \"arista5.lasthop.io\"" in std_out
-    assert "\"ansible_network_os\": \"eos\"" in std_out
-    assert "\"ansible_host\": \"arista5.lasthop.io\"" in std_out
-    assert "\"desired_eos_version\": \"4.21.1\""
-    assert "\"device_hostname\": \"arista5.lab.io\""
+    assert '"ansible_host": "arista5.lasthop.io"' in std_out
+    assert '"ansible_network_os": "eos"' in std_out
+    assert '"ansible_host": "arista5.lasthop.io"' in std_out
+    assert '"desired_eos_version": "4.21.1"'
+    assert '"device_hostname": "arista5.lab.io"'
     assert (
         "arista5                    : ok=8    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -186,7 +186,7 @@ def test_class2_ex3a():
     cmd_list = ["ansible-playbook", "exercise3a.yaml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("\" NXOS: version 9.2(3)\",") == 2
+    assert std_out.count('" NXOS: version 9.2(3)",') == 2
     assert (
         "nxos1                      : ok=2    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -204,8 +204,10 @@ def test_class2_ex3b():
     cmd_list = ["ansible-playbook", "exercise3b.yaml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("\" NXOS: version 9.2(3)\",") == 2
-    assert std_out.count("\"Flags: * - Adjacencies learnt on non-active FHRP router\"") == 2
+    assert std_out.count('" NXOS: version 9.2(3)",') == 2
+    assert (
+        std_out.count('"Flags: * - Adjacencies learnt on non-active FHRP router"') == 2
+    )
     assert (
         "nxos1                      : ok=2    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -238,7 +240,12 @@ def test_class2_ex3c():
 
 def test_class2_ex3d():
     base_path = "../class2/exercises/exercise3/exercise3d"
-    cmd_list = ["ansible-playbook", "exercise3d.yaml", "-e", f"ansible_ssh_pass={os.environ['ANSIBLE_PASSWORD']}"]
+    cmd_list = [
+        "ansible-playbook",
+        "exercise3d.yaml",
+        "-e",
+        f"ansible_ssh_pass={os.environ['ANSIBLE_PASSWORD']}",
+    ]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("Total entries displayed: 4") == 2
@@ -256,7 +263,12 @@ def test_class2_ex3d():
 
 def test_class2_ex4a():
     base_path = "../class2/exercises/exercise4"
-    cmd_list = ["ansible-playbook", "exercise4.yaml", "-e", f"ansible_ssh_pass={os.environ['ANSIBLE_PASSWORD']}"]
+    cmd_list = [
+        "ansible-playbook",
+        "exercise4.yaml",
+        "-e",
+        f"ansible_ssh_pass={os.environ['ANSIBLE_PASSWORD']}",
+    ]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("Clear logging buffer [confirm]") == 2
@@ -288,7 +300,7 @@ def test_class2_ex5b():
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "vlan.0                  up    up   inet     10.220.88.39/24" in std_out
-    assert "\"msg\": \"Primary IP: 10.220.88.39/24\"" in std_out
+    assert '"msg": "Primary IP: 10.220.88.39/24"' in std_out
     assert (
         "srx1                       : ok=3    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -303,8 +315,11 @@ def test_class2_ex5c():
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "vlan.0                  up    up   inet     10.220.88.39/24" in std_out
-    assert "\"msg\": \"Primary IP: 10.220.88.39/24\"" in std_out
-    assert "\"msg\": \"Vlan.0 Interface: vlan.0                  up    up   inet     10.220.88.39/24\"" in std_out
+    assert '"msg": "Primary IP: 10.220.88.39/24"' in std_out
+    assert (
+        '"msg": "Vlan.0 Interface: vlan.0                  up    up   inet     10.220.88.39/24"'
+        in std_out
+    )
     assert (
         "srx1                       : ok=4    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -319,9 +334,12 @@ def test_class2_ex5d():
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "vlan.0                  up    up   inet     10.220.88.39/24" in std_out
-    assert "\"msg\": \"Primary IP: 10.220.88.39/24\"" in std_out
-    assert "\"msg\": \"Vlan.0 Interface: vlan.0                  up    up   inet     10.220.88.39/24\"" in std_out
-    assert "\"msg\": \"Vlan.0 IP: 10.220.88.39/24\"" in std_out
+    assert '"msg": "Primary IP: 10.220.88.39/24"' in std_out
+    assert (
+        '"msg": "Vlan.0 Interface: vlan.0                  up    up   inet     10.220.88.39/24"'
+        in std_out
+    )
+    assert '"msg": "Vlan.0 IP: 10.220.88.39/24"' in std_out
     assert (
         "srx1                       : ok=5    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -361,7 +379,7 @@ def test_class2_ex6b():
     cmd_list = ["ansible-playbook", "exercise6b.yaml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("\"dynamicEntries\": 5,") == 8
+    assert std_out.count('"dynamicEntries": 5,') == 8
     assert (
         "arista5                    : ok=4    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
