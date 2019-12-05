@@ -1,0 +1,11 @@
+---
+- name: cli_command Example
+  hosts: cisco:arista
+  gather_facts: False
+  tasks:
+    - cli_command:
+        command: show ip int brief
+      register: output
+
+    - debug:
+        msg: "{{ output }}"
