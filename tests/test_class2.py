@@ -12,7 +12,7 @@ def subprocess_runner(cmd_list, exercise_dir):
 
 def test_class2_ex1a():
     base_path = "../class2/exercises/exercise1"
-    cmd_list = ["ansible-playbook", "exercise1a.yaml"]
+    cmd_list = ["ansible-playbook", "exercise1a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
@@ -26,7 +26,7 @@ def test_class2_ex1a():
 
 def test_class2_ex1b():
     base_path = "../class2/exercises/exercise1"
-    cmd_list = ["ansible-playbook", "exercise1b.yaml"]
+    cmd_list = ["ansible-playbook", "exercise1b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
@@ -41,7 +41,7 @@ def test_class2_ex1b():
 
 def test_class2_ex1c():
     base_path = "../class2/exercises/exercise1/exercise1c"
-    cmd_list = ["ansible-playbook", "exercise1c.yaml"]
+    cmd_list = ["ansible-playbook", "exercise1c.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
@@ -59,7 +59,7 @@ def test_class2_ex1c():
 
 def test_class2_ex1d():
     base_path = "../class2/exercises/exercise1/exercise1d"
-    cmd_list = ["ansible-playbook", "exercise1d.yaml"]
+    cmd_list = ["ansible-playbook", "exercise1d.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
@@ -77,7 +77,7 @@ def test_class2_ex1d():
 
 def test_class2_ex1e():
     base_path = "../class2/exercises/exercise1/exercise1e"
-    cmd_list = ["ansible-playbook", "exercise1e.yaml"]
+    cmd_list = ["ansible-playbook", "exercise1e.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
@@ -96,7 +96,7 @@ def test_class2_ex1e():
 
 def test_class2_ex2a():
     base_path = "../class2/exercises/exercise2/exercise2a"
-    cmd_list = ["ansible-playbook", "exercise2a.yaml"]
+    cmd_list = ["ansible-playbook", "exercise2a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "The ASN for host cisco1 is 65001" in std_out
@@ -125,7 +125,7 @@ def test_class2_ex2a():
 
 def test_class2_ex2b():
     base_path = "../class2/exercises/exercise2/exercise2b"
-    cmd_list = ["ansible-playbook", "exercise2b.yaml"]
+    cmd_list = ["ansible-playbook", "exercise2b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "The ASN for host cisco1 is 65001" in std_out
@@ -154,12 +154,12 @@ def test_class2_ex2b():
 
 def test_class2_ex2c():
     base_path = "../class2/exercises/exercise2/exercise2c"
-    cmd_list = ["ansible-playbook", "exercise2c.yaml"]
+    cmd_list = ["ansible-playbook", "exercise2c.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "The ASN for host cisco1 is 65001, the router-id is 1.1.1.1" in std_out
     assert "The ASN for host cisco2 is 65001, the router-id is 2.2.2.2" in std_out
-    assert "The ASN for host cisco5 is 65535, the router-id is 5.5.5.5" in std_out
+    assert "The ASN for host cisco5 is 65001, the router-id is 5.5.5.5" in std_out
     assert "The ASN for host cisco6 is 65001, the router-id is 6.6.6.6" in std_out
     assert (
         "cisco1                     : ok=1    changed=0    unreachable=0    failed=0    "
@@ -183,7 +183,7 @@ def test_class2_ex2c():
 
 def test_class2_ex3a():
     base_path = "../class2/exercises/exercise3"
-    cmd_list = ["ansible-playbook", "exercise3a.yaml"]
+    cmd_list = ["ansible-playbook", "exercise3a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count('" NXOS: version 9.2(3)",') == 2
@@ -201,7 +201,7 @@ def test_class2_ex3a():
 
 def test_class2_ex3b():
     base_path = "../class2/exercises/exercise3"
-    cmd_list = ["ansible-playbook", "exercise3b.yaml"]
+    cmd_list = ["ansible-playbook", "exercise3b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count('" NXOS: version 9.2(3)",') == 2
@@ -222,7 +222,7 @@ def test_class2_ex3b():
 
 def test_class2_ex3c():
     base_path = "../class2/exercises/exercise3"
-    cmd_list = ["ansible-playbook", "exercise3c.yaml"]
+    cmd_list = ["ansible-playbook", "exercise3c.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("Total entries displayed: 4") == 2
@@ -242,7 +242,7 @@ def test_class2_ex3d():
     base_path = "../class2/exercises/exercise3/exercise3d"
     cmd_list = [
         "ansible-playbook",
-        "exercise3d.yaml",
+        "exercise3d.yml",
         "-e",
         f"ansible_ssh_pass={os.environ['ANSIBLE_PASSWORD']}",
     ]
@@ -265,7 +265,7 @@ def test_class2_ex4a():
     base_path = "../class2/exercises/exercise4"
     cmd_list = [
         "ansible-playbook",
-        "exercise4.yaml",
+        "exercise4.yml",
         "-e",
         f"ansible_ssh_pass={os.environ['ANSIBLE_PASSWORD']}",
     ]
@@ -282,7 +282,7 @@ def test_class2_ex4a():
 
 def test_class2_ex5a():
     base_path = "../class2/exercises/exercise5"
-    cmd_list = ["ansible-playbook", "exercise5a.yaml"]
+    cmd_list = ["ansible-playbook", "exercise5a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "vlan.0                  up    up   inet     10.220.88.39/24" in std_out
@@ -296,7 +296,7 @@ def test_class2_ex5a():
 
 def test_class2_ex5b():
     base_path = "../class2/exercises/exercise5"
-    cmd_list = ["ansible-playbook", "exercise5b.yaml"]
+    cmd_list = ["ansible-playbook", "exercise5b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "vlan.0                  up    up   inet     10.220.88.39/24" in std_out
@@ -311,7 +311,7 @@ def test_class2_ex5b():
 
 def test_class2_ex5c():
     base_path = "../class2/exercises/exercise5"
-    cmd_list = ["ansible-playbook", "exercise5c.yaml"]
+    cmd_list = ["ansible-playbook", "exercise5c.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "vlan.0                  up    up   inet     10.220.88.39/24" in std_out
@@ -330,7 +330,7 @@ def test_class2_ex5c():
 
 def test_class2_ex5d():
     base_path = "../class2/exercises/exercise5"
-    cmd_list = ["ansible-playbook", "exercise5d.yaml"]
+    cmd_list = ["ansible-playbook", "exercise5d.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "vlan.0                  up    up   inet     10.220.88.39/24" in std_out
@@ -350,7 +350,7 @@ def test_class2_ex5d():
 
 def test_class2_ex6a():
     base_path = "../class2/exercises/exercise6"
-    cmd_list = ["ansible-playbook", "exercise6a.yaml"]
+    cmd_list = ["ansible-playbook", "exercise6a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("Address         Age (min)  Hardware Addr   Interface") == 8
@@ -376,10 +376,9 @@ def test_class2_ex6a():
 
 def test_class2_ex6b():
     base_path = "../class2/exercises/exercise6"
-    cmd_list = ["ansible-playbook", "exercise6b.yaml"]
+    cmd_list = ["ansible-playbook", "exercise6b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count('"dynamicEntries": 5,') == 8
     assert (
         "arista5                    : ok=4    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
