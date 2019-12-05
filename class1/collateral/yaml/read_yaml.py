@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import yaml
-import json
 from pprint import pprint
 
 
@@ -22,4 +21,5 @@ if __name__ == "__main__":
     yaml_out = read_yaml(file_name)
     pprint(yaml_out)
 
+    # import json
     # print(json.dumps(yaml_out))

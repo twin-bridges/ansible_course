@@ -1,0 +1,13 @@
+---
+- name: Exercise 6a
+  hosts: arista
+  gather_facts: False
+  tasks:
+    - name: Gather show ip arp output
+      eos_command:
+        commands: show ip arp
+      register: show_ip_arp
+    - name: Print show ip arp output
+      debug:
+        var: show_ip_arp
+

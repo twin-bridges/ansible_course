@@ -1,0 +1,53 @@
+---
+- name: IOS Example
+  hosts: cisco1
+  gather_facts: False
+  tasks:
+    - debug:
+        var: hostvars["cisco1"]
+        # verbosity: 1
+      tags: debug1
+
+    - ios_config:
+        backup: True
+      vars:
+        ansible_host_key_checking: False
+        ansible_ssh_host_key_checking: False
+        ansible_paramiko_host_key_checking: False
+        #ansible_host_key_auto_add: True
+      tags: backup
+
+    - name: check the startup-config against the running-config
+      ios_config:
+        diff_against: startup
+        diff_ignore_lines:
+          - ntp clock .*
+          - certificate self-signed .*
+      tags: diff_against
+
+    - ios_config:
+        lines: 
+          - ip domain name bogus.com
+          - ip name-server 8.8.8.8
+          - ip name-server 8.8.4.4
+          - ntp server 130.126.24.24
+          - ntp server 152.2.21.1
+        diff_against: running
+        save_when: changed
+      tags: ios_config
+
+    - cli_config:
+        lines: 
+          - ip domain name bogus.com
+          - ip name-server 8.8.8.8
+          - ip name-server 8.8.4.4
+          - ntp server 130.126.24.24
+          - ntp server 152.2.21.1
+      tags: cli_config
+
+    - ios_config:
+        parent: ip access-list extended test99
+        lines:
+            -  permit ip any host 1.1.1.1
+        match: strict
+        tags: acl_test

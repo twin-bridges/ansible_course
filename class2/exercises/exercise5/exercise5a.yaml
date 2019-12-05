@@ -1,0 +1,10 @@
+---
+- name: Exercise 5a
+  hosts: juniper
+  gather_facts: False
+  tasks:
+    - junos_command:
+        commands: show interfaces terse
+      register: interfaces
+    - debug:
+        var: interfaces

@@ -1,0 +1,2 @@
+---
+bgp_router_id: "{{ loopback0 }}"

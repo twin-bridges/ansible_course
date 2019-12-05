@@ -1,0 +1,14 @@
+---
+- name: Exercise 5a
+  hosts: juniper
+  gather_facts: False
+  tasks:
+    - junos_command:
+        commands: show interfaces terse
+      register: interfaces
+    - debug:
+        var: interfaces
+    - debug:
+        msg: "Primary IP: {{ interfaces['stdout'][0].split()[-1] }}"
+    - debug:
+        msg: "Vlan.0 Interface: {{ interfaces['stdout_lines'][0][-1] }}"

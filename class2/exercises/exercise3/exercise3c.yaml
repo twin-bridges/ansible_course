@@ -1,0 +1,14 @@
+---
+- name: Exercise 3c
+  hosts: nxos
+  gather_facts: False
+  tasks:
+    - name: Gather show version output
+      nxos_command:
+        commands:
+          - show version
+          - show lldp neighbors
+      register: show_output
+    - name: Print gathered output
+      debug:
+        var: show_output["stdout"][1]

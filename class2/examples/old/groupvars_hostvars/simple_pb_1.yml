@@ -1,0 +1,9 @@
+---
+- name: Print out variables
+  hosts: cisco
+  gather_facts: False
+  tasks:
+    - debug:
+        msg: "{{ ntp1 }}"
+    - debug:
+        msg: "{{ ntp2 }}"
