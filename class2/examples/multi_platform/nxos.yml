@@ -1,3 +1,0 @@
-- name: RUN CISCO NXOS COMMAND
-  nxos_command:
-    commands: show ip int br

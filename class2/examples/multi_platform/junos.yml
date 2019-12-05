@@ -1,3 +1,0 @@
-- name: RUN JUNOS COMMAND
-  junos_command:
-    commands: show interface terse

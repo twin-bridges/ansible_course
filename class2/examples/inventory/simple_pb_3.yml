@@ -1,8 +1,0 @@
----
-# Execute using
-# ansible-playbook simple_pb_3.yml -i ./ansible-hosts_2.ini
-- name: Print out variables
-  hosts: cisco
-  tasks:
-    - debug:
-        msg: "{{ ansible_host }}"

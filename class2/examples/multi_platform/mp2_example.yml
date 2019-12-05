@@ -1,7 +1,0 @@
----
-- name: test multiple platforms
-  hosts: arista:juniper:nxos
-  gather_facts: False
-  tasks:
-    - name: Run commands per platform
-      include_tasks: "{{ansible_network_os}}.yml"

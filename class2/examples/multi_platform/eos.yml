@@ -1,3 +1,0 @@
-- name: RUN ARISTA COMMAND
-  eos_command:
-    commands: show ip int br
