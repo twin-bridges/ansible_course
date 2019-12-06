@@ -1,6 +1,7 @@
 ---
 - name: When Testing
   hosts: local
+  gather_facts: False
 
   tasks:
     - debug:

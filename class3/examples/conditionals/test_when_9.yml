@@ -1,0 +1,21 @@
+---
+- name: When Testing
+  hosts: cisco
+  gather_facts: True
+
+  tasks:
+    - debug:
+        # msg: "{{ hostvars[inventory_hostname] }}"
+        var: hostvars[inventory_hostname]
+
+    - debug:
+        var: ansible_net_model
+      when: ansible_net_model == "CSR1000V"
+
+    - debug:
+        msg: "{{ ansible_net_version }}"
+      when: '"15.5" in ansible_net_version'
+
+    - debug:
+        msg: "IOS-XE devices"
+      when: '"IOS-XE" in ansible_net_iostype'

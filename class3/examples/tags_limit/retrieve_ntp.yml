@@ -1,0 +1,12 @@
+---
+- name: IOS Example
+  hosts: cisco5
+  gather_facts: False
+  tasks:
+    - ios_command:
+        commands:
+          - show run | inc ntp
+      register: output
+    
+    - debug:
+        var: output
