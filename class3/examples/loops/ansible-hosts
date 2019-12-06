@@ -1,7 +1,0 @@
-[all:vars]
-ansible_connection=local
-# !!! You will need to update this to your Python !!!
-ansible_python_interpreter=/home/kbyers/VENV/ansible/bin/python
-
-[local]
-localhost ansible_connection=local
