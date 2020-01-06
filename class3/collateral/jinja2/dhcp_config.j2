@@ -1,0 +1,9 @@
+{% if dhcp %}
+no ip dhcp conflict logging
+ip dhcp excluded-address {{ dhcp_exclude1_start }} {{ dhcp_exclude1_end }}
+!
+ip dhcp pool POOL1
+   network {{ dhcp_network }} {{ dhcp_netmask }}
+   default-router {{ dhcp_gateway }}
+   dns-server 8.8.8.8 8.8.4.4
+{% endif %}

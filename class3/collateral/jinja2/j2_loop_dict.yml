@@ -1,0 +1,14 @@
+---
+- name: Test Jinja2
+  hosts: cisco1
+  gather_facts: False
+  vars:
+    ports:
+      GigabitEthernet1: {"mode": "access", "access_vlan": 20}
+      GigabitEthernet2: {"mode": "access", "access_vlan": 30}
+      GigabitEthernet3: {"mode": "access", "access_vlan": 40}
+      GigabitEthernet4: {"mode": "access", "access_vlan": 50}
+  tasks:
+    - template:
+        src: int_config2.j2
+        dest: "./CFGS/{{ inventory_hostname }}-interfaces.txt"

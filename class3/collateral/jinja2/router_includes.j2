@@ -1,0 +1,31 @@
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+!
+hostname {{ inventory_hostname }}
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered 32000
+no logging console
+!
+{% include '881_interfaces.j2' %}
+!
+no vstack
+!
+line con 0
+ logging synchronous
+ no modem enable
+line aux 0
+line vty 0 4
+ exec-timeout 20 0
+ transport input telnet ssh
+!
+ntp server 130.126.24.24
+ntp server 152.2.21.1
+!
+end

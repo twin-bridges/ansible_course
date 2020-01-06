@@ -15,8 +15,8 @@
       with_items: "{{ my_devices }}"
       when: False
 
-    - name: Test with_items
+    - name: Test using loop
       debug:
         msg: "{{ item }}"
       loop: "{{ my_devices }}"
-      when: False
+      when: True

@@ -1,0 +1,72 @@
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+!
+hostname cisco5
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered 32000
+no logging console
+!
+interface GigabitEthernet1
+ ip address dhcp
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!         
+interface GigabitEthernet4
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!         
+interface GigabitEthernet5
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!         
+interface GigabitEthernet6
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!         
+interface GigabitEthernet7
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+!
+no vstack
+!
+line con 0
+ logging synchronous
+ no modem enable
+line aux 0
+line vty 0 4
+ exec-timeout 20 0
+ transport input telnet ssh
+!
+ntp server 130.126.24.24
+ntp server 152.2.21.1
+!
+end

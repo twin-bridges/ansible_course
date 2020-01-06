@@ -1,0 +1,9 @@
+snmp-server group READONLY v3 priv read VIEWSTD access 98
+snmp-server view VIEWSTD iso included
+snmp-server community galileo RO 98
+snmp-server ifindex persist
+snmp-server location Freemont, CA
+snmp-server contact Kirk Byers 
+access-list 98 remark *** SNMP ***
+access-list 98 permit any
+

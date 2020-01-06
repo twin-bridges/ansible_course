@@ -1,0 +1,18 @@
+---
+- name: Test Jinja2
+  hosts: cisco1
+  gather_facts: False
+  vars:
+    cisco_interfaces:
+      - GigabitEthernet1
+      - GigabitEthernet2
+      - GigabitEthernet3
+      - GigabitEthernet4
+      - GigabitEthernet5
+      - GigabitEthernet6
+      - GigabitEthernet7
+
+  tasks:
+    - template:
+        src: int_config.j2
+        dest: "./CFGS/{{ inventory_hostname }}-interfaces.txt"

@@ -1,0 +1,16 @@
+interface GigabitEthernet1
+ switchport mode access
+ switchport access vlan 20
+!
+interface GigabitEthernet2
+ switchport mode access
+ switchport access vlan 30
+!
+interface GigabitEthernet3
+ switchport mode access
+ switchport access vlan 40
+!
+interface GigabitEthernet4
+ switchport mode access
+ switchport access vlan 50
+!

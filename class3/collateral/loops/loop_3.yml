@@ -4,7 +4,7 @@
   vars:
     net_devices:
       - ["rtr1", "rtr2", "rtr3", "rtr4"]
-      - ["sw1", "sw2", "sw3", "sr4"]
+      - ["sw1", "sw2", "sw3", "sw4"]
 
   tasks:
     - name: Example of list flattening

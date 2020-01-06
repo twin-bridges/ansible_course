@@ -15,8 +15,8 @@
       with_items: "{{ my_devices }}"
       when: "item == '10.10.10.1'"
 
-    - name: Test with_items (loop)
+    - name: Test using loop
       debug:
         msg: "{{ item }}"
       loop: "{{ my_devices }}"
-      when: "item == '10.10.10.1'"
+      when: "item == '10.10.40.1'"

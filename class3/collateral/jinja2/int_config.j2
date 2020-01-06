@@ -1,0 +1,6 @@
+{% for interface in cisco_interfaces %}
+interface {{ interface }}
+ switchport access vlan 10
+ spanning-tree portfast
+!
+{% endfor %}

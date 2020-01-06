@@ -1,0 +1,8 @@
+{% for port_name, port_attribs in ports.items() %}
+interface {{ port_name }}
+{% if port_attribs.mode == 'access' %}
+ switchport mode access
+ switchport access vlan {{ port_attribs.access_vlan }}
+{% endif %}
+!
+{% endfor %}

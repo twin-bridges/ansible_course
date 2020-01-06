@@ -1,0 +1,8 @@
+---
+- name: Test Jinja2
+  hosts: cisco1
+  gather_facts: False
+  tasks:
+    - template:
+        src: modular_template.j2
+        dest: "./CFGS/{{ inventory_hostname }}.txt"
