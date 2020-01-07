@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 import yaml
+from pprint import pprint
 
 
 def read_yaml(filename):
@@ -13,4 +14,4 @@ if __name__ == "__main__":
         filename = sys.argv[1]
     except IndexError as e:
         filename = input("Enter YAML file name: ")
-    print(read_yaml(filename))
+    pprint(read_yaml(filename))

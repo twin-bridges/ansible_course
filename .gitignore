@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 
 class5/examples/backup/backup/*
+*.swp

@@ -1,7 +1,7 @@
 ---
-my_dictionary:
-  averyfinekey: areasonablyokvalue
-  alistkey:
-    - someelement
-    - anotherelement
-  somebool: False
+rtr1:
+  host: cisco1.lasthop.io
+  username: pyclass
+  password: somepass
+  device_type: cisco_ios
+  use_session_log: False

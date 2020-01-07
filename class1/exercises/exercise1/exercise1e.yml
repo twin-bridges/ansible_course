@@ -1,9 +1,20 @@
 ---
-combining_data_types:
-  - nested_dict:
-      really_nested_key: reallynestedvalue
-      another_list:
-        - 1
-        - two
-      another_nested_dict:
-        withinterestingkeys: andverycoolvalues
+network_devices:
+  - host: cisco1.lasthop.io
+    username: pyclass
+    password: somepass
+    device_type: cisco_ios
+    use_session_log: False
+    ip_addresses:
+      - 10.0.0.1
+      - 10.0.0.2
+      - 10.0.0.3
+  - host: cisco2.lasthop.io
+    username: pyclass
+    password: somepass
+    device_type: cisco_ios
+    use_session_log: False
+    ip_addresses:
+      - 10.1.1.1
+      - 10.1.1.2
+      - 10.1.1.3

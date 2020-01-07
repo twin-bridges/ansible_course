@@ -14,7 +14,7 @@ def test_class1_ex1a():
     cmd_list = ["python", "print_yaml.py", "exercise1a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "['thingone', 2, 3, 'thingfour', 'lastthing']" in std_out
+    assert "['rtr1', 701, 3356, '10.1.1.100', '192.168.200.17']" in std_out
     assert std_err == ""
     assert return_code == 0
 
@@ -24,7 +24,7 @@ def test_class1_ex1b():
     cmd_list = ["python", "print_yaml.py", "exercise1b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "['thingone', 2, 3, 'thingfour', 'lastthing']" in std_out
+    assert "['rtr1', 701, 3356, '10.1.1.100', '192.168.200.17']" in std_out
     assert std_err == ""
     assert return_code == 0
 
@@ -34,10 +34,12 @@ def test_class1_ex1c():
     cmd_list = ["python", "print_yaml.py", "exercise1c.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert (
-        "{'my_dictionary': {'averyfinekey': 'areasonablyokvalue', 'alistkey': ['someelement', "
-        "'anotherelement'], 'somebool': False}}" in std_out
-    )
+    assert "rtr1" in std_out
+    assert "device_type" in std_out
+    assert "cisco1.lasthop.io" in std_out
+    assert "password" in std_out
+    assert "use_session_log" in std_out
+    assert "username" in std_out
     assert std_err == ""
     assert return_code == 0
 
@@ -47,10 +49,12 @@ def test_class1_ex1d():
     cmd_list = ["python", "print_yaml.py", "exercise1d.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert (
-        "{'my_dictionary': {'averyfinekey': 'areasonablyokvalue', 'alistkey': ['someelement', "
-        "'anotherelement'], 'somebool': False}}" in std_out
-    )
+    assert "rtr1" in std_out
+    assert "device_type" in std_out
+    assert "cisco1.lasthop.io" in std_out
+    assert "password" in std_out
+    assert "use_session_log" in std_out
+    assert "username" in std_out
     assert std_err == ""
     assert return_code == 0
 
@@ -60,21 +64,10 @@ def test_class1_ex1e():
     cmd_list = ["python", "print_yaml.py", "exercise1e.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert (
-        "{'combining_data_types': [{'nested_dict': {'really_nested_key': 'reallynestedvalue', "
-        "'another_list': [1, 'two'], 'another_nested_dict': {'withinterestingkeys': "
-        "'andverycoolvalues'}}}]}" in std_out
-    )
-    assert std_err == ""
-    assert return_code == 0
-
-
-def test_class1_ex1f():
-    base_path = "../class1/exercises/exercise1"
-    cmd_list = ["python", "print_yaml.py", "exercise1f.yml"]
-
-    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert r"['1042', '{This is a dictionary thingy!}', '\\athing', 'True']" in std_out
+    assert "network_devices" in std_out
+    assert std_out.count("cisco_ios") == 2
+    assert std_out.count("ip_addresses") == 2
+    assert std_out.count("password") == 2
     assert std_err == ""
     assert return_code == 0
 
