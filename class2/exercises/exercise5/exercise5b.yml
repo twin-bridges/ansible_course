@@ -1,12 +1,11 @@
 ---
-- name: Exercise 5a
+- name: Exercise 5b
   hosts: juniper
   gather_facts: False
   tasks:
     - junos_command:
         commands: show interfaces terse
       register: interfaces
+
     - debug:
-        var: interfaces
-    - debug:
-        msg: "Primary IP: {{ interfaces['stdout'][0].split()[-1] }}"
+        msg: "Primary IP: {{ interfaces['stdout_lines'][0][-1] }}"

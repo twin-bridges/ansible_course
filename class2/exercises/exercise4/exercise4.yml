@@ -3,13 +3,14 @@
   hosts: cisco6
   gather_facts: False
   tasks:
-   - name: Clear counters
+   - name: Clear Logging Buffer
      ios_command:
        commands:
          - command: clear logging
            prompt: confirm
-           answer: ""
+           answer: "\r"
      register: clear_log_output
+
    - name: Print clear log output
      debug:
        var: clear_log_output

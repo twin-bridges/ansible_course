@@ -7,13 +7,16 @@
       eos_command:
         commands: show ip arp
       register: show_ip_arp
+
     - name: Print show ip arp output
       debug:
         var: show_ip_arp
+
     - name: Gather show ip arp output | json
       eos_command:
         commands: show ip arp | json
       register: show_ip_arp_json
+
     - name: Print show ip arp output json
       debug:
         var: show_ip_arp_json
