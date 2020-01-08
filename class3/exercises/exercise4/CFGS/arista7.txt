@@ -1,0 +1,54 @@
+!
+transceiver qsfp default-mode 4x10G
+!
+hostname arista7
+!
+ntp server 130.126.24.24
+!
+spanning-tree mode rapid-pvst
+!
+aaa authorization exec default local
+!
+no aaa root
+!
+!
+clock timezone America/Los_Angeles
+!
+vlan 2-7
+!
+interface Ethernet1
+   spanning-tree portfast
+   spanning-tree cost 1
+!
+interface Ethernet2
+   switchport access vlan 2
+!
+interface Ethernet3
+   switchport access vlan 3
+!
+interface Ethernet4
+   switchport access vlan 4
+!
+interface Ethernet5
+   switchport access vlan 5
+!
+interface Ethernet6
+   switchport access vlan 6
+!
+interface Ethernet7
+   switchport access vlan 7
+!
+interface Management1
+   shutdown
+!
+interface Vlan1
+   ip address 10.220.88.34/24
+!
+ip route 0.0.0.0/0 10.220.88.1
+!
+ip routing
+!
+management api http-commands
+   no shutdown
+!
+end
