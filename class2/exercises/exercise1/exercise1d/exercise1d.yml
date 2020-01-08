@@ -2,20 +2,24 @@
 - name: Exercise 1d
   hosts: arista5
   gather_facts: True
-  vars_files: my_vars.yaml
+  vars_files: my_vars.yml
   tasks:
     - name: Print arista5 ansible_facts
       debug:
         var: ansible_facts
+
     - name: Print arista5 net_all_ipv4_addresses
       debug:
-        var: ansible_facts["net_all_ipv4_addresses"]
+        var: net_all_ipv4_addresses
+
     - name: Print arista5 ansible_network_os
       debug:
         var: ansible_network_os
+
     - name: Print arista5 ansible_host
       debug:
         var: ansible_host
+
     - name: Print desired eos version
       debug:
         var: desired_eos_version

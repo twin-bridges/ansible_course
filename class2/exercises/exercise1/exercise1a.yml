@@ -6,6 +6,7 @@
     - name: Print arista5 ansible_facts
       debug:
         var: ansible_facts
+
     - name: Print arista5 net_all_ipv4_addresses
       debug:
-        var: ansible_facts["net_all_ipv4_addresses"]
+        var: net_all_ipv4_addresses
