@@ -1,0 +1,18 @@
+---
+- name: Exercise 2
+  hosts: nxos1
+  gather_facts: False
+  tasks:
+    - name: Gather show vlan id
+      nxos_command:
+        commands: "show vlan id {{ item }}"
+      register: vlans 
+      loop:
+        - 1
+        - 2
+        - 3
+        - 4
+
+    - name: 'Only print the output of "show vlan id 4"'
+      debug:
+        var: vlans["results"][3]["stdout_lines"]
