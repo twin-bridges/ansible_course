@@ -9,6 +9,7 @@
           - show version
           - show lldp neighbors
       register: show_output
+
     - name: Print gathered output
       debug:
-        var: show_output["stdout"][1]
+        var: show_output["stdout_lines"][1]

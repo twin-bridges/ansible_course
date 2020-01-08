@@ -1,19 +1,42 @@
-$ ansible-playbook -i ansible-hosts.ini exercise3c.yaml -e ansible_ssh_pass=bogus
+$ ansible-playbook exercise3d.yml -k
+SSH password: 
 
-PLAY [Exercise 3d] ********************************************************************************************************************
+PLAY [Exercise 3d] *********************************************************************************
 
-TASK [Gather show version output] *****************************************************************************************************
+TASK [Gather show version output] ******************************************************************
 ok: [nxos2]
 ok: [nxos1]
 
-TASK [Print gathered output] **********************************************************************************************************
+TASK [Print gathered output] ***********************************************************************
 ok: [nxos1] => {
-    "show_output[\"stdout\"][1]": "Capability codes:\n  (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device\n  (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other\nDevice ID            Local Intf      Hold-time  Capability  Port ID  \nnxos2.lasthop.io     Eth1/1          120        BR          Ethernet1/1   \nnxos2.lasthop.io     Eth1/2          120        BR          Ethernet1/2   \nnxos2.lasthop.io     Eth1/3          120        BR          Ethernet1/3   \nnxos2.lasthop.io     Eth1/4          120        BR          Ethernet1/4   \nTotal entries displayed: 4"
+    "show_output[\"stdout_lines\"][1]": [
+        "Capability codes:",
+        "  (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device",
+        "  (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other",
+        "Device ID            Local Intf      Hold-time  Capability  Port ID  ",
+        "nxos2.lasthop.io     Eth1/1          120        BR          Ethernet1/1   ",
+        "nxos2.lasthop.io     Eth1/2          120        BR          Ethernet1/2   ",
+        "nxos2.lasthop.io     Eth1/3          120        BR          Ethernet1/3   ",
+        "nxos2.lasthop.io     Eth1/4          120        BR          Ethernet1/4   ",
+        "Total entries displayed: 4"
+    ]
 }
 ok: [nxos2] => {
-    "show_output[\"stdout\"][1]": "Capability codes:\n  (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device\n  (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other\nDevice ID            Local Intf      Hold-time  Capability  Port ID  \nnxos1.lasthop.io     Eth1/1          120        BR          Ethernet1/1   \nnxos1.lasthop.io     Eth1/2          120        BR          Ethernet1/2   \nnxos1.lasthop.io     Eth1/3          120        BR          Ethernet1/3   \nnxos1.lasthop.io     Eth1/4          120        BR          Ethernet1/4   \nTotal entries displayed: 4"
+    "show_output[\"stdout_lines\"][1]": [
+        "Capability codes:",
+        "  (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device",
+        "  (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other",
+        "Device ID            Local Intf      Hold-time  Capability  Port ID  ",
+        "nxos1.lasthop.io     Eth1/1          120        BR          Ethernet1/1   ",
+        "nxos1.lasthop.io     Eth1/2          120        BR          Ethernet1/2   ",
+        "nxos1.lasthop.io     Eth1/3          120        BR          Ethernet1/3   ",
+        "nxos1.lasthop.io     Eth1/4          120        BR          Ethernet1/4   ",
+        "Total entries displayed: 4"
+    ]
 }
 
-PLAY RECAP ****************************************************************************************************************************
-nxos1                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-nxos2                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP *****************************************************************************************
+nxos1                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+nxos2                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+

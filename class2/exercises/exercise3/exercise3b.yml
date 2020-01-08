@@ -9,5 +9,6 @@
           - show version
           - show ip arp
       register: show_output
+
     - debug:
         var: show_output

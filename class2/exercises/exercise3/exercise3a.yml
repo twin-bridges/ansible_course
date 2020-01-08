@@ -7,5 +7,6 @@
       nxos_command:
         commands: show version
       register: show_version
+
     - debug:
         var: show_version
