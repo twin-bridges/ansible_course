@@ -1,0 +1,38 @@
+$ ansible-playbook exercise1a.yml --limit arista5
+
+PLAY [Exercise 1] *************************************************************************************************************************************************
+
+TASK [Gather show ip arp output (eos)] ****************************************************************************************************************************
+ok: [arista5]
+
+TASK [Gather show ip arp output (ios)] ****************************************************************************************************************************
+skipping: [arista5]
+
+TASK [Gather show ip arp output (junos)] **************************************************************************************************************************
+skipping: [arista5]
+
+TASK [Print ARP output] *******************************************************************************************************************************************
+ok: [arista5] => {
+    "show_ip_arp_eos": {
+        "changed": false,
+        "failed": false,
+        "stdout": [
+            "Address         Age (min)  Hardware Addr   Interface\n10.220.88.1           N/A  0062.ec29.70fe  Vlan1, Ethernet1\n10.220.88.28          N/A  00aa.fc05.b513  Vlan1, not learned\n10.220.88.29          N/A  00af.fc9a.e49e  Vlan1, not learned\n10.220.88.37          N/A  0001.00ff.0001  Vlan1, Ethernet1\n10.220.88.38          N/A  0002.00ff.0001  Vlan1, Ethernet1"
+        ],
+        "stdout_lines": [
+            [
+                "Address         Age (min)  Hardware Addr   Interface",
+                "10.220.88.1           N/A  0062.ec29.70fe  Vlan1, Ethernet1",
+                "10.220.88.28          N/A  00aa.fc05.b513  Vlan1, not learned",
+                "10.220.88.29          N/A  00af.fc9a.e49e  Vlan1, not learned",
+                "10.220.88.37          N/A  0001.00ff.0001  Vlan1, Ethernet1",
+                "10.220.88.38          N/A  0002.00ff.0001  Vlan1, Ethernet1"
+            ]
+        ]
+    }
+}
+
+PLAY RECAP ********************************************************************************************************************************************************
+arista5                    : ok=2    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
+
