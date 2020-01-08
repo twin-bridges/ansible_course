@@ -1,0 +1,32 @@
+---
+- name: Exercise 3
+  hosts: cisco1:cisco2
+  gather_facts: False
+  tasks:
+    - name: Gather LLDP neighbors
+      ios_command:
+        commands: show lldp neighbors
+      register: lldp_output
+
+    - name: Extract list of lines from the output
+      set_fact:
+        lldp: "{{ lldp_output['stdout_lines'][0] }}"
+
+    - name: Extract LLDP entry from list of lines
+      set_fact:
+        lldp_entry: "{{ item }}"
+      loop: "{{ lldp  }}"
+      when: "'twb-sf-hpsw1' in item"
+
+    - name: Set LLDP variables from the .split() output
+      set_fact:
+        remote_device: "{{ lldp_entry.split()[0] }}"
+        local_intf: "{{ lldp_entry.split()[1] }}"
+        remote_intf: "{{ lldp_entry.split()[-1] }}"
+
+    - name: Display results
+      debug:
+        msg: 
+          - "Remote device: {{ remote_device }}"
+          - "Local intf: {{ local_intf }}"
+          - "Remote intf: {{ remote_intf }}"

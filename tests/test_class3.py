@@ -70,3 +70,19 @@ def test_class3_ex2():
     assert "nxos1                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0" in std_out 
     assert std_err == ""
     assert return_code == 0
+
+def test_class3_ex3():
+    base_path = "../class3/exercises/exercise3"
+    cmd_list = ["ansible-playbook", "exercise3.yml"]
+
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    assert "cisco1                     : ok=5    changed=0    unreachable=0    failed=0    skipped=0" in std_out
+    assert "cisco2                     : ok=5    changed=0    unreachable=0    failed=0    skipped=0" in std_out
+    assert "ok: [cisco2] => (item=twb-sf-hpsw1        Fa4            120        B               13)" in std_out
+    assert "ok: [cisco1] => (item=twb-sf-hpsw1        Fa4            120        B               15)" in std_out
+    assert "Remote device: twb-sf-hpsw1" in std_out
+    assert "Local intf: Fa4" in std_out
+    assert "Remote intf: 15" in std_out
+    assert "Remote intf: 13" in std_out
+    assert std_err == ""
+    assert return_code == 0

@@ -1,5 +1,5 @@
 ---
-- name: Exercise 1
+- name: Exercise 1a
   hosts: arista:cisco:juniper
   gather_facts: False
   tasks:
