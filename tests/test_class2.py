@@ -159,7 +159,7 @@ def test_class2_ex2c():
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert "The ASN for host cisco1 is 65001, the router-id is 1.1.1.1" in std_out
     assert "The ASN for host cisco2 is 65001, the router-id is 2.2.2.2" in std_out
-    assert "The ASN for host cisco5 is 65001, the router-id is 5.5.5.5" in std_out
+    assert "The ASN for host cisco5 is 65535, the router-id is 5.5.5.5" in std_out
     assert "The ASN for host cisco6 is 65001, the router-id is 6.6.6.6" in std_out
     assert (
         "cisco1                     : ok=1    changed=0    unreachable=0    failed=0    "
