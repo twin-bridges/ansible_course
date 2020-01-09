@@ -86,3 +86,28 @@ def test_class3_ex3():
     assert "Remote intf: 13" in std_out
     assert std_err == ""
     assert return_code == 0
+
+def test_class3_ex4():
+    base_path = "../class3/exercises/exercise4"
+    cmd_list = ["ansible-playbook", "exercise4.yml"]
+
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    assert "arista5                    : ok=1    changed=0" in std_out
+    assert "arista6                    : ok=1    changed=0" in std_out
+    assert "arista7                    : ok=1    changed=0" in std_out
+    assert "arista8                    : ok=1    changed=0" in std_out
+    assert std_err == ""
+    assert return_code == 0
+
+def test_class3_ex5():
+    base_path = "../class3/exercises/exercise5"
+    cmd_list = ["ansible-playbook", "exercise5.yml"]
+
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    assert "TASK [Generate interface configuration]" in std_out
+    assert "TASK [Generate BGP configuration]" in std_out
+    assert "TASK [Assemble the two parts into one configuration change file]" in std_out
+    assert "nxos1                      : ok=3    changed=0" in std_out
+    assert "nxos2                      : ok=3    changed=0" in std_out
+    assert std_err == ""
+    assert return_code == 0
