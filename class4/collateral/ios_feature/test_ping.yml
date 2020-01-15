@@ -1,0 +1,8 @@
+---
+- name: Test ping
+  hosts: cisco1:cisco2
+  gather_facts: False
+  tasks:
+    - name: Test reachability
+      net_ping:
+        dest: 10.220.88.1

@@ -1,0 +1,8 @@
+---
+- name: Test ping
+  hosts: nxos1
+  gather_facts: False
+  tasks:
+    - name: Test reachability
+      net_ping:
+        dest: 192.168.227.2

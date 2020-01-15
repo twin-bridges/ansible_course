@@ -1,0 +1,19 @@
+---
+- name: Interface configuration
+  hosts: nxos1
+  gather_facts: False
+  tasks:
+    - name: Configure 'switchport'
+      nxos_interface:
+        name: "{{ item }}"
+        mode: layer2
+      loop:
+        - Ethernet1/3
+        - Ethernet1/4
+
+    - name: Ensure mode is trunk
+      nxos_l2_interface:
+        name: Ethernet1/4
+        mode: trunk
+        native_vlan: "20"
+      tags: trunk
