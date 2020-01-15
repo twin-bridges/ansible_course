@@ -1,0 +1,23 @@
+---
+- name: BGP configuration
+  hosts: cisco1
+  gather_facts: False
+  tasks:
+    - name: Testing BGP configuration
+      ios_bgp:
+        config:
+          bgp_as: 42
+          router_id: 10.220.88.20
+          log_neighbor_changes: True
+          # neighbor 10.220.88.38 remote-as 44
+          neighbors:
+            - neighbor: 10.220.88.38
+              remote_as: 44
+              timers:
+                keepalive: 300
+                holdtime: 360
+                min_neighbor_holdtime: 360
+          networks:
+            - prefix: 192.0.2.0
+              masklen: 23
+        operation: override

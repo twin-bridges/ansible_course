@@ -1,0 +1,27 @@
+- name: Interface configuration
+  hosts: cisco1
+  gather_facts: False
+  tasks:
+    - name: Update interface config
+      ios_interfaces:
+        config:
+          - name: FastEthernet0
+            description: 'Testing Ansible configuration'
+            enabled: True
+            # speed: "100"
+            # duplex: full
+            speed: auto
+            duplex: auto
+        state: merged
+
+- name: Interface configuration (CSR1000V)
+  hosts: cisco5
+  gather_facts: False
+  tasks:
+    - name: Update interface config
+      ios_interfaces:
+        config:
+          - name: GigabitEthernet7
+            description: 'Testing Ansible configuration'
+            enabled: False 
+        state: merged

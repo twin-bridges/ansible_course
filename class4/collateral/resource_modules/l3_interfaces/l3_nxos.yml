@@ -1,0 +1,23 @@
+- name: Interface configuration
+  hosts: nxos1
+  gather_facts: False
+  tasks:
+    - name: Update l3 interface config
+      nxos_l3_interfaces:
+        config:
+          - name: Ethernet1/4
+            ipv4:
+              - address: 192.168.227.1/24
+        state: merged
+
+- name: Interface configuration
+  hosts: nxos2
+  gather_facts: False
+  tasks:
+    - name: Update l3 interface config
+      nxos_l3_interfaces:
+        config:
+          - name: Ethernet1/4
+            ipv4:
+              - address: 192.168.227.2/24
+        state: merged

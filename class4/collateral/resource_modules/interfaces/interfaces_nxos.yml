@@ -1,0 +1,12 @@
+- name: Interface configuration
+  hosts: nxos1
+  gather_facts: False
+  tasks:
+    - name: Update interface config
+      nxos_interfaces:
+        config:
+          - name: Ethernet1/4
+            description: 'Testing Ansible configuration'
+            enabled: False
+        state: merged
+

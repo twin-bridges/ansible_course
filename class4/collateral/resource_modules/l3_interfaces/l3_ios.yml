@@ -1,0 +1,15 @@
+- name: Interface configuration
+  hosts: cisco1 
+  gather_facts: False
+  tasks:
+    - name: Update l3 interface config
+      ios_l3_interfaces:
+        config:
+          - name: loopback99
+            ipv4:
+              - address: 192.168.217.1/24
+              - address: 192.168.218.1/24
+                secondary: True
+            ipv6:
+              - address: 2001:db8:0:1::1/64
+        state: merged

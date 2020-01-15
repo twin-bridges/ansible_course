@@ -1,0 +1,29 @@
+---
+- name: IOS Banner
+  hosts: cisco
+  gather_facts: False
+  tasks:
+    - name: Configure the login banner
+      ios_banner:
+        banner: login
+        text: |
+          *****************************************
+          Cisco IOS banner configured via Ansible
+
+          Skynet take-over commencing...
+          *****************************************
+        state: present
+      tags: banner_add
+
+    - name: Configure the login banner
+      ios_banner:
+        banner: login
+        text: "{{ lookup('file', './ios_banner.txt') }}"
+        state: present
+      tags: banner_add_file
+
+    - name: Configure the login banner
+      ios_banner:
+        banner: login
+        state: absent
+      tags: banner_remove

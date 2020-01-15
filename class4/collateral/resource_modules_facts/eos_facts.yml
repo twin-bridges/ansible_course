@@ -1,0 +1,26 @@
+---
+- name: RM Facts
+  hosts: arista5
+  gather_facts: True
+  module_defaults:
+    eos_facts:
+      gather_network_resources:
+        - vlans
+        - interfaces
+        - l2_interfaces
+        - l3_interfaces
+        - lacp
+        - lldp_global
+        - lldp_interfaces
+        - lag_interfaces
+
+  tasks:
+    - name: Test
+      debug:
+        var: ansible_network_resources
+      tags: rm_all
+
+    - name: VLANs only
+      debug:
+        var: ansible_network_resources.vlans
+      tags: vlans

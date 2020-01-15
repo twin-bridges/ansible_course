@@ -1,0 +1,20 @@
+---
+- name: RM Facts
+  hosts: cisco5
+  gather_facts: True
+  module_defaults:
+    ios_facts:
+      gather_network_resources:
+        # - vlans
+        - interfaces
+        - l2_interfaces
+        - l3_interfaces
+        - lacp
+        - lldp_global
+        - lldp_interfaces
+        - lag_interfaces
+
+  tasks:
+    - name: Test
+      debug:
+        var: ansible_network_resources

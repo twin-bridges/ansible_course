@@ -1,0 +1,5 @@
+********************************************************
+  Cisco IOS banner configured via Ansible (from file)
+
+  Skynet take-over commencing...
+********************************************************

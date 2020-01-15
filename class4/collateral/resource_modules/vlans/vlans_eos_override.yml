@@ -1,0 +1,30 @@
+---
+- name: VLAN configuration
+  hosts: arista5
+  gather_facts: False
+  tasks:
+    - name: Configure VLANs
+      eos_vlans:
+        config:
+          - name: default
+            vlan_id: 1
+            state: active
+          - name: VLAN0002
+            vlan_id: 2
+            state: active
+          - name: VLAN0003
+            vlan_id: 3
+            state: active
+          - name: VLAN0004
+            vlan_id: 4
+            state: active
+          - name: VLAN0005
+            vlan_id: 5
+            state: active
+          - name: VLAN0006
+            vlan_id: 6
+            state: active
+          - name: VLAN0007
+            vlan_id: 7
+            state: active
+        state: overridden

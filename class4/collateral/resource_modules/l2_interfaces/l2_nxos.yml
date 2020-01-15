@@ -1,0 +1,14 @@
+- name: Interface configuration
+  hosts: nxos1
+  gather_facts: False
+  tasks:
+    - name: Update l2 interface config
+      nxos_l2_interfaces:
+        config:
+          - name: Ethernet1/3
+            access:
+              vlan: 30
+          - name: Ethernet1/4
+            trunk:
+              native_vlan: 20
+        state: merged
