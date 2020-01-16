@@ -6,12 +6,12 @@
       ios_interfaces:
         config:
           - name: FastEthernet0
-            # description: 'Testing Ansible configuration'
+            description: 'Testing Ansible configuration'
             enabled: True
             # speed: "100"
             # duplex: full
-            # speed: auto
-            # duplex: auto
+            speed: auto
+            duplex: auto
         # state: merged
         state: replaced
 

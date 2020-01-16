@@ -1,0 +1,40 @@
+- name: Show interface configuration
+  hosts: arista5:nxos1
+  gather_facts: False
+  tasks:
+    - name: Show interface config (eos)
+      eos_command:
+        commands:
+          - show run int Loopback99
+      register: output
+      tags: eos
+      when: "ansible_network_os == 'eos'"
+
+    - debug:
+        var: output["stdout_lines"]
+      tags: eos
+      when: "ansible_network_os == 'eos'"
+
+    - name: Show interface config (nxos)
+      nxos_command:
+        commands:
+          - show run int Ethernet1/3
+          - show run int Ethernet1/4
+      register: output
+      tags: nxos
+      when: "ansible_network_os == 'nxos'"
+
+    - debug:
+        var: output["stdout_lines"]
+      tags: nxos
+      when: "ansible_network_os == 'nxos'"
+
+    - name: no switchport config
+      nxos_config:
+        parents: "interface {{ item }}"
+        lines:
+          - no switchport
+      tags: nxos_cfg
+      when: "ansible_network_os == 'nxos'"
+      loop:
+        - Ethernet1/4
