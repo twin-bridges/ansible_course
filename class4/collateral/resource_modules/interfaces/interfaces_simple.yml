@@ -12,6 +12,6 @@
             # duplex: full
             speed: auto
             duplex: auto
-        # state: merged
-        state: replaced
+        state: merged
+        # state: replaced
 
