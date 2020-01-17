@@ -15,5 +15,5 @@
       nxos_l2_interface:
         name: Ethernet1/4
         mode: trunk
-        native_vlan: "20"
+        native_vlan: "4"
       tags: trunk

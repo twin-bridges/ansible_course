@@ -10,3 +10,13 @@
             enabled: False
         state: merged
 
+    - name: Configure ports to be switchports
+      nxos_interfaces:
+        config:
+          - name: "{{ item }}"
+            enabled: True
+            mode: layer2
+      loop:
+        - Ethernet1/3
+        - Ethernet1/4
+      tags: switchport
