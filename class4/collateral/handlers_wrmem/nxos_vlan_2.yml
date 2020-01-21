@@ -7,7 +7,7 @@
         vlan_id: "{{ item.vlan_id }}"
         admin_state: "{{ item.admin_state }}"
         name: "{{ item.name }}"
-      with_items: "{{ vlans }}"
+      loop: "{{ vlans }}"
 
     - name: write mem
       nxos_command:
