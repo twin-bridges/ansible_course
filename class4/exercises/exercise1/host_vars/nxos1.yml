@@ -1,0 +1,4 @@
+intf_name: Ethernet1/4
+intf_address: 10.227.99.1
+intf_netmask: "24"
+peer_ip: 10.227.99.2

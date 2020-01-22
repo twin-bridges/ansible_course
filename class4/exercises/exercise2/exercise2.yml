@@ -1,0 +1,38 @@
+---
+# Use l2_interfaces to configure 1 of the interfaces on the Arista switches (all of them).
+# Use vlans to configure the vlan before you use it. Store all of this information in 
+# host_vars. The port should already be configured for "access" mode.
+#
+# # Ethernet7
+- name: Interface configuration
+  hosts: arista
+  gather_facts: False
+  tasks:
+    - name: Create VLAN250
+      eos_vlans:
+        config:
+          - name: "{{ vlan_name }}"
+            vlan_id: "{{ vlan_id }}"
+        state: merged
+
+    - name: "Assign {{ intf_name }} to VLAN{{ vlan_id }}"
+      eos_l2_interfaces:
+        config:
+          - name: "{{ intf_name }}"
+            access:
+              vlan: "{{ vlan_id }}"
+        state: merged
+
+    - name: Verify VLAN assigment
+      eos_command:
+        commands: show vlan | json
+      register: output
+
+    - set_fact:
+        interfaces_dict: '{{ output.stdout[0].vlans["250"].interfaces }}'
+        vlan_status: '{{ output.stdout[0].vlans["250"].status }}'
+
+    - assert:
+        that:
+          - vlan_status == 'active'
+          - "'Ethernet7' in interfaces_dict" 

@@ -1,0 +1,29 @@
+---
+- name: Interface configuration
+  hosts: nxos
+  gather_facts: False
+  tasks:
+    - name: Ensure interface set to routed mode (not idempotent)
+      nxos_interfaces:
+        config:
+          - name: "{{ intf_name }}"
+            enabled: True
+            mode: layer3
+        state: merged
+
+    - name: Update l3 interface config
+      nxos_l3_interfaces:
+        config:
+          - name: "{{ intf_name }}"
+            ipv4:
+              - address: "{{ intf_address }}/{{ intf_netmask }}"
+        state: merged
+
+    - name: Ping across interfaces
+      net_ping:
+        dest: "{{ peer_ip }}"
+      register: output
+
+    - assert:
+        that:
+          - output.packets_rx >= 4
