@@ -18,5 +18,5 @@
   handlers:
     - name: write mem
       ios_command:
-        commands: copy run start
+        commands: write mem
       changed_when: True

@@ -3,14 +3,14 @@
   hosts: nxos
   gather_facts: False
   tasks:
-    - name: Ensure interface set to switched mode
+    - name: Ensure interface configured for layer2
       nxos_interfaces:
         config:
           - name: "{{ intf_name }}"
             mode: "{{ intf_mode }}"
         state: merged
 
-    - name: Set switchport mode (using deprecated module due to issues in newer resource module)
+    - name: Set switchport mode to trunking (using deprecated module due to issues in newer resource module)
       nxos_l2_interface:
         name: "{{ intf_name }}"
         mode: "{{ switchport_mode }}"
