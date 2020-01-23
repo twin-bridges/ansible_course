@@ -46,3 +46,4 @@ def test_class4_ex5():
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_err == ""
     assert return_code == 0
+    os.environ.pop("ANSIBLE_DEPRECATION_WARNINGS")
