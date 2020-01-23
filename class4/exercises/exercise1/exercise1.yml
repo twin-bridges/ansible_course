@@ -1,5 +1,5 @@
 ---
-- name: Configure IP and ping (NX-OS)
+- name: Configure IP address and ping (NX-OS)
   hosts: nxos
   gather_facts: False
   tasks:
@@ -11,7 +11,7 @@
             mode: layer3
         state: merged
 
-    - name: Update l3 interface config
+    - name: Configure IPv4 Address
       nxos_l3_interfaces:
         config:
           - name: "{{ intf_name }}"
@@ -24,6 +24,7 @@
         dest: "{{ peer_ip }}"
       register: output
 
-    - assert:
+    - name: Verify at least four ping responses received
+      assert:
         that:
           - output.packets_rx >= 4

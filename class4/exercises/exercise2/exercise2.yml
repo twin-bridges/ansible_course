@@ -1,5 +1,5 @@
 ---
-- name: Interface configuration
+- name: Create VLAN and assign it to interface
   hosts: arista
   gather_facts: False
   tasks:
@@ -18,7 +18,7 @@
               vlan: "{{ vlan_id }}"
         state: merged
 
-    - name: Verify VLAN assigment
+    - name: Execute "show vlan" on Arista switches
       eos_command:
         commands: show vlan | json
       register: output
@@ -27,7 +27,8 @@
         interfaces_dict: '{{ output.stdout[0].vlans["250"].interfaces }}'
         vlan_status: '{{ output.stdout[0].vlans["250"].status }}'
 
-    - assert:
+    - name: "Verify VLAN is active and {{ intf_name }} is assigned to VLAN"
+      assert:
         that:
           - vlan_status == 'active'
           - "'Ethernet7' in interfaces_dict" 

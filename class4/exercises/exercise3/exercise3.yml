@@ -1,5 +1,5 @@
 ---
-- name: Interface configuration
+- name: "Configure interface for trunking"
   hosts: nxos
   gather_facts: False
   tasks:
@@ -23,7 +23,7 @@
               native_vlan: "{{ native_vlan }}"
         state: merged
 
-    - name: Verify port is in fact trunking
+    - name: Gather show information from NX-OS devices
       nxos_command:
         commands: 'show interface {{ intf_name }} trunk | json'
       register: output
@@ -31,7 +31,8 @@
     - set_fact:
         trunk_dict: "{{ output.stdout[0].TABLE_interface.ROW_interface }}"
 
-    - assert:
+    - name: "Verify {{ intf_name }} is trunking and has correct native VLAN"
+      assert:
         that:
           - trunk_dict.status == 'trunking'
           - trunk_dict.native == "{{ native_vlan }}"
