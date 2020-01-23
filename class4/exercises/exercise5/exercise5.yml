@@ -1,0 +1,12 @@
+---
+- name: Configure system parameters on cisco1
+  hosts: cisco1
+  gather_facts: False
+  tasks:
+    - name: Configure system parameters
+      ios_system:
+        hostname: "{{ hostname }}"
+        domain_name: "{{ domain_name }}"
+        name_servers:
+          - "{{ dns_server1 }}"
+          - "{{ dns_server2 }}"
