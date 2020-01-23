@@ -32,3 +32,17 @@ def test_class4_ex3():
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_err == ""
     assert return_code == 0
+
+def test_class4_ex4():
+    base_path = "../class4/exercises/exercise4"
+    cmd_list = ["ansible-playbook", "exercise4.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    assert std_err == ""
+    assert return_code == 0
+
+def test_class4_ex5():
+    base_path = "../class4/exercises/exercise5"
+    cmd_list = ["ansible-playbook", "exercise5.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    assert std_err == ""
+    assert return_code == 0

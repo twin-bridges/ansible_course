@@ -1,12 +1,38 @@
 ---
-- name: Configure system parameters on cisco1
-  hosts: cisco1
+- name: "Configure interface for trunking"
+  hosts: nxos
   gather_facts: False
   tasks:
-    - name: Configure system parameters
-      ios_system:
-        hostname: "{{ hostname }}"
-        domain_name: "{{ domain_name }}"
-        name_servers:
-          - "{{ dns_server1 }}"
-          - "{{ dns_server2 }}"
+    - name: Ensure interface set to switched mode
+      nxos_interfaces:
+        config:
+          - name: "{{ intf_name }}"
+            mode: "{{ intf_mode }}"
+        state: merged
+
+    - name: Set switchport mode (using deprecated module due to issues in newer resource module)
+      nxos_l2_interface:
+        name: "{{ intf_name }}"
+        mode: "{{ switchport_mode }}"
+
+    - name: Configure trunk native VLAN
+      nxos_l2_interfaces:
+        config:
+          - name: "{{ intf_name }}"
+            trunk:
+              native_vlan: "{{ native_vlan }}"
+        state: merged
+
+    - name: Gather show information from NX-OS devices
+      nxos_command:
+        commands: 'show interface {{ intf_name }} trunk | json'
+      register: output
+
+    - set_fact:
+        trunk_dict: "{{ output.stdout[0].TABLE_interface.ROW_interface }}"
+
+    - name: "Verify {{ intf_name }} is trunking and has correct native VLAN"
+      assert:
+        that:
+          - trunk_dict.status == 'trunking'
+          - trunk_dict.native == "{{ native_vlan }}"

@@ -1,38 +1,30 @@
 ---
-- name: "Configure interface for trunking"
+- name: Configure IP address and ping (NX-OS)
   hosts: nxos
   gather_facts: False
   tasks:
-    - name: Ensure interface set to switched mode
+    - name: Ensure interface set to routed mode (not idempotent)
       nxos_interfaces:
         config:
           - name: "{{ intf_name }}"
-            mode: "{{ intf_mode }}"
+            enabled: True
+            mode: layer3
         state: merged
 
-    - name: Set switchport mode (using deprecated module due to issues in newer resource module)
-      nxos_l2_interface:
-        name: "{{ intf_name }}"
-        mode: "{{ switchport_mode }}"
-
-    - name: Configure trunk native VLAN
-      nxos_l2_interfaces:
+    - name: Configure IPv4 Address
+      nxos_l3_interfaces:
         config:
           - name: "{{ intf_name }}"
-            trunk:
-              native_vlan: "{{ native_vlan }}"
+            ipv4:
+              - address: "{{ intf_address }}/{{ intf_netmask }}"
         state: merged
 
-    - name: Gather show information from NX-OS devices
-      nxos_command:
-        commands: 'show interface {{ intf_name }} trunk | json'
+    - name: Ping across interfaces
+      net_ping:
+        dest: "{{ peer_ip }}"
       register: output
 
-    - set_fact:
-        trunk_dict: "{{ output.stdout[0].TABLE_interface.ROW_interface }}"
-
-    - name: "Verify {{ intf_name }} is trunking and has correct native VLAN"
+    - name: Verify at least four ping responses received
       assert:
         that:
-          - trunk_dict.status == 'trunking'
-          - trunk_dict.native == "{{ native_vlan }}"
+          - output.packets_rx >= 4

@@ -1,30 +1,22 @@
 ---
-- name: Configure IP address and ping (NX-OS)
-  hosts: nxos
+- name: Configure login banner
+  hosts: cisco
   gather_facts: False
   tasks:
-    - name: Ensure interface set to routed mode (not idempotent)
-      nxos_interfaces:
-        config:
-          - name: "{{ intf_name }}"
-            enabled: True
-            mode: layer3
-        state: merged
+    - name: Configure login banner on Cisco IOS
+      ios_banner:
+        banner: login
+        text: |
+          **********************************************************
+          This is a test login banner for class4, exercise4.
 
-    - name: Configure IPv4 Address
-      nxos_l3_interfaces:
-        config:
-          - name: "{{ intf_name }}"
-            ipv4:
-              - address: "{{ intf_address }}/{{ intf_netmask }}"
-        state: merged
-
-    - name: Ping across interfaces
-      net_ping:
-        dest: "{{ peer_ip }}"
-      register: output
-
-    - name: Verify at least four ping responses received
-      assert:
-        that:
-          - output.packets_rx >= 4
+          Configured via Ansible
+          **********************************************************
+        state: present
+      notify: write mem
+ 
+  handlers:
+    - name: write mem
+      ios_command:
+        commands: copy run start
+      changed_when: True

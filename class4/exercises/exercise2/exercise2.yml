@@ -1,34 +1,12 @@
 ---
-- name: Create VLAN and assign it to interface
-  hosts: arista
+- name: Configure system parameters on cisco1
+  hosts: cisco1
   gather_facts: False
   tasks:
-    - name: Create VLAN250
-      eos_vlans:
-        config:
-          - name: "{{ vlan_name }}"
-            vlan_id: "{{ vlan_id }}"
-        state: merged
-
-    - name: "Assign {{ intf_name }} to VLAN{{ vlan_id }}"
-      eos_l2_interfaces:
-        config:
-          - name: "{{ intf_name }}"
-            access:
-              vlan: "{{ vlan_id }}"
-        state: merged
-
-    - name: Execute "show vlan" on Arista switches
-      eos_command:
-        commands: show vlan | json
-      register: output
-
-    - set_fact:
-        interfaces_dict: '{{ output.stdout[0].vlans["250"].interfaces }}'
-        vlan_status: '{{ output.stdout[0].vlans["250"].status }}'
-
-    - name: "Verify VLAN is active and {{ intf_name }} is assigned to VLAN"
-      assert:
-        that:
-          - vlan_status == 'active'
-          - "'Ethernet7' in interfaces_dict" 
+    - name: Configure system parameters
+      ios_system:
+        hostname: "{{ hostname }}"
+        domain_name: "{{ domain_name }}"
+        name_servers:
+          - "{{ dns_server1 }}"
+          - "{{ dns_server2 }}"
