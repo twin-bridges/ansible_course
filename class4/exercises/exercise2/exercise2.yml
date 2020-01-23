@@ -1,9 +1,4 @@
 ---
-# Use l2_interfaces to configure 1 of the interfaces on the Arista switches (all of them).
-# Use vlans to configure the vlan before you use it. Store all of this information in 
-# host_vars. The port should already be configured for "access" mode.
-#
-# # Ethernet7
 - name: Interface configuration
   hosts: arista
   gather_facts: False

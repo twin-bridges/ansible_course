@@ -1,0 +1,44 @@
+---
+
+# Use the interfaces module to configure the NXOS ports for switchport. Use the 
+# l2_interfaces module to configure the port for trunking (will need to see if they fixed 
+# this in 2.9.3 or not--doubtful). Configure the port for trunking, native VLAN X. All vlans
+# allowed on the trunk. Use the legacy l2_interface module to set the switchport to trunking.  
+# Verify the trunk is active and trunking and native VLAN is correct using nxos_command and X
+
+- name: Interface configuration
+  hosts: nxos
+  gather_facts: False
+  tasks:
+    - name: Ensure interface set to switched mode
+      nxos_interfaces:
+        config:
+          - name: Ethernet1/3
+            mode: layer2
+        state: merged
+
+    - name: Kludge to set switchport mode (using deprecated module)
+      nxos_l2_interface:
+        name: Ethernet1/3
+        mode: trunk
+
+    - name: Configure trunk native VLAN
+      nxos_l2_interfaces:
+        config:
+          - name: Ethernet1/3
+            trunk:
+              native_vlan: 4
+        state: merged
+
+    - name: Verify port is in fact trunking
+      nxos_command:
+        commands: show interface ethernet 1/3 trunk | json
+      register: output
+
+    - set_fact:
+        trunk_dict: "{{ output.stdout[0].TABLE_interface.ROW_interface }}"
+
+    - assert:
+        that:
+          - trunk_dict.status == 'trunking'
+          - trunk_dict.native == '4'

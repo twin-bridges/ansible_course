@@ -1,5 +1,5 @@
 ---
-- name: Interface configuration
+- name: Configure IP and ping (NX-OS)
   hosts: nxos
   gather_facts: False
   tasks:

@@ -1,0 +1,5 @@
+---
+intf_name: Ethernet1/3
+intf_mode: layer2
+switchport_mode: trunk
+native_vlan: "4"
