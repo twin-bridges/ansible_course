@@ -1,0 +1,10 @@
+---
+- name: IOS Example
+  hosts: cisco
+  gather_facts: True
+  tasks:
+    - name: Global config
+      ios_config:
+        src: new_config.txt
+        save_when: changed
+        # backup: True

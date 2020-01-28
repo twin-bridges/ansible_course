@@ -1,0 +1,24 @@
+---
+- name: IOS Example3
+  hosts: cisco
+  gather_facts: True
+  tasks:
+    - name: name-server for IOS
+      ios_config:
+        lines:
+          - ip name-server 8.8.8.8
+          - ip name-server 8.8.4.4
+        save_when: changed
+      when: ansible_facts.net_iostype == "IOS"
+
+    - name: name-server for IOS-XE
+      ios_config:
+        lines:
+          - ip name-server 8.8.8.8 8.8.4.4
+        save_when: changed
+      when: ansible_facts.net_iostype == "IOS-XE"
+
+    - name: Save configuration when modified
+      ios_config:
+        save_when: modified
+

@@ -1,9 +1,0 @@
----
-- name: BACKUP NETWORK CONFIGURATIONS
-  hosts: arista
-  gather_facts: False
-
-  tasks:
-    - name: BACKUP CONFIG
-      eos_config:
-        backup: yes

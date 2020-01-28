@@ -1,0 +1,17 @@
+---
+- name: IOS Example
+  hosts: cisco
+  gather_facts: True
+  tasks:
+    - name: Global config
+      ios_config:
+        src: ios_config.txt
+        save_when: changed
+        diff_against: running
+      when: ansible_facts.net_iostype == "IOS"
+
+    - name: Global config
+      ios_config:
+        src: iosxe_config.txt
+        save_when: changed
+      when: ansible_facts.net_iostype == "IOS-XE"

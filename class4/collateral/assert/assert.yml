@@ -1,0 +1,18 @@
+---
+- name: Test Assert
+  hosts: nxos
+  gather_facts: True
+  tasks:
+    - debug:
+        var: ansible_facts
+
+    - name: Test Assert
+      assert:
+        that:
+          - True
+          - ansible_facts.net_model == "Nexus9000 9000v Chassis"
+          - ansible_facts.net_hostname == "nxos1"
+
+    - name: Test debug task
+      debug:
+        msg: After assert task

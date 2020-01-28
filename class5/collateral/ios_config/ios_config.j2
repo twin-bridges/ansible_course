@@ -1,0 +1,9 @@
+ip domain name bogus.com
+ntp server {{ ntp_server1 }}
+ntp server {{ ntp_server2 }}
+{% if ansible_facts.net_iostype == "IOS" %}
+ip name-server 8.8.8.8
+ip name-server 8.8.4.4
+{% elif ansible_facts.net_iostype == "IOS-XE" %}
+ip name-server 8.8.8.8 8.8.4.4
+{% endif %}
