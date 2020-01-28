@@ -6,8 +6,8 @@
     - name: Global config
       ios_config:
         lines:
-          - ip domain name bogus.com
-          - ntp server 130.126.24.24
-          - ntp server 152.2.21.1
+          - "ip domain name {{ domain_name }}"
+          - "ntp server {{ ntp_server1 }}"
+          - "ntp server {{ ntp_server2 }}"
         save_when: changed
         backup: True

@@ -7,4 +7,3 @@
       ios_config:
         src: new_config.txt
         save_when: changed
-        # backup: True

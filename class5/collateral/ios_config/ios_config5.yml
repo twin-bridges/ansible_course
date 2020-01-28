@@ -14,4 +14,5 @@
       ios_config:
         src: iosxe_config.txt
         save_when: changed
+        diff_against: running
       when: ansible_facts.net_iostype == "IOS-XE"

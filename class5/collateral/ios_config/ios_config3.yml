@@ -6,19 +6,19 @@
     - name: name-server for IOS
       ios_config:
         lines:
-          - ip name-server 8.8.8.8
-          - ip name-server 8.8.4.4
+          - "ip name-server {{ dns_server1 }}"
+          - "ip name-server {{ dns_server2 }}"
         save_when: changed
       when: ansible_facts.net_iostype == "IOS"
 
     - name: name-server for IOS-XE
       ios_config:
         lines:
-          - ip name-server 8.8.8.8 8.8.4.4
+          - "ip name-server {{ dns_server1 }} {{ dns_server2 }}"
         save_when: changed
       when: ansible_facts.net_iostype == "IOS-XE"
 
-    - name: Save configuration when modified
-      ios_config:
-        save_when: modified
+#    - name: Save configuration when modified
+#      ios_config:
+#        save_when: modified
 
