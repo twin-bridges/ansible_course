@@ -1,0 +1,7 @@
+---
+- name: IOS Example (cli_config)
+  hosts: cisco
+  gather_facts: True
+  tasks:
+    - cli_config:
+        config: "{{ lookup('template', 'ios_config.j2') }}"

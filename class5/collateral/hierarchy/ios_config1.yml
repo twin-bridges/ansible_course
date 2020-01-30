@@ -1,0 +1,17 @@
+---
+- name: IOS Example (hierarchy)
+  hosts: cisco1
+  gather_facts: False
+  tasks:
+    - name: Config with hierarchy
+      ios_config:
+        before: no ip access-list extended TEST99
+        parents: ip access-list extended TEST99
+        lines:
+          - permit ip host 1.1.1.1 any
+          - permit ip host 2.2.2.2 any
+          - permit ip host 3.3.3.3 any
+          - permit ip host 4.4.4.4 any
+          - permit ip host 5.5.5.5 any
+        match: exact
+        replace: block

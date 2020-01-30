@@ -1,0 +1,6 @@
+---
+ntp_server1: 130.126.24.24
+ntp_server2: 152.2.21.1
+domain_name: bogus.com
+dns_server1: 8.8.8.8
+dns_server2: 8.8.4.4

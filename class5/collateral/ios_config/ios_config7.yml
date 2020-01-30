@@ -1,6 +1,6 @@
 ---
 - name: IOS Example
-  hosts: cisco
+  hosts: cisco1:cisco2
   gather_facts: True
 
   tasks:
@@ -14,11 +14,11 @@
 
     - ios_config:
         lines:
-          - ip domain name bogus.com
-          - ip name-server 8.8.8.8
-          - ip name-server 8.8.4.4
-          - ntp server 130.126.24.24
-          - ntp server 152.2.21.1
+          - "ip domain name {{ domain_name }}"
+          - "ip name-server {{ dns_server1 }}"
+          - "ip name-server {{ dns_server2 }}"
+          - "ntp server {{ ntp_server1 }}"
+          - "ntp server {{ ntp_server2 }}"
         diff_against: running
         save_when: changed
       tags: ios_config

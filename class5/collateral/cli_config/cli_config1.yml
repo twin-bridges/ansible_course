@@ -1,0 +1,12 @@
+---
+- name: IOS Example (cli_config)
+  hosts: cisco1:cisco2
+  gather_facts: False
+  tasks:
+    - cli_config:
+        config: | 
+          ip domain name {{ domain_name }}
+          ntp server {{ ntp_server1 }}
+          ntp server {{ ntp_server2 }}
+          ip name-server {{ dns_server1 }}
+          ip name-server {{ dns_server2 }}

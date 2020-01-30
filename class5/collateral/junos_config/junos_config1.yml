@@ -1,0 +1,9 @@
+---
+- name: Juniper Config Change
+  hosts: juniper
+  gather_facts: False
+  tasks:
+    - name: Juniper using NETCONF
+      junos_config:
+        lines:
+          - "set system domain-name {{ domain_name }}"

@@ -1,0 +1,9 @@
+---
+- name: Multiple Platforms Example (cli_config)
+  hosts: cisco1:cisco2:nxos:juniper
+  gather_facts: False
+  vars:
+    ansible_connection: network_cli
+  tasks:
+    - cli_config:
+        config: "{{ lookup('template', 'templates/{{ ansible_network_os }}/base_config.j2') }}"
