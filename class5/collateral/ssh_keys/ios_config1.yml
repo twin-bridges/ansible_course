@@ -1,0 +1,13 @@
+---
+# ansible-playbook ios_config1.yml -i ./ansible-hosts.ini 
+# --private-key /home/student5/.ssh/student_key
+- name: IOS example using Keys
+  hosts: cisco1:cisco2
+  gather_facts: False
+  tasks:
+    - name: Global config
+      ios_config:
+        lines:
+          - ip domain name bogus.com
+          - ntp server 130.126.24.24
+          - ntp server 152.2.21.1

@@ -1,0 +1,15 @@
+crypto isakmp policy 10
+ encr aes
+ authentication pre-share
+ group 5
+!
+crypto isakmp policy 20
+ encr aes 192
+ authentication pre-share
+ group 5
+!
+crypto isakmp policy 30
+ encr aes 256
+ authentication pre-share
+ group 5
+!

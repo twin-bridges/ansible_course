@@ -1,0 +1,28 @@
+---
+- name: Jinja2 and config push
+  hosts: cisco1
+  gather_facts: False
+  vars:
+    ike_policy:
+      - ["10", "aes"]
+      - ["20", "aes 192"]
+      - ["30", "aes 256"]
+
+  tasks:
+    - name: Generate IKE configuration
+      template:
+        src: ike_template.j2
+        dest: cisco_cfg_ike.txt
+      tags: two_stage
+
+    - name: Push templated config
+      ios_config:
+        src: cisco_cfg_ike.txt
+        save_when: changed
+      tags: two_stage
+
+    - name: Generate and deploy
+      ios_config:
+        src: ike_template.j2
+        save_when: changed
+      tags: one_stage

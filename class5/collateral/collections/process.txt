@@ -1,0 +1,4 @@
+$ ansible-galaxy collection install clay584.genie
+Process install dependency map
+Starting collection install process
+Installing 'clay584.genie:0.1.8' to '/home/student5/.ansible/collections/ansible_collections/clay584/genie'

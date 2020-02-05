@@ -1,0 +1,7 @@
+{% for policy_id, encr in ike_policy %}
+crypto isakmp policy {{ policy_id }}
+ encr {{ encr }}
+ authentication pre-share
+ group 5
+!
+{% endfor %}
