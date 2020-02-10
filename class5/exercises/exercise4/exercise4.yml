@@ -1,0 +1,34 @@
+---
+- name: Exercise 4
+  hosts: nxos
+  gather_facts: False
+  tasks:
+    - name: Generate interface configuration
+      template:
+        src: interfaces.j2
+        dest: "./CFGS/{{ inventory_hostname }}/01-{{ inventory_hostname }}-intf.txt"
+
+    - name: Generate BGP configuration
+      template:
+        src: bgp.j2
+        dest: "./CFGS/{{ inventory_hostname }}/02-{{ inventory_hostname }}-bgp.txt"
+
+    - name: Assemble the two parts into one configuration change file
+      assemble:
+        src: "./CFGS/{{ inventory_hostname }}/"
+        dest: "./CFGS/{{ inventory_hostname }}-config.txt"
+
+    - name: Deploy configurations to devices
+      nxos_config:
+        src: "./CFGS/{{ inventory_hostname }}-config.txt"
+
+    - name: Verify BGP State
+      nxos_command:
+        commands: show ip bgp summary
+      register: output
+      tags: bgp_out
+
+    - name: Show BGP Session
+      debug:
+        var: output.stdout_lines[0]
+      tags: bgp_out

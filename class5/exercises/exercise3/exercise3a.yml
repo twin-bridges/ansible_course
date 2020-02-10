@@ -1,0 +1,32 @@
+---
+- name: IOS Config with Hierarchy
+  hosts: cisco5:cisco6
+  gather_facts: False
+  tasks:
+    - name: Config with hierarchy
+      ios_config:
+        before: no ip access-list extended TEST-ANSIBLE1
+        parents: ip access-list extended TEST-ANSIBLE1
+        lines:
+          - permit ip host 10.1.1.1 any
+          - permit ip host 10.1.1.2 any
+          - permit ip host 10.1.1.3 any
+          - permit ip host 10.1.1.4 any
+          - permit ip host 10.1.1.5 any
+          - permit ip host 10.1.1.6 any
+          - permit ip host 10.1.1.7 any
+          - permit ip host 10.1.1.8 any
+          - permit ip host 10.1.1.9 any
+          - permit ip host 10.1.1.10 any
+        match: exact
+        replace: block
+
+    - name: Verify ACL
+      ios_command: 
+        commands: show access-list TEST-ANSIBLE1
+      register: output
+
+    - name: View ACL
+      debug: 
+        var: output.stdout_lines[0]
+

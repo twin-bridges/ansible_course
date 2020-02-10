@@ -1,0 +1,14 @@
+---
+# ansible-playbook ios_config1.yml -i ./ansible-hosts.ini 
+- name: Use SSH keys for authentication
+  hosts: cisco1:cisco2
+  gather_facts: False
+  tasks:
+    - name: Execute show users command
+      ios_command:
+        commands: show users
+      register: output
+
+    - name: View connected users
+      debug:
+        var: output.stdout_lines[0]

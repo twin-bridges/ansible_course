@@ -1,0 +1,21 @@
+interface Ethernet1/4
+  ip address 172.31.254.1/30
+!
+interface loopback101
+  ip address 172.31.101.101/32
+!
+interface loopback102
+  ip address 172.31.102.101/32
+!
+!
+feature bgp
+router bgp 22
+  router-id 172.31.101.101
+  address-family ipv4 unicast
+    network 172.31.101.101/32
+    network 172.31.102.101/32
+  neighbor 172.31.254.2
+    remote-as 22
+    description configured by ansible
+    address-family ipv4 unicast
+!
