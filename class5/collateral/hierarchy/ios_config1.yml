@@ -10,8 +10,8 @@
         lines:
           - permit ip host 1.1.1.1 any
           - permit ip host 2.2.2.2 any
-          - permit ip host 3.3.3.3 any
-          - permit ip host 4.4.4.4 any
           - permit ip host 5.5.5.5 any
+          - permit ip host 3.3.3.3 any
+#          - permit ip host 4.4.4.4 any
         match: exact
         replace: block

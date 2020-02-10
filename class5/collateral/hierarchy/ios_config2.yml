@@ -1,15 +1,19 @@
 ---
-- name: EOS Example (hierarchy)
-  hosts: arista6
+- name: IOS Example (hierarchy)
+  hosts: cisco1
   gather_facts: False
   tasks:
+    - name: Ensure interface exists
+      ios_config:
+        lines:
+          - interface Loopback99
+
     - name: Config with hierarchy
-      eos_config:
+      ios_config:
         before: no interface Loopback99
         parents: interface Loopback99
         lines:
+          - ip address 172.16.31.1 255.255.255.0
           - description * Test via Ansible *
-          - ip address 172.16.31.1/32
-          - ipv6 address 2001:db8:0:1::2/128
         match: line
         replace: block
