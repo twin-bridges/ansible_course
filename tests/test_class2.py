@@ -13,6 +13,9 @@ def subprocess_runner(cmd_list, exercise_dir):
 def test_class2_ex1a():
     base_path = "../class2/exercises/exercise1"
     cmd_list = ["ansible-playbook", "exercise1a.yml"]
+    warning_list = [
+        "[WARNING]: Ignoring timeout(10) for eos_facts",
+    ]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
@@ -20,13 +23,20 @@ def test_class2_ex1a():
         "arista5                    : ok=3    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
     )
-    assert std_err == "[WARNING]: Ignoring timeout(10) for eos_facts\n"
+    for ansible_warn in warning_list:
+        assert ansible_warn in std_err
+        # Remove warnings one at a time from std_err
+        std_err = std_err.replace(ansible_warn, "")
+    assert std_err.strip() == ""
     assert return_code == 0
 
 
 def test_class2_ex1b():
     base_path = "../class2/exercises/exercise1"
     cmd_list = ["ansible-playbook", "exercise1b.yml"]
+    warning_list = [
+        "[WARNING]: Ignoring timeout(10) for eos_facts",
+    ]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
@@ -35,13 +45,20 @@ def test_class2_ex1b():
         "arista5                    : ok=5    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
     )
-    assert std_err == "[WARNING]: Ignoring timeout(10) for eos_facts\n"
+    for ansible_warn in warning_list:
+        assert ansible_warn in std_err
+        # Remove warnings one at a time from std_err
+        std_err = std_err.replace(ansible_warn, "")
+    assert std_err.strip() == ""
     assert return_code == 0
 
 
 def test_class2_ex1c():
     base_path = "../class2/exercises/exercise1/exercise1c"
     cmd_list = ["ansible-playbook", "exercise1c.yml"]
+    warning_list = [
+        "[WARNING]: Ignoring timeout(10) for eos_facts",
+    ]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
@@ -53,13 +70,20 @@ def test_class2_ex1c():
         "arista5                    : ok=6    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
     )
-    assert std_err == "[WARNING]: Ignoring timeout(10) for eos_facts\n"
+    for ansible_warn in warning_list:
+        assert ansible_warn in std_err
+        # Remove warnings one at a time from std_err
+        std_err = std_err.replace(ansible_warn, "")
+    assert std_err.strip() == ""
     assert return_code == 0
 
 
 def test_class2_ex1d():
     base_path = "../class2/exercises/exercise1/exercise1d"
     cmd_list = ["ansible-playbook", "exercise1d.yml"]
+    warning_list = [
+        "[WARNING]: Ignoring timeout(10) for eos_facts",
+    ]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
@@ -71,13 +95,20 @@ def test_class2_ex1d():
         "arista5                    : ok=6    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
     )
-    assert std_err == "[WARNING]: Ignoring timeout(10) for eos_facts\n"
+    for ansible_warn in warning_list:
+        assert ansible_warn in std_err
+        # Remove warnings one at a time from std_err
+        std_err = std_err.replace(ansible_warn, "")
+    assert std_err.strip() == ""
     assert return_code == 0
 
 
 def test_class2_ex1e():
     base_path = "../class2/exercises/exercise1/exercise1e"
     cmd_list = ["ansible-playbook", "exercise1e.yml"]
+    warning_list = [
+        "[WARNING]: Ignoring timeout(10) for eos_facts",
+    ]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert std_out.count("10.220.88.32") == 4
@@ -90,7 +121,11 @@ def test_class2_ex1e():
         "arista5                    : ok=8    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
     )
-    assert std_err == "[WARNING]: Ignoring timeout(10) for eos_facts\n"
+    for ansible_warn in warning_list:
+        assert ansible_warn in std_err
+        # Remove warnings one at a time from std_err
+        std_err = std_err.replace(ansible_warn, "")
+    assert std_err.strip() == ""
     assert return_code == 0
 
 
@@ -225,7 +260,7 @@ def test_class2_ex3c():
     cmd_list = ["ansible-playbook", "exercise3c.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("Total entries displayed: 4") == 2
+    assert std_out.count("Total entries displayed:") == 2
     assert (
         "nxos1                      : ok=2    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -299,7 +334,10 @@ def test_class2_ex5b():
     cmd_list = ["ansible-playbook", "exercise5b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "Primary IP: vlan.0                  up    up   inet     10.220.88.39/24" in std_out
+    assert (
+        "Primary IP: vlan.0                  up    up   inet     10.220.88.39/24"
+        in std_out
+    )
     assert (
         "srx1                       : ok=2    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
