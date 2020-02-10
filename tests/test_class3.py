@@ -1,4 +1,3 @@
-import os
 import subprocess
 
 
@@ -15,47 +14,105 @@ def test_class3_ex1a():
     cmd_list = ["ansible-playbook", "exercise1a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "arista5                    : ok=2    changed=0    unreachable=0    failed=0    skipped=2" in std_out
-    assert "arista6                    : ok=2    changed=0    unreachable=0    failed=0    skipped=2" in std_out
-    assert "arista7                    : ok=2    changed=0    unreachable=0    failed=0    skipped=2" in std_out
-    assert "arista8                    : ok=2    changed=0    unreachable=0    failed=0    skipped=2" in std_out
-    assert "cisco1                     : ok=1    changed=0    unreachable=0    failed=0    skipped=3" in std_out
-    assert "cisco2                     : ok=1    changed=0    unreachable=0    failed=0    skipped=3" in std_out
-    assert "cisco5                     : ok=1    changed=0    unreachable=0    failed=0    skipped=3" in std_out
-    assert "cisco6                     : ok=1    changed=0    unreachable=0    failed=0    skipped=3" in std_out
-    assert "srx1                       : ok=1    changed=0    unreachable=0    failed=0    skipped=3" in std_out
+    assert (
+        "arista5                    : ok=2    changed=0    unreachable=0    failed=0    skipped=2"
+        in std_out
+    )
+    assert (
+        "arista6                    : ok=2    changed=0    unreachable=0    failed=0    skipped=2"
+        in std_out
+    )
+    assert (
+        "arista7                    : ok=2    changed=0    unreachable=0    failed=0    skipped=2"
+        in std_out
+    )
+    assert (
+        "arista8                    : ok=2    changed=0    unreachable=0    failed=0    skipped=2"
+        in std_out
+    )
+    assert (
+        "cisco1                     : ok=1    changed=0    unreachable=0    failed=0    skipped=3"
+        in std_out
+    )
+    assert (
+        "cisco2                     : ok=1    changed=0    unreachable=0    failed=0    skipped=3"
+        in std_out
+    )
+    assert (
+        "cisco5                     : ok=1    changed=0    unreachable=0    failed=0    skipped=3"
+        in std_out
+    )
+    assert (
+        "cisco6                     : ok=1    changed=0    unreachable=0    failed=0    skipped=3"
+        in std_out
+    )
+    assert (
+        "srx1                       : ok=1    changed=0    unreachable=0    failed=0    skipped=3"
+        in std_out
+    )
     assert std_err == ""
     assert return_code == 0
+
 
 def test_class3_ex1b_eos():
     base_path = "../class3/exercises/exercise1"
     cmd_list = ["ansible-playbook", "exercise1b.yml", "--tags", "eos"]
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "arista5                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0" in std_out
-    assert "arista6                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0" in std_out
-    assert "arista7                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0" in std_out
-    assert "arista8                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0" in std_out
+    assert (
+        "arista5                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
+    assert (
+        "arista6                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
+    assert (
+        "arista7                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
+    assert (
+        "arista8                    : ok=2    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
     assert std_err == ""
     assert return_code == 0
+
 
 def test_class3_ex1b_ios():
     base_path = "../class3/exercises/exercise1"
     cmd_list = ["ansible-playbook", "exercise1b.yml", "--tags", "ios"]
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "cisco1                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0" in std_out
-    assert "cisco2                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0" in std_out
-    assert "cisco5                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0" in std_out
-    assert "cisco6                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0" in std_out
+    assert (
+        "cisco1                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
+    assert (
+        "cisco2                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
+    assert (
+        "cisco5                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
+    assert (
+        "cisco6                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
     assert std_err == ""
     assert return_code == 0
+
 
 def test_class3_ex1b_junos():
     base_path = "../class3/exercises/exercise1"
     cmd_list = ["ansible-playbook", "exercise1b.yml", "--tags", "junos"]
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "srx1                       : ok=1    changed=0    unreachable=0    failed=0    skipped=0" in std_out
+    assert (
+        "srx1                       : ok=1    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
     assert std_err == ""
     assert return_code == 0
+
 
 def test_class3_ex2():
     base_path = "../class3/exercises/exercise2"
@@ -67,25 +124,42 @@ def test_class3_ex2():
     assert "ok: [nxos1] => (item=3)" in std_out
     assert "ok: [nxos1] => (item=4)" in std_out
     assert "4    VLAN0004                         active" in std_out
-    assert "nxos1                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0" in std_out 
+    assert (
+        "nxos1                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
     assert std_err == ""
     assert return_code == 0
+
 
 def test_class3_ex3():
     base_path = "../class3/exercises/exercise3"
     cmd_list = ["ansible-playbook", "exercise3.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "cisco1                     : ok=5    changed=0    unreachable=0    failed=0    skipped=0" in std_out
-    assert "cisco2                     : ok=5    changed=0    unreachable=0    failed=0    skipped=0" in std_out
-    assert "ok: [cisco2] => (item=twb-sf-hpsw1        Fa4            120        B               13)" in std_out
-    assert "ok: [cisco1] => (item=twb-sf-hpsw1        Fa4            120        B               15)" in std_out
+    assert (
+        "cisco1                     : ok=5    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
+    assert (
+        "cisco2                     : ok=5    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
+    assert (
+        "ok: [cisco2] => (item=twb-sf-hpsw1        Fa4            120        B               13)"
+        in std_out
+    )
+    assert (
+        "ok: [cisco1] => (item=twb-sf-hpsw1        Fa4            120        B               15)"
+        in std_out
+    )
     assert "Remote device: twb-sf-hpsw1" in std_out
     assert "Local intf: Fa4" in std_out
     assert "Remote intf: 15" in std_out
     assert "Remote intf: 13" in std_out
     assert std_err == ""
     assert return_code == 0
+
 
 def test_class3_ex4():
     base_path = "../class3/exercises/exercise4"
@@ -98,6 +172,7 @@ def test_class3_ex4():
     assert "arista8                    : ok=1    changed=0" in std_out
     assert std_err == ""
     assert return_code == 0
+
 
 def test_class3_ex5():
     base_path = "../class3/exercises/exercise5"
