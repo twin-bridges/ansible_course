@@ -11,4 +11,10 @@
 
     - name: View connected users
       debug:
-        var: output.stdout_lines[0]
+        var: output.stdout[0]
+
+    - name: Verify connected users
+      assert:
+        that:
+          - '"student1" in output.stdout[0]'
+
