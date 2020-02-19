@@ -1,0 +1,6 @@
+- name: In common_tasks.yml
+  debug:
+    msg: "Variable from loop: {{ item }}"
+
+- debug:
+    msg: Hello world

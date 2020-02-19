@@ -1,0 +1,9 @@
+- name: In common_tasks2.yml
+  debug:
+    msg: Hello world
+  tags: 
+    - foo2
+
+- name: Second task
+  debug:
+    msg: Hello world2

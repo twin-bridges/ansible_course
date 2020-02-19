@@ -1,0 +1,14 @@
+---
+- hosts: local
+  vars:
+    ip_address: 172.16.31.1
+  tasks:
+#    - name: Runtime include
+#      include_tasks: common_tasks3.yml
+      #when: True
+#      when: 'ip_address == "172.16.31.1"'
+
+    - name: Import (pre-processed at playbook parsing)
+      import_tasks: common_tasks3.yml
+#      #when: True
+      when: 'ip_address == "172.16.31.1"'

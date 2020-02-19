@@ -1,0 +1,11 @@
+---
+- name: Load variables from directory of files
+  hosts: local
+  tasks:
+    - name: Recurse directory for variables
+      include_vars:
+        dir: test_dir
+        name: my_var
+
+    - debug:
+       var: my_var

@@ -1,0 +1,9 @@
+---
+- name: Vars from file directly into namespace
+  hosts: local
+  tasks:
+    - name: Include vars from file
+      include_vars: some_vars.yml
+
+    - debug:
+       var: key1

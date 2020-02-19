@@ -1,0 +1,11 @@
+---
+- name: Load variables from file
+  hosts: local
+  tasks:
+    - name: Load variables from file into my_var
+      include_vars:
+        file: some_vars.yml
+        name: my_var
+
+    - debug:
+       var: my_var
