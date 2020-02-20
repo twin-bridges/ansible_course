@@ -1,0 +1,8 @@
+- name: IOS-XE global config
+  ios_config:
+    lines:
+      - "ip name-server {{ dns_server1 }} {{ dns_server2 }}"
+      - "ip domain name {{ domain_name }}"
+      - "ntp server {{ ntp_server1 }}"
+      - "ntp server {{ ntp_server2 }}"
+    save_when: changed
