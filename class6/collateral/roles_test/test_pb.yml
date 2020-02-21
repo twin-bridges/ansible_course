@@ -1,0 +1,5 @@
+---
+- hosts: cisco1
+  gather_facts: False
+  roles:
+    - core_router

@@ -1,0 +1,7 @@
+---
+- debug:
+    msg: "DNS1: {{ dns_server1 }}"
+
+- debug:
+    msg: "DNS2: {{ dns_server2 }}"
+

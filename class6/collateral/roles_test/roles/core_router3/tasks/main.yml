@@ -1,0 +1,4 @@
+---
+- template:
+    src: ntp.j2
+    dest: ntp.txt

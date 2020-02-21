@@ -1,0 +1,6 @@
+---
+- name: IOS Example
+  hosts: cisco
+  gather_facts: True
+  roles:
+    - core_router4

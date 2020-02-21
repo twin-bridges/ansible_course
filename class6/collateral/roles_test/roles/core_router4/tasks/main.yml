@@ -1,0 +1,3 @@
+- name: Global config
+  ios_config:
+    src: ios_config.j2
