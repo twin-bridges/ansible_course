@@ -6,11 +6,11 @@
     - name: Use newer import_role form
       import_role:
         name: core_router4
-      when: False
+      when: True
       tags: foo1
 
     - name: Use dynamic instead of static form
       include_role:
         name: core_router4
-      when: True
+      when: False
       tags: foo2
