@@ -1,0 +1,13 @@
+ip vrf blue
+ rd 65000:1
+!
+ip vrf red
+ rd 65000:2
+!
+interface Loopback98
+ ip vrf forwarding blue
+ no ip address
+!
+interface Loopback99
+ ip vrf forwarding red
+ no ip address

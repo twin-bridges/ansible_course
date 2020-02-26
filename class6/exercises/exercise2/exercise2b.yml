@@ -1,0 +1,17 @@
+---
+- hosts: cisco:arista:nxos
+  gather_facts: True
+  tasks:
+    - name: Import IOS and IOS-XE tasks
+      include_tasks: "./tasks/{{ ansible_facts.net_iostype }}-tasks.yml"
+      when: ansible_facts.net_iostype is defined
+      tags:
+        - ios
+        - ios-xe
+
+    - name: Import EOS and NX-OS tasks
+      include_tasks: "./tasks/{{ ansible_network_os }}-tasks.yml"
+      when: 'ansible_network_os in ["eos", "nxos"]'
+      tags:
+        - eos
+        - nxos
