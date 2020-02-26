@@ -1,0 +1,169 @@
+Building configuration...
+
+Current configuration : 3934 bytes
+!
+! Last configuration change at 13:00:15 PST Tue Feb 25 2020 by pyclass
+! NVRAM config last updated at 04:15:41 PST Tue Feb 25 2020 by pyclass
+!
+version 15.5
+no service pad
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+no service password-encryption
+!
+hostname cisco2
+!
+boot-start-marker
+boot system flash c880data-universalk9-mz.155-3.M8.bin
+boot system flash c880data-universalk9-mz.154-2.T1.bin
+boot-end-marker
+!
+!
+logging buffered 5301
+no logging console
+enable secret 5 $1$39ck$mpfZ3sWVn10YCXhSWI48R/
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authorization exec default local if-authenticated 
+!
+!
+!
+!
+!
+aaa session-id common
+ethernet lmi ce
+memory-size iomem 10
+clock timezone PST -8 0
+clock summer-time PDT recurring
+!
+crypto pki trustpoint TP-self-signed-3464025169
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3464025169
+ revocation-check none
+ rsakeypair TP-self-signed-3464025169
+!
+!
+crypto pki certificate chain TP-self-signed-3464025169
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33343634 30323531 3639301E 170D3138 30383234 30333035 
+  32365A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 34363430 
+  32353136 3930819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  810087D0 D60E38D2 0C03232E 90301767 600A2BD9 116BCE8C 0E2A0571 F9EEAAF1 
+  1782FF7F 80C0DF66 C04CB404 F5A19B43 EA6D71C5 5E44A202 BCAEB323 AB84E5AB 
+  83F62B44 2299249F DC28E33A C95C16F0 D7CA8D05 89B6E891 D175872F 0116D24B 
+  E535A1BE C3DEC071 9BB7FCD2 63678BB8 B1AD27CE F8DECFEC 1DBA1D33 56413A79 
+  D05F0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14411525 63514100 F74B4698 28A7EB9C FAAF8FB3 63301D06 
+  03551D0E 04160414 41152563 514100F7 4B469828 A7EB9CFA AF8FB363 300D0609 
+  2A864886 F70D0101 05050003 8181001D 87FD7381 885F25B6 C4AC30A2 C166A0D3 
+  D14B93D3 DB35A458 FA7B2D09 DD259B9A 5B15631B FC200E00 F07CDE3F F05B1733 
+  212E0F98 CAEF095F B5DA745E B1148993 602B55B6 5DDEA4D0 C55EE42B 989E9C15 
+  59A95655 3EA29226 01C6ECAE 603ED95F 1DAA35E4 143E872B 7688AC4D BE7FA1D9 
+  E1E684B0 170786C1 2076DAE9 44B15A
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name bogus.com
+ip name-server 8.8.8.8
+ip name-server 8.8.4.4
+ip cef
+no ipv6 cef
+!
+!
+license udi pid CISCO881-K9 sn FTX18298312
+!
+!
+archive
+ path flash:pynet-rtr2-cfg
+username pyclass privilege 15 secret 5 $1$CQCe$poonB1jFHYQAWt/3eXub41
+username admin privilege 15 secret 5 $1$bNPn$ZS5flxjICRGSIoSrwvaaz.
+username student1 privilege 15 secret 5 $1$/gYV$SeViShJZ01BeIGZ8NhqHr/
+!
+!
+!
+!
+lldp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0
+ no ip address
+!
+interface FastEthernet1
+ no ip address
+!
+interface FastEthernet2
+ no ip address
+!
+interface FastEthernet3
+ no ip address
+!
+interface FastEthernet4
+ description *** LAN connection (don't change) ***
+ ip address 10.220.88.21 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+ip route 0.0.0.0 0.0.0.0 10.220.88.1
+ip ssh version 2
+ip ssh pubkey-chain
+  username student1
+   key-hash ssh-rsa 1C3A949CF3B48F23F5074717EEEE025A 
+ip scp server enable
+!
+!
+snmp-server group READONLY v3 priv read VIEWSTD access 98
+snmp-server view VIEWSTD iso included
+snmp-server community galileo RO 98
+snmp-server ifindex persist
+snmp-server location Freemont, CA
+snmp-server contact Kirk Byers
+access-list 98 remark *** SNMP ***
+access-list 98 permit any
+!
+!
+!
+no vstack
+!
+line con 0
+ logging synchronous
+ no modem enable
+line aux 0
+ no exec
+line vty 0 4
+ transport input telnet ssh
+!
+ntp server 130.126.24.24
+ntp server 152.2.21.1
+!
+end

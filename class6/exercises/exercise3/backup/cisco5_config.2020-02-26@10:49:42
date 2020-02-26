@@ -1,0 +1,217 @@
+Building configuration...
+
+Current configuration : 4240 bytes
+!
+! Last configuration change at 10:49:39 PST Wed Feb 26 2020 by pyclass
+! NVRAM config last updated at 04:15:45 PST Wed Feb 26 2020 by pyclass
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname cisco5
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+clock timezone PST -8 0
+clock summer-time PDT recurring
+!
+!
+!
+!
+!
+!
+!
+ip name-server 8.8.8.8 8.8.4.4
+ip domain name bogus.com
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2538596750
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2538596750
+ revocation-check none
+ rsakeypair TP-self-signed-2538596750
+!
+!
+crypto pki certificate chain TP-self-signed-2538596750
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32353338 35393637 3530301E 170D3139 30383232 31363432 
+  35315A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 35333835 
+  39363735 30308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100D927 FD216110 5F9E7D93 1728D073 432738E8 FC1704DA AEE4C0D3 
+  1D433BC8 9861F9D8 4565B1C7 3FC78A8E 933377D6 DE398235 657B3E08 295CC87D 
+  14165746 FC96A318 B2FBD37E 25A1E27D 141DCDD7 CA30952D FE3A673C 93E4DA89 
+  FF22AF04 4F895E9B 20390C15 741A9624 7E665FE5 731608D0 C4735C07 DA35019B 
+  449101C7 08D48539 C1E1746C 4760822D F4B9E682 C20A55BD 146832F9 C74E5176 
+  C4648690 2C513225 827EEF89 9CB9B6C4 3A89789F 593608D6 D086B6A6 3976A530 
+  0393B7C4 FBCC9194 564DE2C9 65DDAE63 8A04D648 8472BD04 80BED3E4 DBBAD3EA 
+  255DFB8B 22CB60FB 1E8E0537 4318273F 1E23FF23 8E38E3B3 D9323660 F729B767 
+  04810023 746B0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 14E2C8A2 1627B771 9FB69D8D 6C452F38 954447D9 
+  F9301D06 03551D0E 04160414 E2C8A216 27B7719F B69D8D6C 452F3895 4447D9F9 
+  300D0609 2A864886 F70D0101 05050003 82010100 C384726B 5AD58D2A FF59CA7C 
+  55059543 F55FE48A 98249EAB 1D7FAC54 66AF325F C140B8DF AF17BC11 CF8D2DF6 
+  7A844E55 35C68182 2442272B 3F2AFDA8 462A27F1 41387834 1F75A20A 8A348F79 
+  5BAD3051 380944AC 1762C47E E1503127 9DCDFE1E 7A99418F 40F67B43 5DC977A5 
+  D7110B1F 6C7D183B E1797082 A53B9B4B 2A8F0706 8FF3B8D3 2073C81E 10CE58E1 
+  A9C22CD1 D0151606 92325A2A 2F9CC668 6411D500 8F637991 2D5C2F02 1780273B 
+  79845937 45FDFDBB 647A33EA DEC7E775 C6A17AF5 76D2B022 BF049D3C EDD65637 
+  BB86EB48 7E1F1CEF 7A5A5D0E C53583FA C70F082C 87623779 3747021E 0C90893B 
+  A1A4FA98 81DFC1EA 1286E01D 368001C6 7F6E0608
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 97LCTXOIVGP
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+archive
+ log config
+  logging enable
+ path bootflash:archive
+ write-memory
+!
+netconf-yang
+!
+!
+username pyclass privilege 15 secret 5 $1$nNdk$CIGWHu3BMS9Bwx0iBJVyv1
+!
+redundancy
+!
+!
+!
+!
+!
+!
+lldp run
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ ip address dhcp
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet4
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet5
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet6
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet7
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 10.0.2.2
+!
+ip ssh version 2
+ip scp server enable
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ exec-timeout 20 0
+ login local
+ transport input telnet ssh
+!
+ntp server 130.126.24.24
+ntp server 152.2.21.1
+!
+!
+!
+!
+!
+end

@@ -1,0 +1,10 @@
+---
+- hosts: cisco
+  tasks:
+    - name: Import IOS tasks
+      import_tasks: ios-tasks.yml
+      when: ansible_facts.net_iostype == "IOS"
+
+    - name: Import IOS-XE tasks
+      import_tasks: ios-xe-tasks.yml
+      when: ansible_facts.net_iostype == "IOS-XE"
