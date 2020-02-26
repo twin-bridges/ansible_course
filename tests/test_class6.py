@@ -98,10 +98,11 @@ def test_class6_ex3():
     assert re.search(r"^cisco5\s+:\s+ok=2.*skipped=1.*$", std_out, flags=re.M)
     assert re.search(r"^cisco6\s+:\s+ok=2.*skipped=1.*$", std_out, flags=re.M)
 
+
 def test_class6_ex4():
     """Should be idempotent on the second execution."""
     base_path = "../class6/exercises/exercise4"
-    cmd_list = ["ansible-playbook", "exercise4.yml"]
+    cmd_list = ["ansible-playbook", "exercise4.yml", "-f 12"]
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     std_err = remove_ansible_warnings(std_err)
     assert std_err == ""
@@ -121,3 +122,39 @@ def test_class6_ex4():
     assert re.search(r"^arista8\s+:\s+ok=2.*skipped=3.*$", std_out, flags=re.M)
     assert re.search(r"^nxos1\s+:\s+ok=2.*skipped=3.*$", std_out, flags=re.M)
     assert re.search(r"^nxos2\s+:\s+ok=2.*skipped=3.*$", std_out, flags=re.M)
+
+
+def test_class6_ex5():
+    """Should be idempotent on the second execution."""
+    base_path = "../class6/exercises/exercise5"
+    cmd_list = ["ansible-playbook", "exercise5.yml", "-f 12"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    # Execute script again
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    assert re.search(r"^cisco1\s+:\s+ok=2.*skipped=2.*$", std_out, flags=re.M)
+    assert re.search(r"^cisco2\s+:\s+ok=2.*skipped=2.*$", std_out, flags=re.M)
+    assert re.search(r"^cisco5\s+:\s+ok=2.*skipped=2.*$", std_out, flags=re.M)
+    assert re.search(r"^cisco6\s+:\s+ok=2.*skipped=2.*$", std_out, flags=re.M)
+    assert re.search(r"^arista5\s+:\s+ok=2.*skipped=2.*$", std_out, flags=re.M)
+    assert re.search(r"^arista6\s+:\s+ok=2.*skipped=2.*$", std_out, flags=re.M)
+    assert re.search(r"^arista7\s+:\s+ok=2.*skipped=2.*$", std_out, flags=re.M)
+    assert re.search(r"^arista8\s+:\s+ok=2.*skipped=2.*$", std_out, flags=re.M)
+    assert re.search(r"^nxos1\s+:\s+ok=2.*skipped=2.*$", std_out, flags=re.M)
+    assert re.search(r"^nxos2\s+:\s+ok=2.*skipped=2.*$", std_out, flags=re.M)
+
+
+def test_class6_ex6():
+    base_path = "../class6/exercises/exercise6"
+    cmd_list = ["ansible-playbook", "exercise6.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    assert re.search(r"^cisco5\s+:\s+ok=1 ", std_out, flags=re.M)
+    assert re.search(r"^cisco6\s+:\s+ok=1 ", std_out, flags=re.M)
