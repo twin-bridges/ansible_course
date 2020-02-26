@@ -1,0 +1,14 @@
+- name: Print out IP address
+  debug:
+    msg: "Hello1"
+  when: 'var1 == "foo1"'
+
+- name: Print out IP address
+  debug:
+    msg: "Hello2"
+  when: 'var1 == "foo2"'
+
+- name: Print out IP address
+  debug:
+    msg: "Hello3"
+  when: 'var1 == "foo3"'

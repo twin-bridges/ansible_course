@@ -1,0 +1,17 @@
+---
+- name: "Exercise 1c"
+  hosts: localhost
+  tasks:
+    - name: Tags and include (exercise1c)
+      include_tasks: subtask2.yml
+
+    - name: Tags and include (exercise1c-fix1)
+      include_tasks: subtask2.yml
+      tags:
+        - foo1
+        - foo2
+        - foo3
+
+    - name: Tags and include (exercise1c-fix2)
+      include_tasks: subtask2.yml
+      tags: always

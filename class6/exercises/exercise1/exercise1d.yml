@@ -1,0 +1,9 @@
+---
+- name: Exercise 1d (Conditionals)
+  hosts: local
+  vars:
+    var1: foo1
+  tasks:
+    - name: Conditionals
+      include_tasks: subtask3.yml
+      when: 'var1 == "foo1"'
