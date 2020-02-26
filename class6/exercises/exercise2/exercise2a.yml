@@ -1,29 +1,6 @@
 ---
-- hosts: cisco:arista:nxos
-  gather_facts: True
+- name: "Exercise 2a"
+  hosts: localhost
   tasks:
-    - name: Import IOS tasks
-      import_tasks: ios-tasks.yml
-      when: ansible_facts.net_iostype is defined and
-            ansible_facts.net_iostype == "IOS"
-      tags:
-        - ios
-
-    - name: Import IOS-XE tasks
-      import_tasks: ios-xe-tasks.yml
-      when: ansible_facts.net_iostype is defined and
-            ansible_facts.net_iostype == "IOS-XE"
-      tags:
-        - ios-xe
-
-    - name: Import EOS tasks
-      import_tasks: eos-tasks.yml
-      when: 'ansible_network_os == "eos"'
-      tags:
-        - eos
-
-    - name: Import NX-OS tasks
-      import_tasks: nxos-tasks.yml
-      when: 'ansible_network_os == "nxos"'
-      tags:
-        - nxos
+    - name: Loops and import (exercise2a)
+      import_tasks: subtask1.yml

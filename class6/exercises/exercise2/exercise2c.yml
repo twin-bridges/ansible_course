@@ -1,0 +1,6 @@
+---
+- name: "Exercise 2c"
+  hosts: localhost
+  tasks:
+    - name: Tags and include (exercise2c)
+      import_tasks: subtask2.yml
