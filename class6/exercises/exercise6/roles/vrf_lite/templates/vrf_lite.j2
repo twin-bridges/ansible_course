@@ -1,0 +1,10 @@
+{% for vrf_dict in vrfs %}
+ip vrf {{ vrf_dict.vrf_name }}
+ rd {{ vrf_dict.route_distinguisher }}
+!
+{% for intf in vrf_dict.interfaces %}
+interface {{ intf }}
+ ip vrf forwarding {{ vrf_dict.vrf_name }}
+!
+{% endfor %}
+{% endfor %}

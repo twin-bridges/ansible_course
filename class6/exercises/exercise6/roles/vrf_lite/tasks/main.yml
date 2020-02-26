@@ -1,0 +1,12 @@
+- name: Debugging of Template
+  set_fact:
+    vrf_config: "{{ lookup('template', 'vrf_lite.j2') }}"
+  tags: never
+
+- debug:
+    msg: "{{ vrf_config.splitlines() }}"
+  tags: never
+
+- name: Push configuration
+  ios_config:
+    src: vrf_lite.j2

@@ -1,0 +1,8 @@
+---
+- name: Configure VRF Lite
+  hosts: cisco5:cisco6
+  gather_facts: False
+  tasks:
+    - name: VRF Lite Role
+      import_role: 
+        name: vrf_lite

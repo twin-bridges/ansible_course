@@ -1,0 +1,10 @@
+---
+vrfs:
+  - vrf_name: blue
+    route_distinguisher: "65000:1"
+    interfaces:
+      - Loopback98
+  - vrf_name: red 
+    route_distinguisher: "65000:2"
+    interfaces:
+      - Loopback99
