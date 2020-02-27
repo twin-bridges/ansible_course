@@ -1,14 +1,14 @@
-- name: Print out IP address
+- name: Print Hello1
   debug:
     msg: "Hello1"
   tags: foo1
 
-- name: Print out IP address
+- name: Print Hello2
   debug:
     msg: "Hello2"
   tags: foo2
 
-- name: Print out IP address
+- name: Print Hello3
   debug:
     msg: "Hello3"
   tags: foo3
