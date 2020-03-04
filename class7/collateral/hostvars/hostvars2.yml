@@ -1,0 +1,18 @@
+---
+- name: IOS Example
+  hosts: cisco1
+  gather_facts: True
+  tasks:
+    - debug:
+        var: hostvars
+
+    - debug:
+        msg: "{{ hostvars['cisco5'] }}"
+
+    - debug:
+        msg: 
+          - "Cisco1: {{ hostvars['cisco1']['bgp_router_id'] }}"
+          - "Cisco2: {{ hostvars['cisco2']['bgp_router_id'] }}"
+          - "Cisco5: {{ hostvars['cisco5']['bgp_router_id'] }}"
+          - "Cisco6: {{ hostvars['cisco6']['bgp_router_id'] }}"
+
