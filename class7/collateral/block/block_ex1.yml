@@ -1,0 +1,19 @@
+---
+- name: Block Example
+  hosts: cisco:arista:juniper
+  gather_facts: False
+  tasks:
+    - block:
+        - name: Executing command
+          ios_command:
+            commands: show ip int brief
+          register: output
+    
+        - set_fact:
+            show_ip: "{{ output.stdout[0] }}"
+    
+        - debug:
+            msg: "{{ show_ip.splitlines() }}"
+      when: 'ansible_network_os == "ios"' 
+      # become: yes
+      # become_method: enable
