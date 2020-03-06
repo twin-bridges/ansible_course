@@ -1,0 +1,24 @@
+---
+- hosts: cisco5
+  gather_facts: false
+  vars:
+    command: show ip interface brief
+    # command: show version
+  collections:
+   - clay584.genie
+
+  tasks:
+
+    - name: Executing command
+      ios_command:
+        commands: "{{ command }}"
+      register: output
+
+    - debug:
+        var: output
+
+    - set_fact:
+        output_struct: "{{ output.stdout[0] | clay584.genie.parse_genie(command=command, os='iosxe') }}"
+
+    - debug:
+        msg: "{{ output_struct }}"

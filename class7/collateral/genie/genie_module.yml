@@ -1,0 +1,22 @@
+---
+- hosts: nxos1
+  gather_facts: false
+  connection: local
+  collections:
+   - clay584.genie
+
+  tasks:
+  - name: Example Learn Genie
+    learn_genie:
+      host: "{{ ansible_host }}"
+      os: nxos
+      username: pyclass
+      password: "{{ ansible_ssh_pass }}"
+      port: 22
+      protocol: ssh
+      feature: arp
+    register: output
+
+  - name: Display Output
+    debug:
+      msg: "{{ output }}"
