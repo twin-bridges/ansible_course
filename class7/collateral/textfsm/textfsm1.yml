@@ -1,0 +1,23 @@
+---
+- name: TextFSM Example
+  hosts: cisco5
+  gather_facts: False
+  vars:
+    fsm_template: "cisco_ios_show_ip_interface_brief.template"
+
+  tasks:
+    - name: Executing command
+      ios_command:
+        commands: show ip int brief
+      register: output
+
+    - set_fact:
+        show_ip: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
+
+    - debug:
+        var: show_ip
+
+    - debug:
+        msg: "{{ item['INTF'] }}"
+      loop: "{{ show_ip }}"
+

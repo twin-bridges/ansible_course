@@ -1,16 +1,16 @@
 ---
-- name: Pipe JSON NX-OS
-  hosts: nxos1
+- name: Pipe JSON
+  hosts: arista5
   gather_facts: False
   tasks:
     - name: Executing command
-      nxos_command:
+      eos_command:
         commands: show version | json
       register: output
-
 
     - set_fact:
         show_ver: "{{ output['stdout'][0] }}"
 
     - debug:
-        msg: "Platform: {{ show_ver.chassis_id }}"
+        msg: "{{ show_ver }}"
+        #msg: "OS Version: {{ show_ver.version }}"

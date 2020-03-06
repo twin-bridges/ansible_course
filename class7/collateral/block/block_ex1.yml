@@ -15,5 +15,5 @@
         - debug:
             msg: "{{ show_ip.splitlines() }}"
       when: 'ansible_network_os == "ios"' 
-      # become: yes
-      # become_method: enable
+      #become: yes
+      #become_method: enable

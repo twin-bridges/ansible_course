@@ -1,0 +1,23 @@
+---
+- name: TextFSM Example3
+  hosts: cisco5
+  gather_facts: False
+  vars:
+    platform: "cisco_ios"
+    command: "show ip int brief"
+    textfsm_index: "/home/student5/ntc-templates/templates/"
+
+  tasks:
+    - name: Executing command
+      ios_command:
+        commands: "{{ command }}"
+      register: output
+
+    - debug:
+        var: output
+
+    - set_fact:
+       show_ip: "{{ output.stdout[0] | ntc_parse(command, platform, textfsm_index ) }}"
+
+    - debug:
+        var: show_ip

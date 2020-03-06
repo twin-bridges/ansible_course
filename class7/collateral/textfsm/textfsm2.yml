@@ -1,0 +1,27 @@
+---
+- name: TextFSM Example2
+  hosts: cisco5
+  gather_facts: False
+  vars:
+    fsm_template: "cisco_ios_show_ip_interface_brief.template"
+
+  roles:
+    - ansible-network.network-engine
+
+  tasks:
+    - name: Executing command
+      ios_command:
+        commands: show ip int brief
+      register: output
+
+    - set_fact:
+        show_ip: "{{ output.stdout[0] }}"
+
+    - name: TextFSM test
+      textfsm_parser:
+        file: "{{ fsm_template }}"
+        content: "{{ show_ip }}"
+        name: show_ip_parsed
+
+    - debug:
+        var: show_ip_parsed
