@@ -1,0 +1,24 @@
+---
+- name: RegEx Example2
+  hosts: cisco5
+  gather_facts: False
+
+  tasks:
+    - name: Executing command
+      ios_command:
+        commands: show ip int brief
+      register: output
+
+    - set_fact:
+        output: "{{ output.stdout[0] }}"
+
+    - name: Strip header information
+      set_fact:
+        show_ip: "{{ output | regex_replace('Interface.*Protocol') | trim }}"
+
+    - name: Extract interface name
+      debug:
+        msg: "{{ item | regex_search('^\\S+') }}"
+      loop: "{{ show_ip.splitlines() }}"
+      loop_control:
+        label: ""
