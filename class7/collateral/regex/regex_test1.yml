@@ -16,6 +16,9 @@
       set_fact:
         show_ip: "{{ output | regex_replace('Interface.*Protocol') | trim }}"
 
+    - debug: 
+        msg: "{{ show_ip.splitlines() }}"
+
     - name: Extract interface and IP columns
       set_fact:
         show_ip_list: "{{ show_ip | regex_findall('^(\\S+)\\s+(\\S+)', multiline=True) }}"
