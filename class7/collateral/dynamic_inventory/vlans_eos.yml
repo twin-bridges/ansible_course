@@ -1,0 +1,12 @@
+---
+- name: VLAN configuration
+  hosts: arista
+  gather_facts: False
+  tasks:
+    - name: Merge provided configuration with device configuration
+      eos_vlans:
+        config:
+          - name: Blue300
+            vlan_id: 300
+            state: active
+        state: merged
