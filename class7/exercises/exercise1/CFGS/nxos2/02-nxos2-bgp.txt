@@ -1,0 +1,12 @@
+!
+feature bgp
+router bgp 22
+  router-id 172.31.101.102
+  address-family ipv4 unicast
+    network 172.31.101.102/32
+    network 172.31.102.102/32
+  neighbor 172.31.254.1
+    remote-as 22
+    description configured by ansible
+    address-family ipv4 unicast
+!

@@ -1,0 +1,22 @@
+---
+- hosts: nxos
+  gather_facts: false
+  vars:
+    command: show interface
+  collections:
+   - clay584.genie
+
+  tasks:
+    - name: Executing command
+      nxos_command:
+        commands: "{{ command }}"
+      register: output
+
+    - debug:
+        var: output
+
+    - set_fact:
+        output_struct: "{{ output.stdout[0] | clay584.genie.parse_genie(command=command, os=ansible_network_os) }}"
+
+    - debug:
+        msg: "{{ output_struct }}"

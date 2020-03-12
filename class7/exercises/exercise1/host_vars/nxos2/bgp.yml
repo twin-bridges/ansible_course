@@ -1,0 +1,3 @@
+bgp_advertise: 
+  - "{{ loopback101_ip_address }}/{{ loopback101_netmask }}"
+  - "{{ loopback102_ip_address }}/{{ loopback102_netmask }}"
