@@ -1,10 +1,10 @@
 ---
-- name: Global configuration
+- name: Exercise2
   hosts: arista
   gather_facts: False
   tasks:
     - block:
-        - name: Attempt configuration using invalid password
+        - name: Attempt configuration using an invalid password
           vars:
             ansible_ssh_pass: "foobar"
           eos_config:

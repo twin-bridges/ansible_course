@@ -1,5 +1,6 @@
 ---
-- hosts: nxos
+- name: Exercise 4b
+  hosts: nxos
   gather_facts: false
   vars:
     command: show version
@@ -12,11 +13,19 @@
         commands: "{{ command }}"
       register: output
 
-    - debug:
+    - name: Display output as a string
+      debug:
         var: output
 
-    - set_fact:
+    - name: Use Genie to convert to structured data
+      set_fact:
         output_struct: "{{ output.stdout[0] | clay584.genie.parse_genie(command=command, os=ansible_network_os) }}"
 
-    - debug:
-        msg: "{{ output_struct }}"
+    - name: Print software version
+      debug:
+        msg: 
+          - "-------------------"
+          - "{{ inventory_hostname }}:"
+          - "{{ output_struct.platform.software.system_version }}"
+          - "-------------------"
+

@@ -1,5 +1,5 @@
 ---
-- name: Exercise3
+- name: Exercise3a
   hosts: nxos
   gather_facts: False
   vars:
@@ -14,25 +14,15 @@
     - set_fact:
         show_bgp: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
 
-    - debug:
-        msg: "{{ show_bgp[0]['STATE_PFXRCD'] }}"
+    - name: Display returned data structure
+      debug:
+        msg: "{{ show_bgp[0] }}"
       when: show_bgp != []
 
     - name: Testing BGP is up
       assert:
         that:
-          - show_bgp != []
           - "'Shut' not in show_bgp[0]['STATE_PFXRCD']"
           - "'Idle' not in show_bgp[0]['STATE_PFXRCD']"
           - show_bgp[0]['STATE_PFXRCD'] | int >= 2
-
-
-#            "STATE_PFXRCD": "Shut (Admin)",
-#            "UP_DOWN": "00:01:04",
-
-# ok: [nxos2] => {
-#    "msg": "Shut (Admin)"
-#}
-#ok: [nxos1] => {
-#    "msg": "Idle"
-#}
+      when: show_bgp != []

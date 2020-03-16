@@ -1,5 +1,5 @@
 ---
-- name: Exercise 4
+- name: Class7, Exercise1
   hosts: nxos
   gather_facts: False
   tasks:
