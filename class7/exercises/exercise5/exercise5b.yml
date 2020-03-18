@@ -1,0 +1,30 @@
+---
+- name: Exercise 5b
+  hosts: arista
+  gather_facts: False
+
+  tasks:
+    - name: Executing command
+      eos_command:
+        commands: show version
+      register: output
+
+    - set_fact:
+        output: "{{ output.stdout[0] }}"
+
+    - name: "Display 'show version' output as a string"
+      debug:
+        msg: "{{ output.splitlines() }}"
+
+    - name: Parse show version using regular expressions
+      set_fact:
+        os_list: "{{ output | regex_search('^Software image version: (\\S+).*$', '\\1', multiline=True) }}"
+
+    - name: Display software version per device
+      debug:
+        msg:
+          - "-----------------------"
+          - "{{ inventory_hostname }}:"
+          - "{{ os_list[0] }}"
+          - "-----------------------"
+
