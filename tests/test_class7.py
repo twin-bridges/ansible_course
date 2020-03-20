@@ -105,10 +105,10 @@ def test_class7_ex3b():
     std_err = remove_ansible_warnings(std_err)
     assert std_err == ""
     assert return_code == 0
-    assert re.search(r"arista5.*ok=4 ", std_out)
-    assert re.search(r"arista6.*ok=4 ", std_out)
-    assert re.search(r"arista7.*ok=4 ", std_out)
-    assert re.search(r"arista8.*ok=4 ", std_out)
+    assert re.search(r"arista5.*ok=6 ", std_out)
+    assert re.search(r"arista6.*ok=6 ", std_out)
+    assert re.search(r"arista7.*ok=6 ", std_out)
+    assert re.search(r"arista8.*ok=6 ", std_out)
 
 def test_class7_ex4a():
     base_path = "../class7/exercises/exercise4"
