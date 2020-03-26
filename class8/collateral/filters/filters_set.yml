@@ -1,0 +1,38 @@
+---
+
+- name: Test lookups
+  hosts: local
+  vars:
+    sf_dns:
+      - 8.8.8.8
+      - 8.8.4.4
+      - 1.1.1.1
+      - 1.0.0.1
+    la_dns:
+      - 8.8.8.8
+      - 8.8.4.4
+      - 4.4.2.2
+
+  tasks:
+    - set_fact:
+        dns_servers: "{{ sf_dns + la_dns }}"
+
+    - name: Unique elements
+      debug:
+        msg: "{{ dns_servers | unique }}"
+
+    - name: Set operations union
+      debug:
+        msg: "{{ sf_dns | union(la_dns) }}"
+
+    - name: Set operations intersection
+      debug:
+        msg: "{{ sf_dns | intersect(la_dns) }}"
+
+    - name: Set operations difference 
+      debug:
+        msg: "{{ sf_dns | difference(la_dns) }}"
+
+    - name: Set operations symmetric difference 
+      debug:
+        msg: "{{ sf_dns | symmetric_difference(la_dns) }}"

@@ -1,0 +1,110 @@
+---
+# genie filter
+# textfsm filter1 (parse_cli_textfsm)
+# ntc_parse
+# parse_genie
+# regex filters
+
+- name: Test lookups
+  hosts: local
+  vars:
+    number: "22"
+    my_dict:
+      key1: val1
+      key2: val2
+      key3: val3
+      key4: val4
+
+  tasks:
+    - debug:
+        var: number
+      when: number | int == 22
+
+    - debug:
+        msg: "{{ my_dict | to_nice_yaml(indent=4) }}"
+
+    - debug:
+        msg: "{{ my_dict | to_nice_json(indent=4) }}"
+
+    - set_fact:
+        data: "{{ lookup('file', 'ip_addresses.yml') | from_yaml }}"
+
+    - debug:
+        var: data.ip_addresses.la
+
+    - set_fact:
+        locations: "{{ lookup('file', 'locations.json') | from_json }}"
+
+    - debug:
+        var: locations["seattle"]
+
+    - name: Default value
+      debug:
+        msg: "{{ unknown_var | default('Hello') }}"
+
+    - name: touch files with an optional mode
+      file:
+        dest: "{{ item.path }}"
+        state: touch
+        mode: "{{ item.mode | default(omit) }}"
+      loop:
+        - path: foo.txt
+        - path: bar.txt
+        - path: baz.txt
+          mode: "0444"
+
+    # Set operations
+    # {{ list1 | unique }}
+    # To get a union of two lists:
+    # {{ list1 | union(list2) }}
+    # To get the intersection of 2 lists (unique list of all items in both):
+    # {{ list1 | intersect(list2) }}
+    # To get the difference of 2 lists (items in 1 that don’t exist in 2):
+    # {{ list1 | difference(list2) }}
+    # To get the symmetric difference of 2 lists (items exclusive to each list):
+    # {{ list1 | symmetric_difference(list2) }}
+
+    # To turn a dictionary into a list of items, suitable for looping, use dict2items:
+    # {{ dict | dict2items }}
+    # {{ tags | items2dict }}
+
+#To test if a string is a valid IP address:
+#
+#{{ myvar | ipaddr }}
+#
+#You can also require a specific IP protocol version:
+#
+#{{ myvar | ipv4 }}
+#{{ myvar | ipv6 }}
+#
+#IP address filter can also be used to extract specific information from an IP address. For example, to get the IP address itself from a CIDR, you can use:
+#
+#{{ '192.0.2.1/24' | ipaddr('address') }}
+#
+#To convert the XML output of a network device command into structured JSON output, use the parse_xml filter:
+#
+#{{ output | parse_xml('path/to/spec') }}
+#
+#The combine filter allows hashes to be merged. For example, the following would override keys in one hash:
+#
+#{{ {'a':1, 'b':2} | combine({'b':3}) }}
+#
+#The extract filter is used to map from a list of indices to a list of values from a container (hash or array):
+#
+#{{ [0,2] | map('extract', ['x','y','z']) | list }}
+#{{ ['x','y'] | map('extract', {'x': 42, 'y': 31}) | list }}
+#
+## search for "foo" in "foobar"
+#{{ 'foobar' | regex_search('(foo)') }}
+#
+## will return empty if it cannot find a match
+#{{ 'ansible' | regex_search('(foobar)') }}
+#
+## case insensitive search in multiline mode
+#{{ 'foo\nBAR' | regex_search("^bar", multiline=True, ignorecase=True) }}
+#To make use of one attribute from each item in a list of complex variables, use the “map” filter (see the Jinja2 map() docs for more):
+#
+## get a comma-separated list of the mount points (e.g. "/,/mnt/stuff") on a host
+#{{ ansible_mounts | map(attribute='mount') | join(',') }}
+#
+#

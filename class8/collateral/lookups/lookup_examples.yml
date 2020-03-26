@@ -1,0 +1,17 @@
+---
+- name: Test lookups
+  hosts: local
+  vars:
+    file_content: "{{ lookup('file', 'my_file.txt') }}"
+  tasks:
+    - debug:
+        var: file_content.splitlines()
+
+    - name: show templating results
+      debug:
+        msg: "{{ lookup('template', './my_template.j2') }}"
+
+    - name: Environment variable
+      debug:
+        msg: "{{ lookup('env', 'ANSIBLE_PASSWORD') }}"
+
