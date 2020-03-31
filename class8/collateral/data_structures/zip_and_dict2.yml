@@ -1,0 +1,31 @@
+---
+- name: NAPALM data structure conversion
+  hosts: cisco1
+  tasks:
+    - name: Gather NAPALM facts
+      vars:
+        ansible_connection: local
+      napalm_get_facts: 
+        filter: "arp_table"
+
+    - debug:
+        var: napalm_arp_table
+
+    - name: Extract ip and mac fields into lists
+      set_fact:
+        ip_addr: "{{ napalm_arp_table | map(attribute='ip') | list }}"
+        mac: "{{ napalm_arp_table | map(attribute='mac') | list }}"
+
+    - debug:
+        var: mac
+
+    - name: Create list of lists using zip
+      set_fact:
+        ip_dict: "{{ ip_addr | zip(mac) | list }}"
+
+    - debug:
+        var: ip_dict
+
+    - name: Create dict from list of lists
+      debug:
+        msg: "{{ dict(ip_dict) }}"
