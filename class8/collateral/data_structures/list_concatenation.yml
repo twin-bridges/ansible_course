@@ -1,0 +1,25 @@
+---
+
+- name: List concatenation
+  hosts: cisco
+  gather_facts: False
+  vars:
+    fsm_template: "cisco_ios_show_ip_interface_brief.template"
+
+  tasks:
+    - name: Executing 'show ip int brief' command
+      ios_command:
+        commands: show ip int brief
+      register: output
+
+    - name: Parse with textfsm
+      set_fact:
+        show_ip: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
+
+    - name: Create a list of interfaces
+      set_fact:
+        intf_list: "{{ intf_list | default([]) + [item['INTF']] }}"
+      loop: "{{ show_ip }}"
+
+    - debug:
+        var: intf_list
