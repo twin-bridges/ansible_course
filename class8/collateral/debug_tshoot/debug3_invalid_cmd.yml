@@ -1,0 +1,14 @@
+---
+
+- name: Invalid cmd
+  hosts: nxos1
+  gather_facts: False
+
+  tasks:
+    - name: Executing invalid command
+      nxos_command:
+        commands: show bogus
+      register: output
+
+    - debug:
+        var: output

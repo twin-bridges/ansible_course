@@ -1,0 +1,12 @@
+---
+
+- name: Invalid indentation
+  hosts: nxos1
+  gather_facts: False
+
+  tasks:
+    - name: Invalid indentation
+      nxos_command:
+        commands: show interface
+         wait_for: True
+      register: output

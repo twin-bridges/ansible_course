@@ -1,0 +1,13 @@
+---
+- name: Missing library
+  hosts: cisco1
+  gather_facts: False
+  tasks:
+    - name: Missing library
+      vars:
+        ansible_connection: local
+      napalm_get_facts:
+        filter: "arp_table"
+
+    - debug:
+        var: napalm_arp_table

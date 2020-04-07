@@ -1,0 +1,19 @@
+---
+
+- name: Bad escaping
+  hosts: nxos1
+  gather_facts: False
+
+  tasks:
+    - name: Executing cmd
+      nxos_command:
+        commands: show interface
+      register: output
+
+    - name: 'Print a string literal named "output"'
+      debug:
+        msg: output
+
+    - name: Invalid escaping missing quotes
+      debug:
+        msg: {{ output }}
