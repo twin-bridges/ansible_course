@@ -1,0 +1,7 @@
+ ansible-vault create new.yml
+ ansible-vault edit new.yml
+ ansible-vault encrypt creds.yml 
+ ansible-vault decrypt creds.yml 
+ ansible-vault encrypt creds.yml 
+ ansible-vault view creds.yml 
+ ansible-vault view creds.yml 

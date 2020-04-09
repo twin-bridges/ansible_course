@@ -1,0 +1,30 @@
+---
+- name: Exercise3
+  hosts: arista
+
+  tasks:
+    - name: Retrieve the switching table as JSON
+      eos_command:
+        commands: show mac address-table | json
+      register: output
+
+    - name: Retrieve unicast switching table from data structure
+      set_fact:
+        switch_table: "{{ output.stdout[0].unicastTable.tableEntries }}"
+
+    - name: Use map to extract two relevant fields
+      set_fact:
+        mac_list: "{{ switch_table | map(attribute='macAddress') | list }}"
+        intf_list: "{{ switch_table | map(attribute='interface') | list }}"
+
+    - name: Create list of lists using zip
+      set_fact:
+        switch_table_list: "{{ mac_list | zip(intf_list) | list }}"
+
+    - name: Convert to a dictionary
+      set_fact:
+        switch_table_dict: "{{ dict(switch_table_list) }}"
+
+    - name: Print data structure to the screen
+      debug:
+        var: switch_table_dict

@@ -1,0 +1,28 @@
+---
+
+- name: Exercise1
+  hosts: nxos
+  gather_facts: False
+  vars:
+    fsm_template: "cisco_nxos_show_lldp_neighbors.template"
+
+  tasks:
+    - name: Executing command
+      ios_command:
+        commands: show lldp neighbors
+      register: output
+
+    - name: TextFSM conversion
+      set_fact:
+        show_lldp: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
+
+    - name: Create LLDP mapping of local interface to neighbor
+      set_fact:
+        lldp_map: "{{ lldp_map | default({}) | combine({item['LOCAL_INTERFACE']: item['NEIGHBOR']}) }}"
+      loop: "{{ show_lldp }}"
+      # Make the output more readable
+      loop_control:
+        label: ""
+
+    - debug:
+        var: lldp_map
