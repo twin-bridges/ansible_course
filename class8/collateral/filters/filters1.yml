@@ -1,10 +1,4 @@
 ---
-# genie filter
-# textfsm filter1 (parse_cli_textfsm)
-# ntc_parse
-# parse_genie
-# regex filters
-
 - name: Test lookups
   hosts: local
   vars:
@@ -16,27 +10,27 @@
       key4: val4
 
   tasks:
-#    - debug:
-#        var: number
-#      when: number | int == 22
+    - debug:
+        var: number
+      when: number | int == 22
 
-#    - debug:
-#        msg: "{{ my_dict | to_nice_yaml(indent=4) }}"
+    - debug:
+        msg: "{{ my_dict | to_nice_yaml(indent=4) }}"
 
-#    - debug:
-#        msg: "{{ my_dict | to_nice_json(indent=4) }}"
+    - debug:
+        msg: "{{ my_dict | to_nice_json(indent=4) }}"
 
-#    - set_fact:
-#        data: "{{ lookup('file', 'ip_addresses.yml') | from_yaml }}"
+    - set_fact:
+        data: "{{ lookup('file', 'ip_addresses.yml') | from_yaml }}"
 
-#    - debug:
-#        var: data.ip_addresses.la
+    - debug:
+        var: data.ip_addresses.la
 
-#    - set_fact:
-#        locations: "{{ lookup('file', 'locations.json') | from_json }}"
-#
-#    - debug:
-#        var: locations["seattle"]
+    - set_fact:
+        locations: "{{ lookup('file', 'locations.json') | from_json }}"
+
+    - debug:
+        var: locations["seattle"]
 
     - name: Default value
       debug:
@@ -52,4 +46,3 @@
         - path: bar.txt
         - path: baz.txt
           mode: "0444"
-

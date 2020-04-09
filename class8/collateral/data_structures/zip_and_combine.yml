@@ -12,7 +12,8 @@
         commands: show ip int brief
       register: output
 
-    - set_fact:
+    - name: Parse with TextFSM
+      set_fact:
         show_ip: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
 
     - name: Extract two lists from returned data

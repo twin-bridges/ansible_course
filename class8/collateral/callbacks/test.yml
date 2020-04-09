@@ -19,5 +19,4 @@
         msg: "{{ show_ip }}"
 
     - debug:
-#        msg: "{{ show_ip  | map(attribute='IPADDR') | list }}"
         msg: "{{ show_ip  | map(attribute='INTF') | list }}"

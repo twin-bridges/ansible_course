@@ -1,6 +1,6 @@
 ---
 
-- name: Test lookups
+- name: Test Playbook Failure to see behavior of callback plugins
   hosts: cisco5
   gather_facts: False
   vars:
@@ -12,12 +12,6 @@
         commands: show ip int brief
       # register: output
 
-    - set_fact:
+    - name: Playbook will fail here 'output' is not defined
+      set_fact:
         show_ip: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
-
-    - debug:
-        msg: "{{ show_ip }}"
-
-    - debug:
-#        msg: "{{ show_ip  | map(attribute='IPADDR') | list }}"
-        msg: "{{ show_ip  | map(attribute='INTF') | list }}"

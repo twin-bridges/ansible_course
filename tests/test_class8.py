@@ -6,34 +6,18 @@ from pathlib import Path
 
 TEST_CASES = [
     "../class8/collateral/lookups/lookup_examples.yml",
-#    "../class7/collateral/hostvars/hostvars1.yml",
+    "../class8/collateral/filters/filters_map.yml",
+    "../class8/collateral/filters/filters_set.yml",
+    "../class8/collateral/filters/filters1.yml",
+    "../class8/collateral/callbacks/test.yml",
+    "../class8/collateral/data_structures/zip_and_combine.yml",
+    "../class8/collateral/data_structures/zip_and_dict1.yml",
+    "../class8/collateral/data_structures/zip_and_dict2.yml",
+    "../class8/collateral/data_structures/list_concatenation.yml",
+    "../class8/collateral/data_structures/textfsm_combine.yml",
+    "../class8/collateral/vault/vault1.yml",
+    "../class8/collateral/vault/vault2.yml",
 ]
-
-"""
-./class8/collateral/filters/filters_map.yml
-./class8/collateral/filters/filters_set.yml
-./class8/collateral/filters/ip_addresses.yml
-./class8/collateral/filters/filters1.yml
-./class8/collateral/callbacks/test.yml
-./class8/collateral/callbacks/test_fail.yml
-./class8/collateral/callbacks/filters1.yml
-./class8/collateral/data_structures/zip_and_combine.yml
-./class8/collateral/data_structures/zip_and_dict1.yml
-./class8/collateral/data_structures/zip_and_dict2.yml
-./class8/collateral/data_structures/list_concatenation.yml
-./class8/collateral/data_structures/textfsm_combine.yml
-./class8/collateral/debug_tshoot/debug1_fail_auth.yml
-./class8/collateral/debug_tshoot/debug2_invalid_hostname.yml
-./class8/collateral/debug_tshoot/debug3_invalid_cmd.yml
-./class8/collateral/debug_tshoot/debug6_missing_lib.yml
-./class8/collateral/debug_tshoot/debug4_bad_escaping.yml
-./class8/collateral/debug_tshoot/debug5_missing_module.yml
-./class8/collateral/debug_tshoot/debug7_indentation.yml
-./class8/collateral/debug_tshoot/debug8_debugger.yml
-./class8/collateral/vault/vault1.yml
-./class8/collateral/vault/creds.yml
-./class8/collateral/vault/vault2.yml
-"""
 
 
 def subprocess_runner(cmd_list, exercise_dir):
