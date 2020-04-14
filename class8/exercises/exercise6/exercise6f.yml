@@ -1,0 +1,20 @@
+---
+
+- name: Exercise6f - here there be errors.
+  hosts: nxos
+  gather_facts: False
+  vars:
+    fsm_template: "cisco_nxos_show_lldp_neighbors.template"
+
+  tasks:
+    - name: Executing command
+      nxos_command:
+        commands: show lldp neighbors
+      register: output
+
+    - name: TextFSM conversion
+      set_fact:
+        show_lldp: "{{ output.stdout[0] }} | parse_cli_textfsm(fsm_template)"
+
+    - debug:
+        msg: "{{ show_lldp }}"

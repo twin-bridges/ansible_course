@@ -1,0 +1,14 @@
+---
+
+- name: Exercise6b - here there be errors (fixed).
+  hosts: nxos
+  gather_facts: False
+  vars:
+    fsm_template: "cisco_nxos_show_lldp_neighbors.template"
+
+  tasks:
+    - name: Executing command
+      nxos_command:
+        commands: show lldp neighbors
+      register: output
+

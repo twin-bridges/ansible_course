@@ -98,6 +98,7 @@ def test_class7_ex3a():
     assert re.search(r"nxos1.*ok=4 ", std_out)
     assert re.search(r"nxos2.*ok=4 ", std_out)
 
+
 def test_class7_ex3b():
     base_path = "../class7/exercises/exercise3"
     cmd_list = ["ansible-playbook", "exercise3b.yml"]
@@ -110,6 +111,7 @@ def test_class7_ex3b():
     assert re.search(r"arista7.*ok=6 ", std_out)
     assert re.search(r"arista8.*ok=6 ", std_out)
 
+
 def test_class7_ex4a():
     base_path = "../class7/exercises/exercise4"
     cmd_list = ["ansible-playbook", "exercise4a.yml"]
@@ -119,6 +121,7 @@ def test_class7_ex4a():
     assert return_code == 0
     assert re.search(r"nxos1.*ok=4 ", std_out)
     assert re.search(r"nxos2.*ok=4 ", std_out)
+
 
 def test_class7_ex4b():
     base_path = "../class7/exercises/exercise4"
@@ -130,6 +133,7 @@ def test_class7_ex4b():
     assert re.search(r"nxos1.*ok=4 ", std_out)
     assert re.search(r"nxos2.*ok=4 ", std_out)
 
+
 def test_class7_ex5a():
     base_path = "../class7/exercises/exercise5"
     cmd_list = ["ansible-playbook", "exercise5a.yml"]
@@ -139,6 +143,7 @@ def test_class7_ex5a():
     assert return_code == 0
     assert re.search(r"nxos1.*ok=5 ", std_out)
     assert re.search(r"nxos2.*ok=5 ", std_out)
+
 
 def test_class7_ex5b():
     base_path = "../class7/exercises/exercise5"
@@ -151,6 +156,7 @@ def test_class7_ex5b():
     assert re.search(r"arista6.*ok=5 ", std_out)
     assert re.search(r"arista7.*ok=5 ", std_out)
     assert re.search(r"arista8.*ok=5 ", std_out)
+
 
 def test_class7_ex6():
     base_path = "../class7/exercises/exercise6"

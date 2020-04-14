@@ -15,8 +15,6 @@ TEST_CASES = [
     "../class8/collateral/data_structures/zip_and_dict2.yml",
     "../class8/collateral/data_structures/list_concatenation.yml",
     "../class8/collateral/data_structures/textfsm_combine.yml",
-    "../class8/collateral/vault/vault1.yml",
-    "../class8/collateral/vault/vault2.yml",
 ]
 
 
@@ -52,109 +50,116 @@ def test_runner_collateral(test_case):
     assert std_err == ""
 
 
-#def test_class7_ex1():
-#    base_path = "../class7/exercises/exercise1"
-#    cmd_list = ["ansible-playbook", "exercise1.yml"]
-#    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-#    std_err = remove_ansible_warnings(std_err)
-#    assert std_err == ""
-#    assert return_code == 0
-#    assert "nxos1                      : ok=7" in std_out
-#    assert "nxos2                      : ok=7" in std_out
-#    assert re.search(r"nxos1.*failed=0", std_out)
-#    assert re.search(r"nxos2.*failed=0", std_out)
-#
-#
-#def test_class7_ex2():
-#    base_path = "../class7/exercises/exercise2"
-#    cmd_list = ["ansible-playbook", "exercise2.yml"]
-#    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-#    std_err = remove_ansible_warnings(std_err)
-#    assert std_err == ""
-#    assert return_code == 0
-#    assert re.search(r"arista5.*ok=1 ", std_out)
-#    assert re.search(r"arista6.*ok=1 ", std_out)
-#    assert re.search(r"arista7.*ok=1 ", std_out)
-#    assert re.search(r"arista8.*ok=1 ", std_out)
-#    assert re.search(r"arista5.*rescued=1 ", std_out)
-#    assert re.search(r"arista6.*rescued=1 ", std_out)
-#    assert re.search(r"arista7.*rescued=1 ", std_out)
-#    assert re.search(r"arista8.*rescued=1 ", std_out)
-#
-#
-#def test_class7_ex3a():
-#    base_path = "../class7/exercises/exercise3"
-#    cmd_list = ["ansible-playbook", "exercise3a.yml"]
-#    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-#    std_err = remove_ansible_warnings(std_err)
-#    assert std_err == ""
-#    assert return_code == 0
-#    assert re.search(r"nxos1.*ok=4 ", std_out)
-#    assert re.search(r"nxos2.*ok=4 ", std_out)
-#
-#def test_class7_ex3b():
-#    base_path = "../class7/exercises/exercise3"
-#    cmd_list = ["ansible-playbook", "exercise3b.yml"]
-#    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-#    std_err = remove_ansible_warnings(std_err)
-#    assert std_err == ""
-#    assert return_code == 0
-#    assert re.search(r"arista5.*ok=6 ", std_out)
-#    assert re.search(r"arista6.*ok=6 ", std_out)
-#    assert re.search(r"arista7.*ok=6 ", std_out)
-#    assert re.search(r"arista8.*ok=6 ", std_out)
-#
-#def test_class7_ex4a():
-#    base_path = "../class7/exercises/exercise4"
-#    cmd_list = ["ansible-playbook", "exercise4a.yml"]
-#    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-#    std_err = remove_ansible_warnings(std_err)
-#    assert std_err == ""
-#    assert return_code == 0
-#    assert re.search(r"nxos1.*ok=4 ", std_out)
-#    assert re.search(r"nxos2.*ok=4 ", std_out)
-#
-#def test_class7_ex4b():
-#    base_path = "../class7/exercises/exercise4"
-#    cmd_list = ["ansible-playbook", "exercise4b.yml"]
-#    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-#    std_err = remove_ansible_warnings(std_err)
-#    assert std_err == ""
-#    assert return_code == 0
-#    assert re.search(r"nxos1.*ok=4 ", std_out)
-#    assert re.search(r"nxos2.*ok=4 ", std_out)
-#
-#def test_class7_ex5a():
-#    base_path = "../class7/exercises/exercise5"
-#    cmd_list = ["ansible-playbook", "exercise5a.yml"]
-#    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-#    std_err = remove_ansible_warnings(std_err)
-#    assert std_err == ""
-#    assert return_code == 0
-#    assert re.search(r"nxos1.*ok=5 ", std_out)
-#    assert re.search(r"nxos2.*ok=5 ", std_out)
-#
-#def test_class7_ex5b():
-#    base_path = "../class7/exercises/exercise5"
-#    cmd_list = ["ansible-playbook", "exercise5b.yml"]
-#    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-#    std_err = remove_ansible_warnings(std_err)
-#    assert std_err == ""
-#    assert return_code == 0
-#    assert re.search(r"arista5.*ok=5 ", std_out)
-#    assert re.search(r"arista6.*ok=5 ", std_out)
-#    assert re.search(r"arista7.*ok=5 ", std_out)
-#    assert re.search(r"arista8.*ok=5 ", std_out)
-#
-#def test_class7_ex6():
-#    base_path = "../class7/exercises/exercise6"
-#    cmd_list = ["ansible-inventory", "--graph", "-i", "./dyn_inv.py"]
-#    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-#    std_err = remove_ansible_warnings(std_err)
-#    assert std_err == ""
-#    assert return_code == 0
-#    assert "@arista" in std_out
-#    assert "@cisco" in std_out
-#    assert "@juniper" in std_out
-#    assert "@local" in std_out
-#    assert "@nxos" in std_out
+def test_class8_ex1():
+    base_path = "../class8/exercises/exercise1"
+    cmd_list = ["ansible-playbook", "exercise1.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    assert re.search(r"nxos1.*ok=4", std_out)
+    assert re.search(r"nxos2.*ok=4", std_out)
+
+
+def test_class8_ex2():
+    base_path = "../class8/exercises/exercise2"
+    cmd_list = ["ansible-playbook", "exercise2.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    for switch in ("arista5", "arista6", "arista7", "arista8"):
+        assert re.search(rf"{switch}.*ok=3.*failed=0", std_out)
+
+
+def test_class8_ex3():
+    base_path = "../class8/exercises/exercise3"
+    cmd_list = ["ansible-playbook", "exercise3.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    for switch in ("arista5", "arista6", "arista7", "arista8"):
+        assert re.search(rf"{switch}.*ok=7.*failed=0", std_out)
+
+
+def test_class8_ex4():
+    base_path = "../class8/exercises/exercise4"
+    cmd_list = ["ansible-playbook", "exercise4.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    for switch in ("arista5", "arista6", "arista7", "arista8"):
+        assert re.search(rf"{switch}.*ok=6.*failed=0", std_out)
+
+
+def test_class8_ex5():
+    base_path = "../class8/exercises/exercise5"
+    cmd_list = ["ansible-playbook", "exercise5.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    assert re.search(r"nxos1.*ok=8", std_out)
+    assert re.search(r"nxos2.*ok=7", std_out)
+
+def test_class8_ex6a():
+    """Exercise 6a doesn't actually fail."""
+    base_path = "../class8/exercises/exercise6"
+    cmd_list = ["ansible-playbook", "exercise6a.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    assert re.search(r"msg.*show_lldp", std_out)
+
+def test_class8_ex6f():
+    """Exercise 6f doesn't actually fail."""
+    base_path = "../class8/exercises/exercise6"
+    cmd_list = ["ansible-playbook", "exercise6f.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    assert re.search(r"msg.*parse_cli_textfsm.fsm_template.", std_out)
+
+
+@pytest.mark.parametrize(
+    "playbook",
+    [
+        "exercise6b.yml",
+        "exercise6c.yml",
+        "exercise6d.yml",
+        "exercise6e.yml",
+        "exercise6g.yml",
+    ],
+)
+def test_class8_ex6_errors(playbook):
+    """Each of these tests should have errors on std_err."""
+    base_path = "../class8/exercises/exercise6"
+    cmd_list = ["ansible-playbook", playbook]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert return_code != 0
+
+
+@pytest.mark.parametrize(
+    "playbook",
+    [
+        "exercise6a_fixed.yml",
+        "exercise6b_fixed.yml",
+        "exercise6c_fixed.yml",
+        "exercise6d_fixed.yml",
+        "exercise6e_fixed.yml",
+        "exercise6f_fixed.yml",
+        "exercise6g_fixed.yml",
+    ],
+)
+def test_class8_ex6_fixed(playbook):
+    base_path = "../class8/exercises/exercise6"
+    cmd_list = ["ansible-playbook", playbook]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0

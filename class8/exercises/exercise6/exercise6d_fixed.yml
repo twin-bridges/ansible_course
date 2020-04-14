@@ -1,9 +1,10 @@
 ---
 
-- name: Exercise1
+- name: Exercise6d - here there be errors (fixed).
   hosts: nxos
   gather_facts: False
   vars:
+    ansible_user: "pyclass"
     fsm_template: "cisco_nxos_show_lldp_neighbors.template"
 
   tasks:
@@ -16,13 +17,5 @@
       set_fact:
         show_lldp: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
 
-    - name: Create LLDP mapping of local interface to neighbor
-      set_fact:
-        lldp_map: "{{ lldp_map | default({}) | combine({item['LOCAL_INTERFACE']: item['NEIGHBOR']}) }}"
-      loop: "{{ show_lldp }}"
-      # Make the output more readable
-      loop_control:
-        label: ""
-
     - debug:
-        var: lldp_map
+        msg: "{{ show_lldp }}"

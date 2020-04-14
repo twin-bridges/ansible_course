@@ -1,0 +1,14 @@
+---
+
+- name: Exercise6e - here there be errors (fixed).
+  hosts: juniper
+  gather_facts: False
+
+  tasks:
+    - name: Executing command
+      junos_command:
+        commands: show lldp neighbors
+      register: output
+
+    - debug:
+        msg: "{{ output }}"
