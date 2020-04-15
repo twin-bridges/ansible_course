@@ -63,13 +63,13 @@ def test_class8_ex1():
 
 def test_class8_ex2():
     base_path = "../class8/exercises/exercise2"
-    cmd_list = ["ansible-playbook", "exercise2.yml"]
+    cmd_list = ["ansible-playbook", "exercise2.yml", "-i", "./ansible-hosts.ini"] 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     std_err = remove_ansible_warnings(std_err)
     assert std_err == ""
     assert return_code == 0
     for switch in ("arista5", "arista6", "arista7", "arista8"):
-        assert re.search(rf"{switch}.*ok=3.*failed=0", std_out)
+        assert re.search(rf"{switch}.*ok=2.*failed=0", std_out)
 
 
 def test_class8_ex3():
@@ -80,7 +80,7 @@ def test_class8_ex3():
     assert std_err == ""
     assert return_code == 0
     for switch in ("arista5", "arista6", "arista7", "arista8"):
-        assert re.search(rf"{switch}.*ok=7.*failed=0", std_out)
+        assert re.search(rf"{switch}.*ok=6.*failed=0", std_out)
 
 
 def test_class8_ex4():
