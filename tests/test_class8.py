@@ -157,9 +157,32 @@ def test_class8_ex6_errors(playbook):
     ],
 )
 def test_class8_ex6_fixed(playbook):
-    base_path = "../class8/exercises/exercise6"
+    base_path = "../class8/exercises/exercise6/solutions"
     cmd_list = ["ansible-playbook", playbook]
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     std_err = remove_ansible_warnings(std_err)
     assert std_err == ""
     assert return_code == 0
+
+
+def test_class8_ex7a():
+    """Should fail when no vault password is provided."""
+    base_path = "../class8/exercises/exercise7"
+    cmd_list = ["ansible-playbook", "exercise7.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert return_code != 0
+
+
+def test_class8_ex7b():
+    """Should fail when no vault password is provided."""
+    base_path = "../class8/exercises/exercise7"
+    cmd_list = ["ansible-playbook", "exercise7.yml", "--vault-password-file", ".my_vault"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert return_code == 0
+    assert std_err == ""
+    for switch in ("arista5", "arista6", "arista7", "arista8"):
+        assert re.search(rf"{switch}.*ok=2.*failed=0", std_out)
+    assert std_out.count("130.126.24.24") == 4
+    assert std_out.count("bogus.com") == 4
