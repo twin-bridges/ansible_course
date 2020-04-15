@@ -1,6 +1,7 @@
 ---
 - name: Exercise3
   hosts: arista
+  gather_facts: False
 
   tasks:
     - name: Retrieve the switching table as JSON

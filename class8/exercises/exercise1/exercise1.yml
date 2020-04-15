@@ -16,7 +16,7 @@
       set_fact:
         show_lldp: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
 
-    - name: Create LLDP mapping of local interface to neighbor
+    - name: Create LLDP mapping of local interface to remote neighbor
       set_fact:
         lldp_map: "{{ lldp_map | default({}) | combine({item['LOCAL_INTERFACE']: item['NEIGHBOR']}) }}"
       loop: "{{ show_lldp }}"

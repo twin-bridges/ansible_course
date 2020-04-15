@@ -1,0 +1,10 @@
+---
+- name: Exercise7
+  hosts: arista
+  gather_facts: False
+  tasks:
+    - debug:
+        var: ntp_server1
+
+    - debug:
+        var: domain_name

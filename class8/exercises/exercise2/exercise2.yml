@@ -1,6 +1,7 @@
 ---
 - name: Exercise2
   hosts: arista
+  gather_facts: False
   vars:
     ansible_user: pyclass
     ansible_ssh_pass: "{{ lookup('env', 'ANSIBLE_PASSWORD') }}"

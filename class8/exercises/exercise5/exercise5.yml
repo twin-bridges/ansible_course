@@ -21,7 +21,7 @@
             name: blue201
         state: merged
 
-- name: Exercise5
+- name: Verify VLAN output
   hosts: nxos
   gather_facts: False
   tasks:
