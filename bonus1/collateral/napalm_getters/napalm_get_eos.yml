@@ -1,0 +1,11 @@
+---
+- name: NAPALM get_facts and get_interfaces
+  hosts: arista5
+  gather_facts: False
+  tasks:
+    - name: napalm get_facts
+      napalm_get_facts:
+        filter: facts,interfaces
+
+    - debug:
+        var: napalm_facts

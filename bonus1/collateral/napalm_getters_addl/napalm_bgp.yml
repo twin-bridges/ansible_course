@@ -1,0 +1,13 @@
+---
+- name: NAPALM BGP
+  hosts: nxos
+  gather_facts: False
+  tasks:
+    - name: napalm getters
+      napalm_get_facts:
+        filter: bgp_neighbors
+        optional_args:
+          port: 8443
+
+    - debug:
+        var: napalm_bgp_neighbors

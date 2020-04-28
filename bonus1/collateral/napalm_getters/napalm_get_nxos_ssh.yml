@@ -1,0 +1,12 @@
+---
+- name: napalm nxos_ssh
+  hosts: nxos1
+  gather_facts: False
+  tasks:
+    - name: Retrieve get_facts, get_interfaces
+      napalm_get_facts:
+        filter: facts,interfaces
+        dev_os: nxos_ssh
+
+    - debug:
+        var: napalm_facts

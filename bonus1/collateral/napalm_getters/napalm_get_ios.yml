@@ -1,0 +1,16 @@
+---
+- name: NAPALM get_facts and get_interfaces
+  hosts: cisco5
+  gather_facts: False
+  tasks:
+    - name: napalm get_facts
+      napalm_get_facts:
+        filter: facts
+#        filter: facts,interfaces,lldp_neighbors
+#        filter: lldp_neighbors
+
+    - debug:
+        var: napalm_facts
+        #msg: "{{ hostvars[inventory_hostname] }}"
+        #var: napalm_lldp_neighbors
+        #var: napalm_interfaces

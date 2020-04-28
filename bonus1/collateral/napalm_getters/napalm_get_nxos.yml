@@ -1,0 +1,14 @@
+---
+- name: napalm 
+  hosts: nxos1
+  gather_facts: False
+  tasks:
+    - name: Retrieve get_facts, get_interfaces
+      napalm_get_facts:
+        filter: facts,interfaces
+        optional_args:
+          port: 8443
+
+    - debug:
+        var: napalm_facts
+
