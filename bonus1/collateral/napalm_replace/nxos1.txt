@@ -1,0 +1,784 @@
+
+!Command: Checkpoint cmd vdc 1
+!Time: Wed Apr 29 22:31:19 2020
+
+version 9.2(3) Bios:version  
+hostname nxos1
+class-map type network-qos c-nq1
+  description Default class on qos-group 1
+  match qos-group 1
+class-map type network-qos c-nq2
+  description Default class on qos-group 2
+  match qos-group 2
+class-map type network-qos c-nq3
+  description Default class on qos-group 3
+  match qos-group 3
+class-map type network-qos c-8q-nq1
+  description Default class on qos-group 1
+  match qos-group 1
+class-map type network-qos c-8q-nq2
+  description Default class on qos-group 2
+  match qos-group 2
+class-map type network-qos c-8q-nq3
+  description Default class on qos-group 3
+  match qos-group 3
+class-map type network-qos c-8q-nq4
+  description Default class on qos-group 4
+  match qos-group 4
+class-map type network-qos c-8q-nq5
+  description Default class on qos-group 5
+  match qos-group 5
+class-map type network-qos c-8q-nq6
+  description Default class on qos-group 6
+  match qos-group 6
+class-map type network-qos c-8q-nq7
+  description Default class on qos-group 7
+  match qos-group 7
+class-map type network-qos c-nq-default
+  description Default class on qos-group 0
+  match qos-group 0
+class-map type network-qos c-8q-nq-default
+  description Default class on qos-group 0
+  match qos-group 0
+policy-map type network-qos default-nq-policy
+  class type network-qos c-nq3
+    mtu 1500
+  class type network-qos c-nq2
+    mtu 1500
+  class type network-qos c-nq1
+    mtu 1500
+  class type network-qos c-nq-default
+    mtu 1500
+policy-map type network-qos default-8q-nq-policy
+  class type network-qos c-8q-nq7
+    mtu 1500
+  class type network-qos c-8q-nq6
+    mtu 1500
+  class type network-qos c-8q-nq5
+    mtu 1500
+  class type network-qos c-8q-nq4
+    mtu 1500
+  class type network-qos c-8q-nq3
+    mtu 1500
+  class type network-qos c-8q-nq2
+    mtu 1500
+  class type network-qos c-8q-nq1
+    mtu 1500
+  class type network-qos c-8q-nq-default
+    mtu 1500
+vdc nxos1 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 128 maximum 128
+  limit-resource u6route-mem minimum 96 maximum 96
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+!#feature ssh
+!#ssh key rsa 1024
+feature nxapi
+feature scp-server
+cfs eth distribute
+feature bgp
+feature interface-vlan
+feature hsrp
+feature vpc
+feature lldp
+
+role name priv-15
+  description This is a system defined privilege role.
+  rule 1 permit read-write  
+role name priv-14
+  description This is a system defined privilege role.
+  rule 1 permit read-write  
+role name priv-13
+  description This is a system defined privilege role.
+role name priv-12
+  description This is a system defined privilege role.
+role name priv-11
+  description This is a system defined privilege role.
+role name priv-10
+  description This is a system defined privilege role.
+role name priv-9
+  description This is a system defined privilege role.
+role name priv-8
+  description This is a system defined privilege role.
+role name priv-7
+  description This is a system defined privilege role.
+role name priv-6
+  description This is a system defined privilege role.
+role name priv-5
+  description This is a system defined privilege role.
+role name priv-4
+  description This is a system defined privilege role.
+role name priv-3
+  description This is a system defined privilege role.
+role name priv-2
+  description This is a system defined privilege role.
+role name priv-1
+  description This is a system defined privilege role.
+role name priv-0
+  description This is a system defined privilege role.
+  rule 10 permit command traceroute6 *
+  rule 9 permit command traceroute *
+  rule 8 permit command telnet6 *
+  rule 7 permit command telnet *
+  rule 6 permit command ping6 *
+  rule 5 permit command ping *
+  rule 4 permit command ssh6 *
+  rule 3 permit command ssh *
+  rule 2 permit command enable *
+  rule 1 permit read  
+no password strength-check
+username admin password 5 $5$/.ErG6en$vIpgmSARIqTv9N7btcIi2Ie9gdJvIAPKtecRH/a14YB  role network-admin
+username pyclass password 5 $5$/SRuQL7G$xw4WMR3jIUzqHAZs7FWuIbqJMIAjV7UU5w8XawKHl.1  role network-admin
+username pyclass passphrase  lifetime 99999 warntime 14 gracetime 3
+ip domain-lookup
+ip domain-name lasthop.io
+ip name-server 8.8.8.8 8.8.4.4
+ip name-server 10.0.2.3 use-vrf management
+no system default switchport
+no logging event trunk-status enable
+vlan dot1Q tag native
+!# qos statistics
+!# class-map type queuing match-any c-out-q3
+  !# match qos-group 3
+!# class-map type queuing match-any c-out-q2
+  !# match qos-group 2
+!# class-map type queuing match-any c-out-q1
+  !# match qos-group 1
+!# class-map type queuing match-any c-out-q-default
+  !# match qos-group 0
+!# class-map type queuing match-any c-out-8q-q7
+  !# match qos-group 7
+!# class-map type queuing match-any c-out-8q-q6
+  !# match qos-group 6
+!# class-map type queuing match-any c-out-8q-q5
+  !# match qos-group 5
+!# class-map type queuing match-any c-out-8q-q4
+  !# match qos-group 4
+!# class-map type queuing match-any c-out-8q-q3
+  !# match qos-group 3
+!# class-map type queuing match-any c-out-8q-q2
+  !# match qos-group 2
+!# class-map type queuing match-any c-out-8q-q1
+  !# match qos-group 1
+!# class-map type queuing match-any c-out-8q-q-default
+  !# match qos-group 0
+!# class-map type queuing match-any c-in-q7
+  !# match qos-group 7
+!# class-map type queuing match-any c-in-q6
+  !# match qos-group 6
+!# class-map type queuing match-any c-in-q5
+  !# match qos-group 5
+!# class-map type queuing match-any c-in-q4
+  !# match qos-group 4
+!# class-map type queuing match-any c-in-q3
+  !# match qos-group 3
+!# class-map type queuing match-any c-in-q2
+  !# match qos-group 2
+!# class-map type queuing match-any c-in-q1
+  !# match qos-group 1
+!# class-map type queuing match-any c-in-q-default
+  !# match qos-group 0
+policy-map type queuing default-out-policy
+  class type queuing c-out-q3
+    priority level 1
+  class type queuing c-out-q2
+    bandwidth remaining percent 0
+  class type queuing c-out-q1
+    bandwidth remaining percent 0
+  class type queuing c-out-q-default
+    bandwidth remaining percent 100
+policy-map type queuing default-8q-out-policy
+  class type queuing c-out-8q-q7
+    priority level 1
+  class type queuing c-out-8q-q6
+    bandwidth remaining percent 0
+  class type queuing c-out-8q-q5
+    bandwidth remaining percent 0
+  class type queuing c-out-8q-q4
+    bandwidth remaining percent 0
+  class type queuing c-out-8q-q3
+    bandwidth remaining percent 0
+  class type queuing c-out-8q-q2
+    bandwidth remaining percent 0
+  class type queuing c-out-8q-q1
+    bandwidth remaining percent 0
+  class type queuing c-out-8q-q-default
+    bandwidth remaining percent 100
+copp profile strict
+no system mode maintenance
+snmp-server contact Kirk Byers
+snmp-server location Freemont, CA (not really)
+snmp-server user admin network-admin auth md5 0x9915eb9e8b3d04fdddad4cc3f0739a21 priv 0x9915eb9e8b3d04fdddad4cc3f0739a21 localizedkey
+snmp-server user pyclass network-admin auth md5 0xb4a54cca3ed197cdd5af29aab83b42a7 priv 0xb4a54cca3ed197cdd5af29aab83b42a7 localizedkey
+snmp-server user admin auth md5 0x9e902c388e9b4c616e7c7c98d1079325 priv 0x9e902c388e9b4c616e7c7c98d1079325 localizedkey engineID 128:0:0:9:3:0:12:41:209:213:60
+snmp-server user admin auth md5 0x7357a55b9d35915f72b73fd96443c302 priv 0x7357a55b9d35915f72b73fd96443c302 localizedkey engineID 128:0:0:9:3:0:170:204:136:230:0
+rmon event 1 log description FATAL(1) owner PMON@FATAL
+rmon event 2 log description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log description ERROR(3) owner PMON@ERROR
+rmon event 4 log description WARNING(4) owner PMON@WARNING
+rmon event 5 log description INFORMATION(5) owner PMON@INFO
+snmp-server enable traps link cisco-xcvr-mon-status-chg
+callhome
+  !#destination-profile CiscoTAC-1 message-level 0
+  !#destination-profile CiscoTAC-1 message-size 5000000
+  !#destination-profile full_txt message-level 0
+  !#destination-profile full_txt message-size 2500000
+  !#destination-profile short_txt message-level 0
+  !#destination-profile short_txt message-size 4000
+  !#periodic-inventory notification interval 7
+  !#periodic-inventory notification timeofday 08:00
+ntp server 130.126.24.24 use-vrf management
+ntp server 152.2.21.1 use-vrf default
+
+vlan 1
+vlan 2
+vlan 3
+vlan 4
+vrf context management
+  ip route 0.0.0.0/0 10.0.2.2
+no nxapi http
+nxapi https port 8443
+no nxapi ssl ciphers weak
+nxapi ssl protocols TLSv1.1 TLSv1.2
+
+
+interface Vlan1
+
+interface Ethernet1/1
+  !#no switchport
+  mac-address 000c.29d1.0001
+  no shutdown
+
+interface Ethernet1/2
+  !#no switchport
+  mac-address 000c.29d1.0002
+  no shutdown
+
+interface Ethernet1/3
+  !#no switchport
+  mac-address 000c.29d1.0003
+  no shutdown
+
+interface Ethernet1/4
+  !#no switchport
+  mac-address 000c.29d1.0004
+  no shutdown
+
+interface Ethernet1/5
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/6
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/7
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/8
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/9
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/10
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/11
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/12
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/13
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/14
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/15
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/16
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/17
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/18
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/19
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/20
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/21
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/22
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/23
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/24
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/25
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/26
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/27
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/28
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/29
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/30
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/31
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/32
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/33
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/34
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/35
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/36
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/37
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/38
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/39
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/40
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/41
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/42
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/43
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/44
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/45
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/46
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/47
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/48
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/49
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/50
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/51
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/52
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/53
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/54
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/55
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/56
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/57
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/58
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/59
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/60
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/61
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/62
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/63
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/64
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/65
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/66
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/67
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/68
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/69
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/70
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/71
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/72
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/73
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/74
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/75
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/76
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/77
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/78
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/79
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/80
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/81
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/82
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/83
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/84
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/85
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/86
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/87
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/88
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/89
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/90
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/91
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/92
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/93
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/94
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/95
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/96
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/97
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/98
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/99
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/100
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/101
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/102
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/103
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/104
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/105
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/106
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/107
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/108
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/109
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/110
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/111
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/112
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/113
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/114
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/115
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/116
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/117
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/118
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/119
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/120
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/121
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/122
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/123
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/124
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/125
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/126
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/127
+  !#shutdown
+  !#no switchport
+
+interface Ethernet1/128
+  !#shutdown
+  !#no switchport
+
+interface mgmt0
+  ip address dhcp
+  vrf member management
+cli alias name wr copy run start
+line console
+line vty
+boot nxos bootflash:/nxos.9.2.3.bin 
+router bgp 22
+xml server timeout 1200
+
+no priority-flow-control override-interface mode off
+
+!#logging logfile messages 5 size 4194304
+!#logging monitor
+!#logging module
+!#logging console
+
+

@@ -1,0 +1,19 @@
+---
+- name: NAPALM Ping
+  hosts: arista:cisco:juniper
+  gather_facts: False
+  tasks:
+    - name: NAPALM ping
+      napalm_ping: 
+        destination: 8.8.8.8
+      register: ping_output
+
+    - debug:
+        msg: 
+          - "Pings sent: {{ ping_output.ping_results.success.probes_sent }}"
+          - "Packet loss: {{ ping_output.ping_results.success.packet_loss }}"
+
+    - debug:
+        msg: "------- PING FAILED --------"
+      when: ping_output.ping_results.success.packet_loss > 1
+

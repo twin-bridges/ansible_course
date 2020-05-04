@@ -1,0 +1,13 @@
+---
+
+- name: NX-OS Full Config Replace
+  hosts: nxos1
+  gather_facts: False
+  tasks:
+    - napalm_install_config:
+        replace_config: True
+        commit_changes: False
+        config_file: "CFGS/{{ inventory_hostname }}-default.txt"
+        diff_file: "DIFFS/{{ inventory_hostname }}.txt"
+        optional_args:
+            port: 8443

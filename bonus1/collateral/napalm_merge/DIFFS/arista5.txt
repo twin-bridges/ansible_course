@@ -1,0 +1,9 @@
+@@ -3,6 +3,8 @@
+ ! boot system flash:/vEOS-lab.swi
+ !
+ transceiver qsfp default-mode 4x10G
++!
++logging buffered 50000
+ !
+ hostname arista5
+ ip name-server vrf default 1.1.1.1

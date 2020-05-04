@@ -1,0 +1,10 @@
+---
+- name: Test napalm merge
+  hosts: arista5
+  gather_facts: False
+  tasks:
+    - napalm_install_config:
+        replace_config: False
+        commit_changes: False
+        config_file: "CFGS/{{ inventory_hostname }}-merge.txt"
+        diff_file: "DIFFS/{{ inventory_hostname }}.txt"

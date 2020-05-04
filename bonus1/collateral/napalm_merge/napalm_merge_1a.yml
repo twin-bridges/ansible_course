@@ -1,0 +1,14 @@
+---
+- name: Test napalm merge
+  hosts: arista5
+  gather_facts: False
+  tasks:
+    - napalm_install_config:
+        replace_config: False
+        commit_changes: True
+        diff_file: "DIFFS/{{ inventory_hostname }}.txt"
+        config: | 
+         interface Loopback98
+            ip address 172.31.98.1/24
+         interface Loopback99
+            ip address 172.31.99.1/24

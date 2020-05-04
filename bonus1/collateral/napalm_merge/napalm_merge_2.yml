@@ -1,0 +1,13 @@
+---
+
+- name: Test napalm merge
+  hosts: arista5:cisco1:srx1:nxos1
+  gather_facts: False
+  tasks:
+    - napalm_install_config:
+        commit_changes: True
+        replace_config: False
+        config_file: "CFGS/{{ inventory_hostname }}-merge.txt"
+        diff_file: "DIFFS/{{ inventory_hostname }}.txt"
+        optional_args:
+          port: "{{ napalm_port }}"
