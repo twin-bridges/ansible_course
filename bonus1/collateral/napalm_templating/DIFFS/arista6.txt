@@ -1,0 +1,9 @@
+@@ -7,7 +7,7 @@
+ hostname arista6
+ ip name-server vrf default 8.8.4.4
+ ip name-server vrf default 8.8.8.8
+-ip domain-name bogus.com
++ip domain-name lasthop.io
+ !
+ ntp server 130.126.24.24
+ ntp server 152.2.21.1

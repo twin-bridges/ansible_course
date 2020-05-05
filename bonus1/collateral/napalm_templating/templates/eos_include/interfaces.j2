@@ -1,0 +1,28 @@
+interface Ethernet1
+   spanning-tree portfast
+   spanning-tree cost 1
+!
+interface Ethernet2
+   switchport access vlan 2
+!
+interface Ethernet3
+   switchport access vlan 3
+!
+interface Ethernet4
+   switchport access vlan 4
+!
+interface Ethernet5
+   switchport access vlan 5
+!
+interface Ethernet6
+   switchport access vlan 6
+!
+interface Ethernet7
+   switchport access vlan 7
+!
+interface Management1
+   shutdown
+!
+interface Vlan1
+   ip address {{ mgmt_ip }}
+

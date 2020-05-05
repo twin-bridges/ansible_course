@@ -1,0 +1,18 @@
+---
+- name: Generate configuration from a template
+  hosts: arista
+  gather_facts: False
+  tasks:
+    - name: Template from a common template
+      template:
+        src: "templates/{{ ansible_network_os }}_tpl_2/arista-tpl.j2"
+        dest: "CFGS/{{ inventory_hostname }}-load.txt"
+      tags: template
+
+    - name: Install configurations
+      napalm_install_config:
+        replace_config: True
+        commit_changes: False
+        config_file: "CFGS/{{ inventory_hostname }}-load.txt"
+        diff_file: "DIFFS/{{ inventory_hostname }}.txt"
+      tags: deploy

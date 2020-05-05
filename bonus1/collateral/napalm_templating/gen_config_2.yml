@@ -1,0 +1,10 @@
+---
+- name: Generate configuration from a template
+  hosts: arista
+  gather_facts: False
+  tasks:
+
+    - name: Template individual file
+      template:
+        src: "templates/{{ ansible_network_os }}_tpl_1/{{ inventory_hostname }}.txt"
+        dest: "CFGS/{{ inventory_hostname }}-load.txt"

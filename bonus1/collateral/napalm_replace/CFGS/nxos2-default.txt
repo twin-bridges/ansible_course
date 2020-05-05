@@ -1,9 +1,9 @@
 
 !Command: Checkpoint cmd vdc 1
-!Time: Wed Apr 29 22:31:19 2020
+!Time: Mon May  4 18:33:55 2020
 
 version 9.2(3) Bios:version  
-hostname nxos1
+hostname nxos2
 class-map type network-qos c-nq1
   description Default class on qos-group 1
   match qos-group 1
@@ -66,7 +66,7 @@ policy-map type network-qos default-8q-nq-policy
     mtu 1500
   class type network-qos c-8q-nq-default
     mtu 1500
-vdc nxos1 id 1
+vdc nxos2 id 1
   limit-resource vlan minimum 16 maximum 4094
   limit-resource vrf minimum 2 maximum 4096
   limit-resource port-channel minimum 0 maximum 511
@@ -135,7 +135,7 @@ username admin password 5 $5$/.ErG6en$vIpgmSARIqTv9N7btcIi2Ie9gdJvIAPKtecRH/a14Y
 username pyclass password 5 $5$/SRuQL7G$xw4WMR3jIUzqHAZs7FWuIbqJMIAjV7UU5w8XawKHl.1  role network-admin
 username pyclass passphrase  lifetime 99999 warntime 14 gracetime 3
 ip domain-lookup
-ip domain-name lasthop.io
+ip domain-name bogus.com
 ip name-server 8.8.8.8 8.8.4.4
 ip name-server 10.0.2.3 use-vrf management
 no system default switchport
@@ -250,22 +250,22 @@ interface Vlan1
 
 interface Ethernet1/1
   !#no switchport
-  mac-address 000c.29d1.0001
+  mac-address 000c.29d2.0001
   no shutdown
 
 interface Ethernet1/2
   !#no switchport
-  mac-address 000c.29d1.0002
+  mac-address 000c.29d2.0002
   no shutdown
 
 interface Ethernet1/3
   !#no switchport
-  mac-address 000c.29d1.0003
+  mac-address 000c.29d2.0003
   no shutdown
 
 interface Ethernet1/4
   !#no switchport
-  mac-address 000c.29d1.0004
+  mac-address 000c.29d2.0004
   no shutdown
 
 interface Ethernet1/5

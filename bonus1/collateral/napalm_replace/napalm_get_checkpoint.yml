@@ -1,6 +1,6 @@
 ---
 - name: Retrieve Checkpoint File
-  hosts: nxos1
+  hosts: nxos2
   gather_facts: False
   tasks:
     - name: Retrieve checkpoint

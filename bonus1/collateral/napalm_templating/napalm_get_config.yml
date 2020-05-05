@@ -1,0 +1,13 @@
+---
+- name: Retrieve running configuration
+  hosts: arista
+  gather_facts: False
+  tasks:
+    - name: get_config
+      napalm_get_facts:
+        filter: config
+
+    - name: Save the config locally
+      copy:
+        content: "{{ napalm_config.running }}"
+        dest: "{{ inventory_hostname }}.txt"

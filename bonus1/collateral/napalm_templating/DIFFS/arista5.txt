@@ -1,0 +1,19 @@
+@@ -7,7 +7,7 @@
+ hostname arista5
+ ip name-server vrf default 8.8.4.4
+ ip name-server vrf default 8.8.8.8
+-ip domain-name bogus.com
++ip domain-name lasthop.io
+ !
+ ntp server 130.126.24.24
+ ntp server 152.2.21.1
+@@ -26,9 +26,6 @@
+ clock timezone America/Los_Angeles
+ !
+ vlan 2-7
+-!
+-vlan 200
+-   name finance
+ !
+ interface Ethernet1
+    spanning-tree portfast
