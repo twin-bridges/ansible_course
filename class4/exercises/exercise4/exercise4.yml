@@ -24,8 +24,8 @@
       register: output
 
     - set_fact:
-        interfaces_dict: '{{ output.stdout[0].vlans["250"].interfaces }}'
-        vlan_status: '{{ output.stdout[0].vlans["250"].status }}'
+        interfaces_dict: '{{ output.stdout[0].vlans[vlan_id].interfaces }}'
+        vlan_status: '{{ output.stdout[0].vlans[vlan_id].status }}'
 
     - name: "Verify VLAN is active and {{ intf_name }} is assigned to VLAN"
       assert:

@@ -1,5 +1,5 @@
 ---
-vlan_id: 250
+vlan_id: "250"
 vlan_name: Blue250
 
 intf_name: Ethernet7
