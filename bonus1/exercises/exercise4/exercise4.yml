@@ -7,19 +7,19 @@
       template:
         src: interfaces.j2
         dest: "./CFGS/{{ inventory_hostname }}/01-{{ inventory_hostname }}-intf.txt"
-      tags: template
+      tags: build
 
     - name: Generate BGP configuration
       template:
         src: bgp.j2
         dest: "./CFGS/{{ inventory_hostname }}/02-{{ inventory_hostname }}-bgp.txt"
-      tags: template
+      tags: build
 
     - name: Assemble the two parts into one configuration change file
       assemble:
         src: "./CFGS/{{ inventory_hostname }}/"
         dest: "./CFGS/{{ inventory_hostname }}-config.txt"
-      tags: template
+      tags: build
 
     - name: Install the configurations using NAPALM merge
       napalm_install_config:
@@ -42,4 +42,3 @@
           - "UP: {{ napalm_bgp_neighbors.global.peers[bgp_peer_ip].is_up }}"
           - "Rcvd Prefixes: {{ napalm_bgp_neighbors.global.peers[bgp_peer_ip].address_family.ipv4.received_prefixes }}"
       tags: verify
-
