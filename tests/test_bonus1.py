@@ -22,18 +22,13 @@ TEST_CASES = [
     "../bonus1/collateral/napalm_replace/napalm_replace_ios.yml",
     "../bonus1/collateral/napalm_replace/napalm_replace_junos.yml",
     "../bonus1/collateral/napalm_replace/napalm_replace_nxos.yml",
+    "../bonus1/collateral/napalm_templating/napalm_get_config.yml",
     "../bonus1/collateral/napalm_templating/gen_config_1.yml",
     "../bonus1/collateral/napalm_templating/gen_config_2.yml",
     "../bonus1/collateral/napalm_templating/gen_config_3.yml",
     "../bonus1/collateral/napalm_templating/gen_config_4.yml",
+    "../bonus1/collateral/napalm_templating/napalm_replace.yml",
 ]
-
-"""
-
-
-./bonus1/collateral/napalm_templating/napalm_replace.yml
-./bonus1/collateral/napalm_templating/napalm_get_config.yml
-"""
 
 
 @pytest.mark.parametrize("test_case", TEST_CASES)
@@ -68,7 +63,7 @@ def test_bonus1_ex1():
         "nxos2",
     ):
         assert re.search(rf"{hostname}.*ok=3.*failed=0 ", std_out)
-    
+
 
 def test_bonus1_ex2():
     base_path = "../bonus1/exercises/exercise2"
@@ -97,9 +92,7 @@ def test_bonus1_ex3():
     std_err = remove_ansible_warnings(std_err)
     assert std_err == ""
     assert return_code == 0
-    for hostname in (
-        "arista5",
-    ):
+    for hostname in ("arista5",):
         assert re.search(rf"{hostname}.*ok=4.*failed=0 ", std_out)
 
 
@@ -124,7 +117,5 @@ def test_bonus1_ex5():
     std_err = remove_ansible_warnings(std_err)
     assert std_err == ""
     assert return_code == 0
-    for hostname in (
-        "arista5",
-    ):
+    for hostname in ("arista5",):
         assert re.search(rf"{hostname}.*ok=2.*failed=0 ", std_out)

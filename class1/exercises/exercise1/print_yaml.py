@@ -12,6 +12,6 @@ def read_yaml(filename):
 if __name__ == "__main__":
     try:
         filename = sys.argv[1]
-    except IndexError as e:
+    except IndexError:
         filename = input("Enter YAML file name: ")
     pprint(read_yaml(filename))
