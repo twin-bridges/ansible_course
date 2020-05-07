@@ -11,4 +11,3 @@
 
     - debug:
         var: napalm_facts
-

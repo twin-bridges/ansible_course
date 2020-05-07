@@ -5,7 +5,7 @@
   tasks:
     - napalm_install_config:
         replace_config: False
-        commit_changes: True
+        commit_changes: False
         diff_file: "DIFFS/{{ inventory_hostname }}.txt"
         config: | 
          interface Loopback98

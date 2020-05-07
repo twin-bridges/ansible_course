@@ -2,12 +2,19 @@
 - name: napalm multiple platforms
   hosts: arista:cisco:nxos
   gather_facts: False
+  vars:
+    # Added this so I didn't need a custom inventory file.
+    napalm_port:
+        eos: 443
+        ios: 22
+        nxos: 8443
+        junos: 830
   tasks:
     - name: LLDP
       napalm_get_facts:
         filter: lldp_neighbors
         optional_args:
-          port: "{{ napalm_port }}"
+          port: "{{ napalm_port[ansible_network_os] }}"
       register: output
 
     - debug:

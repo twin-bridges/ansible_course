@@ -6,11 +6,10 @@
     - name: napalm get_facts
       napalm_get_facts:
         filter: facts
-#        filter: facts,interfaces,lldp_neighbors
-#        filter: lldp_neighbors
+        # filter: facts,interfaces,lldp_neighbors
+        # filter: lldp_neighbors
 
     - debug:
         var: napalm_facts
-        #msg: "{{ hostvars[inventory_hostname] }}"
-        #var: napalm_lldp_neighbors
-        #var: napalm_interfaces
+        # var: napalm_lldp_neighbors
+        # var: napalm_interfaces
