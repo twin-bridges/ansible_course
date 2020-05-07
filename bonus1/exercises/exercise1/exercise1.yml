@@ -30,11 +30,8 @@
         filter: config
         optional_args:
             port: "{{ napalm_port[ansible_network_os] }}"
-    
-    - debug:
-        var: napalm_config.running.splitlines()
 
-    - name: Save the config locally
+    - name: Save the configuration file
       copy:
         content: "{{ napalm_config.running }}"
         dest: "BUP/{{ ansible_network_os}}/{{ inventory_hostname }}.txt"
