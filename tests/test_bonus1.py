@@ -1,7 +1,7 @@
-import subprocess
 import re
 import pytest
 from pathlib import Path
+from utilities import subprocess_runner, remove_ansible_warnings
 
 
 TEST_CASES = [
@@ -18,26 +18,6 @@ TEST_CASES = [
 ]
 
 
-def subprocess_runner(cmd_list, exercise_dir):
-    with subprocess.Popen(
-        cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=exercise_dir
-    ) as proc:
-        std_out, std_err = proc.communicate()
-    return (std_out.decode(), std_err.decode(), proc.returncode)
-
-
-def remove_ansible_warnings(std_err):
-    """Remove the specified warnings from std_err."""
-    warning_list = [
-        r"^.WARNING.: Ignoring timeout.10. for .*$",
-    ]
-
-    # Remove warnings one at a time from std_err
-    for ansible_warn in warning_list:
-        std_err = re.sub(ansible_warn, "", std_err, flags=re.M)
-    return std_err.strip()
-
-
 @pytest.mark.parametrize("test_case", TEST_CASES)
 def test_runner_collateral(test_case):
     path_obj = Path(test_case)
@@ -50,15 +30,26 @@ def test_runner_collateral(test_case):
     assert std_err == ""
 
 
-def test_class8_ex1():
-    base_path = "../class8/exercises/exercise1"
+def test_bonus_ex1():
+    base_path = "../bonus1/exercises/exercise1"
     cmd_list = ["ansible-playbook", "exercise1.yml"]
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     std_err = remove_ansible_warnings(std_err)
     assert std_err == ""
     assert return_code == 0
-    assert re.search(r"nxos1.*ok=4", std_out)
-    assert re.search(r"nxos2.*ok=4", std_out)
+    assert re.search(r"arista5.*ok=4.*failed=0 ", std_out)
+    for hostname in (
+        "arista6",
+        "arista7",
+        "arista8",
+        "cisco1",
+        "cisco2",
+        "cisco5",
+        "cisco6",
+        "nxos1",
+        "nxos2",
+    ):
+        assert re.search(rf"{hostname}.*ok=3.*failed=0 ", std_out)
 
 
 def test_class8_ex2():
