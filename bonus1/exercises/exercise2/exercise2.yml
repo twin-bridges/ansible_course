@@ -9,7 +9,8 @@
       napalm_get_facts:
         filter: lldp_neighbors
 
-    - set_fact:
+    - name: Create single string representing output data to print
+      set_fact:
         lldp_str: "{{ lldp_str | default('') + item.key + ': ' + item.value[0].hostname + '\n' }}"
       loop: "{{ napalm_lldp_neighbors | dict2items }}"
       loop_control:
