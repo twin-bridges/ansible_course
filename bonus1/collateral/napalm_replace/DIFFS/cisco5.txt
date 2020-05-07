@@ -1,2 +1,0 @@
-+ip domain name lasthop.io
--ip domain name bogus.com

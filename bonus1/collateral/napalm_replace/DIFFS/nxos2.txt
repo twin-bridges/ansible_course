@@ -1,2 +1,0 @@
-no logging console 1
-logging console
