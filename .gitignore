@@ -110,6 +110,7 @@ bonus1/collateral/napalm_merge/DIFFS/*.txt
 bonus1/collateral/napalm_replace/DIFFS/*.txt
 bonus1/collateral/napalm_replace/*.txt
 bonus1/collateral/napalm_templating/DIFFS/*.txt
+bonus1/collateral/napalm_templating/arista*.txt
 bonus1/exercises/exercise1/BUP/*
 bonus1/exercises/exercise3/DIFFS/arista*.txt
 bonus1/exercises/exercise4/DIFFS/nxos*.txt

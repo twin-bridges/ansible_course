@@ -24,15 +24,15 @@ TEST_CASES = [
     "../bonus1/collateral/napalm_replace/napalm_replace_nxos.yml",
     "../bonus1/collateral/napalm_templating/gen_config_1.yml",
     "../bonus1/collateral/napalm_templating/gen_config_2.yml",
+    "../bonus1/collateral/napalm_templating/gen_config_3.yml",
+    "../bonus1/collateral/napalm_templating/gen_config_4.yml",
 ]
 
 """
 
 
 ./bonus1/collateral/napalm_templating/napalm_replace.yml
-./bonus1/collateral/napalm_templating/gen_config_3.yml
 ./bonus1/collateral/napalm_templating/napalm_get_config.yml
-./bonus1/collateral/napalm_templating/gen_config_4.yml
 """
 
 
