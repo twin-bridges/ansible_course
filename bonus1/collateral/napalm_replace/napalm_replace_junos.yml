@@ -1,5 +1,4 @@
 ---
-
 - name: Juniper Full Config Replace
   hosts: juniper
   gather_facts: False

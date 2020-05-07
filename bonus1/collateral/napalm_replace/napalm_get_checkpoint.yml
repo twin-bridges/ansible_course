@@ -9,9 +9,6 @@
         optional_args:
           port: 8443
 
-    #- debug:
-    #    msg: "{{ napalm_checkpoint_file.splitlines() }}"
-
     - name: Save the checkpoint
       copy:
         content: "{{ napalm_checkpoint_file }}"
