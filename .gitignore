@@ -107,4 +107,4 @@ venv.bak/
 class5/examples/backup/backup/*
 class5/collateral/ios_config/backup/*
 bonus1/exercises/exercise1/BUP/*
-bonus1/exercises/exercise3/DIFFS/arista5.txt
+bonus1/exercises/exercise3/DIFFS/arista*.txt
