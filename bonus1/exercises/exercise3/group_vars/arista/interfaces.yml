@@ -1,0 +1,7 @@
+interface_vlans:
+  Ethernet2: 202
+  Ethernet3: 203
+  Ethernet4: 204
+  Ethernet5: 205
+  Ethernet6: 206
+  Ethernet7: 207

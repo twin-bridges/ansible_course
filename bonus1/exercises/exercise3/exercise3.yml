@@ -1,0 +1,29 @@
+---
+- name: Test napalm merge
+  hosts: arista5
+  gather_facts: False
+  tasks:
+
+    - name: Generate VLAN configuration
+      template:
+        src: "templates/{{ ansible_network_os }}/vlans.j2"
+        dest: "ASSEMBLE/{{ ansible_network_os }}/10-vlan.cfg"
+      tags: template
+
+    - name: Generate interface configuration
+      template:
+        src: "templates/{{ ansible_network_os }}/interfaces.j2"
+        dest: "ASSEMBLE/{{ ansible_network_os }}/20-interfaces.cfg"
+      tags: template
+
+    - name: Assemble the configurations
+      assemble:
+        src: "ASSEMBLE/{{ ansible_network_os }}/"
+        dest: "CFGS/{{ ansible_network_os }}.cfg"
+      tags: template
+
+    - napalm_install_config:
+        replace_config: False
+        commit_changes: True
+        config_file: "CFGS/{{ ansible_network_os }}.cfg"
+        diff_file: "DIFFS/{{ inventory_hostname }}.txt"

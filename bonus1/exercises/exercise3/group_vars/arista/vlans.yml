@@ -1,0 +1,13 @@
+vlans:
+  - vlan_id: 202
+    vlan_name: blue202
+  - vlan_id: 203
+    vlan_name: blue203
+  - vlan_id: 204
+    vlan_name: blue204
+  - vlan_id: 205
+    vlan_name: blue205
+  - vlan_id: 206
+    vlan_name: blue206
+  - vlan_id: 207
+    vlan_name: blue207

@@ -1,0 +1,52 @@
+@@ -29,27 +29,45 @@
+ vlan 201
+    name blue201
+ !
++vlan 202
++   name blue202
++!
++vlan 203
++   name blue203
++!
++vlan 204
++   name blue204
++!
++vlan 205
++   name blue205
++!
++vlan 206
++   name blue206
++!
++vlan 207
++   name blue207
++!
+ interface Ethernet1
+    spanning-tree portfast
+    spanning-tree cost 1
+ !
+ interface Ethernet2
+-   switchport access vlan 200
++   switchport access vlan 202
+ !
+ interface Ethernet3
+-   switchport access vlan 3
++   switchport access vlan 203
+ !
+ interface Ethernet4
+-   switchport access vlan 4
++   switchport access vlan 204
+ !
+ interface Ethernet5
+-   switchport access vlan 5
++   switchport access vlan 205
+ !
+ interface Ethernet6
+-   switchport access vlan 6
++   switchport access vlan 206
+ !
+ interface Ethernet7
+-   switchport access vlan 7
++   switchport access vlan 207
+ !
+ interface Management1
+    shutdown

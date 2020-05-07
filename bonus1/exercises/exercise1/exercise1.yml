@@ -1,0 +1,40 @@
+---
+- name: Exercise1
+  hosts: arista:nxos:juniper:cisco
+  gather_facts: False
+  vars:
+    napalm_port:
+        eos: 443
+        ios: 22
+        nxos: 8443
+        junos: 830
+
+  tasks:
+    - name: Ensure 'BUP' directory exists
+      file:
+        path: BUP
+        state: directory
+        mode: '0755'
+      tags: dir
+      run_once: True
+
+    - name: Ensure ansible_network_os subdirectory exists
+      file:
+        path: "BUP/{{ ansible_network_os }}"
+        state: directory
+        mode: '0755'
+      tags: dir
+
+    - name: Retrieve the Configurations
+      napalm_get_facts:
+        filter: config
+        optional_args:
+            port: "{{ napalm_port[ansible_network_os] }}"
+    
+    - debug:
+        var: napalm_config.running.splitlines()
+
+    - name: Save the config locally
+      copy:
+        content: "{{ napalm_config.running }}"
+        dest: "BUP/{{ ansible_network_os}}/{{ inventory_hostname }}.txt"
