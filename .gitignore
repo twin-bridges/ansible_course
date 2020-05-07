@@ -102,8 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+*.swp
 
 class5/examples/backup/backup/*
 class5/collateral/ios_config/backup/*
-*.swp
 bonus1/exercises/exercise1/BUP/*
+bonus1/exercises/exercise3/DIFFS/arista5.txt

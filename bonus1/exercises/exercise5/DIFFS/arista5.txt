@@ -1,0 +1,13 @@
+@@ -22,12 +22,6 @@
+ clock timezone America/Los_Angeles
+ !
+ vlan 2-7
+-!
+-vlan 200
+-   name blue200
+-!
+-vlan 201
+-   name blue201
+ !
+ vlan 202
+    name blue202

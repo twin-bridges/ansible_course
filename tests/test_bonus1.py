@@ -72,3 +72,16 @@ def test_bonus1_ex2():
         assert re.search(rf"{hostname}.*ok=3.*failed=0 ", std_out)
 
 
+def test_bonus1_ex3():
+    base_path = "../bonus1/exercises/exercise3"
+    cmd_list = ["ansible-playbook", "exercise3.yml"]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    std_err = remove_ansible_warnings(std_err)
+    assert std_err == ""
+    assert return_code == 0
+    for hostname in (
+        "arista5",
+    ):
+        assert re.search(rf"{hostname}.*ok=4.*failed=0 ", std_out)
+
+

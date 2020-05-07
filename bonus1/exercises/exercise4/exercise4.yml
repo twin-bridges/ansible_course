@@ -1,0 +1,45 @@
+---
+- name: Bonus1, Exercise4
+  hosts: nxos
+  gather_facts: False
+  tasks:
+    - name: Generate interface configuration
+      template:
+        src: interfaces.j2
+        dest: "./CFGS/{{ inventory_hostname }}/01-{{ inventory_hostname }}-intf.txt"
+      tags: template
+
+    - name: Generate BGP configuration
+      template:
+        src: bgp.j2
+        dest: "./CFGS/{{ inventory_hostname }}/02-{{ inventory_hostname }}-bgp.txt"
+      tags: template
+
+    - name: Assemble the two parts into one configuration change file
+      assemble:
+        src: "./CFGS/{{ inventory_hostname }}/"
+        dest: "./CFGS/{{ inventory_hostname }}-config.txt"
+      tags: template
+
+    - name: Install the configurations using NAPALM merge
+      napalm_install_config:
+        replace_config: False
+        commit_changes: True
+        config_file: "./CFGS/{{ inventory_hostname }}-config.txt"
+        diff_file: "DIFFS/{{ inventory_hostname }}.txt"
+        dev_os: nxos_ssh
+      tags: deploy
+
+    - name: Verify the BGP configuration (retrieve get_bgp_neighbors)
+      napalm_get_facts:
+        filter: bgp_neighbors
+        dev_os: nxos_ssh
+      tags: verify
+
+    - name: Verify that BGP is up and two prefixes received
+      debug:
+        msg: 
+          - "UP: {{ napalm_bgp_neighbors.global.peers[bgp_peer_ip].is_up }}"
+          - "Rcvd Prefixes: {{ napalm_bgp_neighbors.global.peers[bgp_peer_ip].address_family.ipv4.received_prefixes }}"
+      tags: verify
+

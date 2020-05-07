@@ -8,22 +8,24 @@
       template:
         src: "templates/{{ ansible_network_os }}/vlans.j2"
         dest: "ASSEMBLE/{{ ansible_network_os }}/10-vlan.cfg"
-      tags: template
+      tags: build
 
     - name: Generate interface configuration
       template:
         src: "templates/{{ ansible_network_os }}/interfaces.j2"
         dest: "ASSEMBLE/{{ ansible_network_os }}/20-interfaces.cfg"
-      tags: template
+      tags: build
 
-    - name: Assemble the configurations
+    - name: Assemble the configuration
       assemble:
         src: "ASSEMBLE/{{ ansible_network_os }}/"
         dest: "CFGS/{{ ansible_network_os }}.cfg"
-      tags: template
+      tags: build
 
-    - napalm_install_config:
+    - name: "Deploy configuration to the device (merge)"
+      napalm_install_config:
         replace_config: False
-        commit_changes: True
+        commit_changes: False
         config_file: "CFGS/{{ ansible_network_os }}.cfg"
         diff_file: "DIFFS/{{ inventory_hostname }}.txt"
+      tags: deploy

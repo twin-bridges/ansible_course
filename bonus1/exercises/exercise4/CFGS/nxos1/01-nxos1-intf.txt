@@ -1,0 +1,9 @@
+interface Ethernet1/4
+  ip address 172.31.254.1/30
+!
+interface loopback101
+  ip address 172.31.101.101/32
+!
+interface loopback102
+  ip address 172.31.102.101/32
+!

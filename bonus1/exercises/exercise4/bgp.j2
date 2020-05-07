@@ -1,0 +1,13 @@
+!
+feature bgp
+router bgp {{ bgp_asn }}
+  router-id {{ loopback101_ip_address }}
+  address-family ipv4 unicast
+{% for advertise_prefix in bgp_advertise %}
+    network {{ advertise_prefix }}
+{% endfor %}
+  neighbor {{ bgp_peer_ip }}
+    remote-as {{ bgp_asn }}
+    description configured by ansible
+    address-family ipv4 unicast
+!
