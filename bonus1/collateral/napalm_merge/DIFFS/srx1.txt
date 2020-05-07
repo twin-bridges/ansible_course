@@ -1,3 +1,0 @@
-[edit system syslog]
--    archive size 120k files 3;
-+    archive size 240k files 3;
