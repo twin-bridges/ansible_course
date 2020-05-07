@@ -1,15 +1,15 @@
 ---
-- name: Generate configuration from a template
+- name: Bonus1, exercise5
   hosts: arista5
   gather_facts: False
   tasks:
-    - name: Template from a common template
+    - name: Generate full configurations from a template
       template:
         src: "templates/{{ inventory_hostname }}.j2"
         dest: "CFGS/{{ inventory_hostname }}-load.txt"
       tags: build
 
-    - name: Install configurations
+    - name: Use NAPALM to perform full configuration replace
       napalm_install_config:
         replace_config: True
         commit_changes: False
