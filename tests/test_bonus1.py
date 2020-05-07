@@ -5,17 +5,40 @@ from utilities import subprocess_runner, remove_ansible_warnings
 
 
 TEST_CASES = [
-    "../class8/collateral/lookups/lookup_examples.yml",
-    "../class8/collateral/filters/filters_map.yml",
-    "../class8/collateral/filters/filters_set.yml",
-    "../class8/collateral/filters/filters1.yml",
-    "../class8/collateral/callbacks/test.yml",
-    "../class8/collateral/data_structures/zip_and_combine.yml",
-    "../class8/collateral/data_structures/zip_and_dict1.yml",
-    "../class8/collateral/data_structures/zip_and_dict2.yml",
-    "../class8/collateral/data_structures/list_concatenation.yml",
-    "../class8/collateral/data_structures/textfsm_combine.yml",
+    "../bonus1/collateral/napalm_getters/napalm_get_ios.yml",
+    "../bonus1/collateral/napalm_getters/napalm_get_eos.yml",
+    "../bonus1/collateral/napalm_getters/napalm_get_junos.yml",
+    "../bonus1/collateral/napalm_getters/napalm_get_nxos.yml",
+    "../bonus1/collateral/napalm_getters/napalm_get_nxos_ssh.yml",
+    "../bonus1/collateral/napalm_getters_addl/napalm_get_arp.yml",
+    "../bonus1/collateral/napalm_getters_addl/napalm_bgp.yml",
+    "../bonus1/collateral/napalm_getters_mp/napalm_lldp.yml",
+    "../bonus1/collateral/napalm_ping/napalm_ping.yml",
+    "../bonus1/collateral/napalm_merge/napalm_merge_1a.yml",
+    "../bonus1/collateral/napalm_merge/napalm_merge_1b.yml",
 ]
+
+"""
+./bonus1/collateral/napalm_merge/napalm_merge_2.yml
+
+./bonus1/collateral/napalm_replace/napalm_replace_junos.yml
+./bonus1/collateral/napalm_replace/napalm_get_config.yml
+./bonus1/collateral/napalm_replace/napalm_get_checkpoint.yml
+./bonus1/collateral/napalm_replace/napalm_replace_nxos.yml
+
+./bonus1/collateral/napalm_templating/gen_config_1.yml
+./bonus1/collateral/napalm_templating/group_vars/all.yml
+./bonus1/collateral/napalm_templating/group_vars/arista.yml
+./bonus1/collateral/napalm_templating/host_vars/arista5.yml
+./bonus1/collateral/napalm_templating/host_vars/arista6.yml
+./bonus1/collateral/napalm_templating/host_vars/arista7.yml
+./bonus1/collateral/napalm_templating/host_vars/arista8.yml
+./bonus1/collateral/napalm_templating/gen_config_2.yml
+./bonus1/collateral/napalm_templating/napalm_replace.yml
+./bonus1/collateral/napalm_templating/gen_config_3.yml
+./bonus1/collateral/napalm_templating/napalm_get_config.yml
+./bonus1/collateral/napalm_templating/gen_config_4.yml
+"""
 
 
 @pytest.mark.parametrize("test_case", TEST_CASES)
