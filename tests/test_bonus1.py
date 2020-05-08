@@ -27,7 +27,6 @@ TEST_CASES = [
     "../bonus1/collateral/napalm_templating/gen_config_2.yml",
     "../bonus1/collateral/napalm_templating/gen_config_3.yml",
     "../bonus1/collateral/napalm_templating/gen_config_4.yml",
-    "../bonus1/collateral/napalm_templating/napalm_replace.yml",
 ]
 
 
