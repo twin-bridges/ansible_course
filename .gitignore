@@ -115,3 +115,5 @@ bonus1/exercises/exercise1/BUP/*
 bonus1/exercises/exercise3/DIFFS/arista*.txt
 bonus1/exercises/exercise4/DIFFS/nxos*.txt
 bonus1/exercises/exercise5/DIFFS/arista*.txt
+
+bonus2/examples/net_put/*.bin
