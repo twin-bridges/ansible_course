@@ -1,0 +1,16 @@
+- name: Retrieve available space
+  set_fact:
+    available_space_kb: "{{ ansible_facts.net_filesystems_info[dest_filesystem]['spacefree_kb'] }}"
+
+- name: Convert available space to bytes
+  set_fact:
+    available_space: "{{ available_space_kb | int * 1024 }}"
+
+- debug:
+    var: available_space
+
+- name: Verify sufficent space on {{ dest_filesystem }} to store image file
+  assert:
+    that:
+      - available_space | int > image_details.size + extra_space
+    success_msg: "{{ dest_filesystem }} has sufficient space for image file."

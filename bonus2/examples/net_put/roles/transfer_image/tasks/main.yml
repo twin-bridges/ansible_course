@@ -1,0 +1,12 @@
+- name: Determine file-system to use.
+  import_tasks: determine_filesystem.yml
+
+- name: Verify sufficient space available on remote device.
+  import_tasks: verify_space_available.yml
+
+- name: Transfer the image file.
+  import_tasks: transfer_image.yml
+
+- name: Verify the remote files MD5
+  import_tasks: verify_file.yml
+  tags: md5

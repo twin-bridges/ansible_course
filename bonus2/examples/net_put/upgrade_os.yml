@@ -1,0 +1,8 @@
+---
+- name: Test putting a file onto Cisco IOS-XE device
+  hosts: cisco3
+  gather_facts: True
+
+  roles:
+    - transfer_image
+    - upgrade_device

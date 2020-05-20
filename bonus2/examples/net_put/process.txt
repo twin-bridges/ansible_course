@@ -1,0 +1,2 @@
+1. Identify file system
+2. Verify space available for file.

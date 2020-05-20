@@ -1,0 +1,8 @@
+- name: Obtain current 'boot' settings
+  ios_command:
+    commands: "show run | section boot"
+  register: boot_output
+
+- name: Display the current boot section
+  debug:
+    var: boot_output

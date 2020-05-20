@@ -1,0 +1,31 @@
+- name: Obtain current 'boot' settings
+  ios_command:
+    commands: "show run | section boot"
+  register: boot_output
+
+- name: Display the current boot section
+  debug:
+    var: boot_output
+
+- name: Prompt to continue
+  pause: 
+    prompt: |
+
+      >>>>>>>>>>>>>>>>>>
+      You are about to change the boot variable on the device.
+
+      Press "<cntr-c>" and then "a" to abort.
+
+      Press return to continue.
+      >>>>>>>>>>>>>>>>>>
+
+- name: Update 'boot system' to new value
+  ios_config:
+    lines:
+      - no boot system
+      - boot system flash c1100-universalk9_ias.16.08.01.SPA.bin
+      - boot system flash c1100-universalk9_ias.16.12.03.SPA.bin
+    save_when: always
+    # Force Ansible to always push all of the lines
+    match: none
+    backup: True

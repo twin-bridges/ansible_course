@@ -1,0 +1,3 @@
+- name: Update to boot settings to use new image file
+  import_tasks: update_bootsystem.yml
+  tags: bootsystem

@@ -1,0 +1,20 @@
+---
+- name: Transfer image file
+  hosts: cisco4
+  tasks:
+    - debug:
+        var: ansible_facts
+      when: ansible_facts.net_model == "C1111-4P"
+
+    - debug:
+        msg: "bootflash:/{{ os_image_file }}"
+
+    - name: Transfer image file
+      vars:
+        # Hopefully 6 hours is enough
+        ansible_command_timeout: 21600
+      net_put:
+        src: "{{ os_image_file }}"
+        dest: "bootflash:/{{ os_image_file }}"
+        protocol: scp
+      when: ansible_facts.net_model == "C1111-4P"

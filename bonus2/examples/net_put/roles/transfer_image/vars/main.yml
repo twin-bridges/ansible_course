@@ -1,0 +1,7 @@
+image_details:
+  name: c1100-universalk9_ias.16.12.03.SPA.bin
+  size: 542086804
+  md5: ebfcf2f266822f006b9b8ebfef80b217
+  # Sanity check to make sure never using wrong image on the wrong model
+  supported_models:
+    - "C1111-4P"

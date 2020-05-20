@@ -1,0 +1,12 @@
+- name: Select the first available file-system
+  set_fact:
+    dest_filesystem: "{{ ansible_facts.net_filesystems[0] }}"
+
+- debug:
+    var: dest_filesystem
+
+- name: Verify file_system is a file-system we are allowed to use for the image file
+  assert:
+    that:
+      - dest_filesystem in allowed_filesystems
+    success_msg: "Using file-system: {{ dest_filesystem }}"

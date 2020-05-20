@@ -1,0 +1,9 @@
+---
+- name: Test putting a file onto Cisco IOS-XE device
+  hosts: cisco3
+  tasks:
+    - name: Copy file
+      net_put:
+        src: my_file1.txt
+        dest : flash:/my_file1.txt
+        protocol: scp

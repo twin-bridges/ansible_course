@@ -1,0 +1,39 @@
+---
+- name: Test putting a file onto Cisco IOS-XE device
+  hosts: cisco3
+  vars:
+    allowed_filesystems:
+      - "flash:"
+      - "bootflash:"
+    image_size: 542086804
+    extra_space: 10000000
+  gather_facts: True
+
+  tasks:
+    - name: Set the destination file_system to use for file-transfer
+      set_fact:
+        dest_filesystem: "{{ ansible_facts.net_filesystems[0] }}"
+
+    - debug:
+        var: dest_filesystem
+
+    - name: Verify file_system is an allowed file-system
+      assert:
+        that:
+          - dest_filesystem in allowed_filesystems
+
+    - name: Verify sufficient space for the image
+      set_fact:
+        available_space_kb: "{{ ansible_facts.net_filesystems_info[dest_filesystem]['spacefree_kb'] }}"
+
+    - name: Convert to Bytes
+      set_fact:
+        available_space: "{{ available_space_kb | int * 1024 }}"
+
+    - debug:
+        var: available_space
+
+    - name: Verify space available
+      assert:
+        that:
+          - available_space | int > image_size + extra_space

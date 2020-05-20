@@ -1,0 +1,14 @@
+- name: Destination PATH
+  debug:
+    msg: "{{ dest_filesystem }}/{{ os_image_file }}"
+
+- name: Transfer image file
+  vars:
+    # Transfer takes forever and a half
+    ansible_command_timeout: 21600
+  net_put:
+    src: "{{ os_image_file }}"
+    dest: "{{ dest_filesystem }}/{{ os_image_file }}"
+    protocol: scp
+  when: ansible_facts.net_model == "C1111-4P"
+  tags: never
