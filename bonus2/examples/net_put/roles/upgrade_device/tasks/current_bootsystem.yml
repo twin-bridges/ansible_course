@@ -6,3 +6,4 @@
 - name: Display the current boot section
   debug:
     var: boot_output
+

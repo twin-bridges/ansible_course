@@ -1,11 +1,5 @@
-- name: Obtain current 'boot' settings
-  ios_command:
-    commands: "show run | section boot"
-  register: boot_output
-
-- name: Display the current boot section
-  debug:
-    var: boot_output
+- name: Obtain current 'boot system' values (before changes)
+  import_tasks: current_bootsystem.yml
 
 - name: Prompt to continue
   pause: 
@@ -23,9 +17,12 @@
   ios_config:
     lines:
       - no boot system
-      - boot system flash c1100-universalk9_ias.16.08.01.SPA.bin
-      - boot system flash c1100-universalk9_ias.16.12.03.SPA.bin
+      - "boot system flash {{ backup_image.name }}"
+      - "boot system flash {{ primary_image.name }}"
     save_when: always
     # Force Ansible to always push all of the lines
     match: none
     backup: True
+
+- name: Obtain current 'boot system' values (after changes)
+  import_tasks: current_bootsystem.yml
