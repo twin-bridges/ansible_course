@@ -117,3 +117,4 @@ bonus1/exercises/exercise4/DIFFS/nxos*.txt
 bonus1/exercises/exercise5/DIFFS/arista*.txt
 
 bonus2/examples/net_put/*.bin
+bonus2/examples/net_put/roles/upgrade_device/backup/cisco3_config.*
