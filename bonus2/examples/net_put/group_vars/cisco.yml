@@ -4,10 +4,18 @@ allowed_filesystems:
   - "flash:"
   - "bootflash:"
 
-image_details:
+primary_image:
   name: c1100-universalk9_ias.16.12.03.SPA.bin
   size: 542086804
   md5: ebfcf2f266822f006b9b8ebfef80b217
+  # Sanity check to make sure never using wrong image on the wrong model
+  supported_models:
+    - "C1111-4P"
+
+backup_image:
+  name: c1100-universalk9_ias.16.08.01.SPA.bin
+  size: 427968764
+  md5: 8dee04c886aa00ae6c794d7c65f52f9d
   # Sanity check to make sure never using wrong image on the wrong model
   supported_models:
     - "C1111-4P"

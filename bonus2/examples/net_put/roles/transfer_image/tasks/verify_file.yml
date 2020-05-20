@@ -19,6 +19,6 @@
 - name: Verify remote MD5 is correct
   assert:
     that:
-      - md5_hash == image_details.md5
-    fail_msg: "MD5-hash on remote device is not correct {{ md5_hash }} != {{ image_details.md5 }}"
+      - md5_hash == primary_image.md5
+    fail_msg: "MD5-hash on remote device is not correct {{ md5_hash }} != {{ primary_image.md5 }}"
     success_msg: "MD5-hash on remote device is correct!"
