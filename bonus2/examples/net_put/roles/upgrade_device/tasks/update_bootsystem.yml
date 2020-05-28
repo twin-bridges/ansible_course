@@ -19,8 +19,8 @@
       - no boot system
       - "boot system flash {{ primary_image.name }}"
       # - "boot system flash {{ backup_image.name }}"
+    # Always save the changes to startup-config
     save_when: always
     # Force Ansible to always push all of the lines
     match: none
     backup: True
-

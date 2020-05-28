@@ -46,7 +46,9 @@
       - command: reload
         prompt: confirm
         answer: 'y'
-  tags: never
+  tags: 
+    - never
+    - reload_only
 
 - name: Wait until device completes its reboot
   wait_for:
@@ -54,7 +56,9 @@
     port: 22
     delay: 240
     timeout: 1800
-  tags: never
+  tags: 
+    - never
+    - reload_only
 
 - name: Obtain 'show version' output
   ios_command:
@@ -65,3 +69,4 @@
 - name: Display 'show version' output
   debug:
     var: output.stdout_lines[0]
+  tags: reload_only
