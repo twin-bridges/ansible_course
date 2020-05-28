@@ -1,6 +1,6 @@
 - name: Obtain remote MD5
   ios_command:
-    commands: "verify /md5 {{ dest_filesystem }}/{{ os_image_file }}"
+    commands: "verify /md5 {{ dest_filesystem }}/{{ primary_image.name }}"
   register: md5_output
 
 - name: Parse remote MD5

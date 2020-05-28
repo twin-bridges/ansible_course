@@ -1,0 +1,74 @@
+- name: Obtain 'boot system' values (after changes)
+  import_tasks: current_bootsystem.yml
+
+- name: Verify file exists and display its size
+  ios_command:
+    commands: "dir {{ primary_image.name }}"
+  register: dir_output
+
+- set_fact:
+    dir_output: "{{ dir_output.stdout_lines[0] }}"
+
+- name: Obtain Remote MD5
+  ios_command:
+    commands: "verify /md5 {{ primary_image.name }}"
+  register: md5_output
+
+- name: Process Remote MD5
+  set_fact:
+    md5_output: "{{ md5_output.stdout[0].split('verify /md5') }}"
+
+- name: Display Remote MD5
+  set_fact:
+    md5_output: "{{ md5_output[1] }}"
+
+- name: Just the facts
+  debug:
+    msg:
+      - '******************************************************'
+      - 'File Exists: {{ dir_output[2] }}'
+      - ''
+      - 'MD5 Value: {{ md5_output }}'
+      - ''
+      - 'Boot Variable: '
+      - '-------'
+      - '{{ boot_var }}'
+      - ''
+      - '******************************************************'
+
+- name: Prompt to continue
+  pause:
+    prompt: |
+
+      >>>>>>>>>>>>>>>>>>
+      You are about to reload the device!!! Do you want to continue?
+
+      Press "<cntr-c>" and then "a" to abort.
+
+      Press return to continue.
+      >>>>>>>>>>>>>>>>>>
+
+- name: Reload the device.
+  ios_command:
+    commands:
+      - command: reload
+        prompt: confirm
+        answer: 'y'
+  tags: never
+
+- name: Wait until device completes its reboot
+  wait_for:
+    host: "{{ ansible_host }}"
+    port: 22
+    delay: 240
+    timeout: 1800
+  tags: never
+
+- name: Obtain 'show version' output
+  ios_command:
+    commands: show version
+  register: output
+  tags: reload_only
+
+- debug:
+    var: output

@@ -2,6 +2,6 @@
   import_tasks: update_bootsystem.yml
   tags: bootsystem
 
-#- name: Reload the device
-#  import_tasks: reload_device.yml
-#  tags: reload
+- name: Reload the device
+  import_tasks: reload_device.yml
+  tags: reload

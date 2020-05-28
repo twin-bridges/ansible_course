@@ -1,5 +1,5 @@
 ---
-- name: Test putting a file onto Cisco IOS-XE device
+- name: OS Upgrade on Cisco IOS-XE devices
   hosts: cisco3
   gather_facts: True
 

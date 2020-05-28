@@ -1,9 +1,13 @@
-- name: Obtain current 'boot' settings
+- name: Obtain current 'boot system' values (after changes)
   ios_command:
-    commands: "show run | section boot"
+    commands: "show run | inc boot.system.*bin"
   register: boot_output
+
+- name: Process Boot Variable
+  set_fact:
+    boot_var: "{{ boot_output.stdout_lines[0] }}"
 
 - name: Display the current boot section
   debug:
-    var: boot_output
+    var: boot_var
 
