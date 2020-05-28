@@ -1,0 +1,19 @@
+---
+- name: Obtain Remote MD5
+  ios_command:
+    commands: "verify /md5 {{ dest_filesystem }}/{{ primary_image.name }}"
+  register: md5_output
+
+- name: Process Remote MD5
+  set_fact:
+    md5_output: "{{ md5_output.stdout[0] }}"
+
+# verify /md5 (bootflash:/c1100-universalk9_ias.16.12.03.SPA.bin) = ebfcf2f266822f006b9b8ebfef80b217
+- name: Process Remote MD5
+  set_fact:
+    md5_hash: "{{ md5_output | regex_findall('verify /md5.* = (\\S+)') }}"
+
+- name: Process Remote MD5
+  set_fact:
+    md5_hash: "{{ md5_hash[0] }}"
+

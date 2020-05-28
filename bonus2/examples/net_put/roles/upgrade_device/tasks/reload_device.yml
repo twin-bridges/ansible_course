@@ -9,18 +9,10 @@
 - set_fact:
     dir_output: "{{ dir_output.stdout_lines[0] }}"
 
-- name: Obtain Remote MD5
-  ios_command:
-    commands: "verify /md5 {{ primary_image.name }}"
-  register: md5_output
-
-- name: Process Remote MD5
-  set_fact:
-    md5_output: "{{ md5_output.stdout[0].split('verify /md5') }}"
-
-- name: Display Remote MD5
-  set_fact:
-    md5_output: "{{ md5_output[1] }}"
+- name: Perform MD5 (returns 'md5_hash' variable)
+  import_role:
+    name: file_operations
+    tasks_from: md5
 
 - name: Just the facts
   debug:
@@ -28,7 +20,7 @@
       - '******************************************************'
       - 'File Exists: {{ dir_output[2] }}'
       - ''
-      - 'MD5 Value: {{ md5_output }}'
+      - 'MD5 Value: {{ md5_hash }}'
       - ''
       - 'Boot Variable: '
       - '-------'
@@ -70,5 +62,6 @@
   register: output
   tags: reload_only
 
-- debug:
-    var: output
+- name: Display 'show version' output
+  debug:
+    var: output.stdout_lines[0]
