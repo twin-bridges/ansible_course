@@ -1,4 +1,6 @@
 ---
+backup_dir: "~/CFG_BACKUP"
+
 # Filesystem on remote device must be one of these
 allowed_filesystems:
   - "flash:"

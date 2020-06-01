@@ -1,0 +1,27 @@
+- name: Obtain 'show version' output
+  ios_command:
+    commands: show version
+  register: show_version
+
+- name: Display 'show version' output
+  set_fact:
+    show_version: "{{ show_version.stdout[0] }}"
+
+- name: Save 'show version' to file
+  copy:
+    content: '{{ show_version }}'
+    dest: "{{ backup_dir }}/{{ inventory_hostname }}-show-version-post.txt"
+
+- name: Obtain 'show run' output
+  ios_command:
+    commands: show run
+  register: show_run
+
+- name: Process 'show run'
+  set_fact:
+    show_run: "{{ show_run.stdout[0] }}"
+
+- name: Save 'show run' to file
+  copy:
+    content: '{{ show_run }}'
+    dest: "{{ backup_dir }}/{{ inventory_hostname }}-post-upgrade.txt"

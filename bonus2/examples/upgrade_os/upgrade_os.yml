@@ -1,8 +1,10 @@
 ---
 - name: OS Upgrade on Cisco IOS-XE devices
-  hosts: cisco3
+  hosts: cisco4
   gather_facts: True
 
   roles:
+    - upgrade_pre_process
     - transfer_image
     - upgrade_device
+    - upgrade_post_process

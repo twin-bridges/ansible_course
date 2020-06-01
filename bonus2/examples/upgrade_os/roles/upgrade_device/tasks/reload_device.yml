@@ -47,7 +47,6 @@
         prompt: confirm
         answer: 'y'
   tags: 
-    - never
     - reload_only
 
 - name: Wait until device completes its reboot
@@ -57,16 +56,5 @@
     delay: 240
     timeout: 1800
   tags: 
-    - never
     - reload_only
 
-- name: Obtain 'show version' output
-  ios_command:
-    commands: show version
-  register: output
-  tags: reload_only
-
-- name: Display 'show version' output
-  debug:
-    var: output.stdout_lines[0]
-  tags: reload_only

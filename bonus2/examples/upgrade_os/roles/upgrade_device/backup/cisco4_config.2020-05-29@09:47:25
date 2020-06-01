@@ -1,0 +1,183 @@
+Building configuration...
+
+
+Current configuration : 4434 bytes
+!
+! Last configuration change at 04:15:53 PDT Fri May 29 2020 by pyclass
+! NVRAM config last updated at 04:15:46 PDT Fri May 29 2020 by pyclass
+!
+version 16.8
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+!
+hostname cisco4
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging buffered 10000
+no logging console
+enable secret 5 $1$wD5Y$V8DEyf6hB41O58qdaYWYa1
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authorization exec default local if-authenticated 
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone PST -8 0
+clock summer-time PDT recurring
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3809568711
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3809568711
+ revocation-check none
+ rsakeypair TP-self-signed-3809568711
+!
+!
+crypto pki certificate chain TP-self-signed-3809568711
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33383039 35363837 3131301E 170D3138 31303031 32323435 
+  33305A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 38303935 
+  36383731 31308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100A946 F2400BFC A824D69A 5EEF5952 78F525D9 EC125EFA C6B7DC94 
+  47C7A189 4E7C73CB F7AB4BA8 14E87019 1529CC01 CAE3746D F5EB162E B0C0F842 
+  9F645D06 F6848BE3 05D8A0BF 2E84E107 66363D13 60A1DD24 BFC063EA 68510773 
+  A50C7C11 E5747B7B 1AEDC996 7396CF51 CFA3C9D1 9741F06F 5D9E0D60 57075222 
+  B7D70B46 BE983BE6 C2E6FA1D 6EA2D3E5 7C3C05C3 39E549D0 2AD60D06 3A120F5C 
+  F2240BA6 897811C7 47AFA19D 39AAA7ED 05E0DC13 AB07C313 864D077A 189D1757 
+  805150B0 DA862381 6933A841 4C03E060 038A396C 7C018A10 9F28D227 5F4458CC 
+  A1AC07A4 456FBD7D 740DC39D 9729DCAF F214FEE2 57D66B47 4A832E3A C46102C4 
+  6631424A 400B0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 147241C5 EA70C1C5 9DF4F3A0 6DB21764 FFF2BD16 
+  FC301D06 03551D0E 04160414 7241C5EA 70C1C59D F4F3A06D B21764FF F2BD16FC 
+  300D0609 2A864886 F70D0101 05050003 82010100 832F1310 86EB3D1E 25A6FE57 
+  7C510090 16F73DA8 5A1E8EF8 192CAAB1 DBC2271A AFCF5872 AB8284C5 8D50C2D3 
+  DC54BE58 FC8B7D2F 52466F1F 19F8BC02 9D845FD3 C6971002 2853AB2B 5D2C120C 
+  93E92D6D 9CE00416 51154174 E940FD43 8BCA472C 12E669BE 64E20DCD 80599516 
+  7EFDF004 513FA231 DB3A42CB 6D10C1DC 0F619462 B8D00E3F F1FE77F3 50C8BE7A 
+  20A89821 ACA8F0D6 63AE1FDE BA122EBC C1DF13E5 DB401783 8B249131 25FF6B5E 
+  B1E44D79 103A0A12 09AA82A0 02E44897 42E88C61 D79B7EAE 1C9EC078 27A39F92 
+  41FB9D21 2D7B9123 5FE02242 05C514EE 6ABBDAF6 9E770F96 50CC069F 8EC2F33E 
+  CE1C6011 38C34D82 E14A4E4D 5631E57A E3E1DCBC
+  	quit
+!
+license udi pid C1111-4P sn FGL223392W1
+no license smart enable
+archive
+ path flash:cisco4-cfg
+!
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+netconf-yang
+!
+!
+username pyclass privilege 15 secret 5 $1$rDG5$W176Dc3KxAeJgIArZPjq21
+username test9 secret 5 $1$CQCe$poonB1jFHYQAWt/3eXub41
+username testuser privilege 15 secret 5 $1$A5eB$6XIBwB/8iwj4U
+username student1 privilege 15 secret 5 $1$/gYV$SeViShJZ01BeIGZ8NhqHr/
+!
+redundancy
+ mode none
+!
+!
+vlan internal allocation policy ascending
+!
+lldp run
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 10.220.88.23 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/1/0
+!
+interface GigabitEthernet0/1/1
+!
+interface GigabitEthernet0/1/2
+!
+interface GigabitEthernet0/1/3
+!
+interface Vlan1
+ no ip address
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 10.220.88.1
+ip ssh version 2
+ip ssh pubkey-chain
+  username testuser
+   key-hash ssh-rsa E5D7E26A603DD18923113E45F29BDF22 
+  username student1
+   key-hash ssh-rsa 1C3A949CF3B48F23F5074717EEEE025A 
+ip scp server enable
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+ transport input none
+ stopbits 1
+line vty 0 4
+ exec-timeout 20 0
+ transport input telnet ssh
+!
+ntp server 130.126.24.24
+ntp server 152.2.21.1
+wsma agent exec
+!
+wsma agent config
+!
+wsma agent filesys
+!
+wsma agent notify
+!
+!
+end
