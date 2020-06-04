@@ -1,0 +1,8 @@
+---
+- hosts: local
+  tasks:
+    - debug:
+        msg: "{{ 'Hello world' | some_filter }}"
+    
+    - debug:
+        msg: "{{ 'Hello world' | another_filter('well', 'actually') }}"

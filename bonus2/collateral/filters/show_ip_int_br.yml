@@ -1,0 +1,16 @@
+---
+- name: Show IP Int Brief
+  hosts: cisco5
+  gather_facts: False
+
+  tasks:
+    - name: Executing command
+      ios_command:
+        commands: show ip int brief
+      register: output
+
+    - set_fact:
+        show_ver: "{{ output.stdout[0] }}"
+
+    - debug:
+        msg: "{{ show_ver | show_ip_filter }}"
