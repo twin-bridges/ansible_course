@@ -7,6 +7,6 @@
       netmiko_send_command:
         host: "{{ ansible_host }}"
         device_type: cisco_ios
-        username: pyclass
-        password: invalid
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
         command: show ip int brief
