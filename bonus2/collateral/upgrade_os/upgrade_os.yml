@@ -1,6 +1,6 @@
 ---
 - name: OS Upgrade on Cisco IOS-XE devices
-  hosts: cisco4
+  hosts: do_not_run_this_playbook
   gather_facts: True
 
   roles:

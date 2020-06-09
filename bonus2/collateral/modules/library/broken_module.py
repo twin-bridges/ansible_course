@@ -13,9 +13,8 @@ def main():
 
     # Syntax error--my_var doesn't exist at this point
     # try:
-        # pass
     #    print(my_var)
-    #except NameError as e:
+    # except NameError as e:
     #    module.fail_json(msg=str(e))
 
     output = "Something went wrong. "

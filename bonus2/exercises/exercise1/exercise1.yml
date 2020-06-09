@@ -1,5 +1,5 @@
 ---
-- name: Exercise3
+- name: Exercise1
   hosts: localhost
   gather_facts: False
 

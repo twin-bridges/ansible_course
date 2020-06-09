@@ -1,11 +1,12 @@
 ---
-- name: Test putting a file onto Cisco IOS-XE device
-  hosts: cisco3
+- name: Test various file transfer and verification steps
+  hosts: cisco1
   vars:
     allowed_filesystems:
       - "flash:"
       - "bootflash:"
-    image_size: 542086804
+    # Artificially small since testing against "cisco1"
+    image_size: 10000000
     extra_space: 10000000
   gather_facts: True
 

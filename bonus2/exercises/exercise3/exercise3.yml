@@ -1,6 +1,6 @@
 ---
-- name: Exercise1
-  hosts: arista
+- name: Exercise3
+  hosts: cisco
   gather_facts: False
 
   tasks:
@@ -10,7 +10,8 @@
       register: output
 
     - set_fact:
-        show_arp: "{{ output.stdout[0] }}"
+        output: "{{ output.stdout[0] }}"
 
     - debug:
-        msg: "{{ show_arp | show_ip_arp }}"
+        msg: "{{ output | arp_dict }}"
+

@@ -1,6 +1,6 @@
 ---
-- name: Test putting a file onto Cisco IOS-XE device
-  hosts: cisco3
+- name: Test putting a file onto Cisco IOS/IOS-XE device
+  hosts: cisco1
   tasks:
     - name: Copy file
       net_put:

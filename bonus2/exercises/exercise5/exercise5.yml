@@ -1,9 +1,9 @@
 ---
-- name: Netmiko module
+- name: Exercise5
   hosts: cisco1
   gather_facts: False
   tasks:
-    - name: Netmiko testing
+    - name: Netmiko configuration changes
       netmiko_config:
         host: "{{ ansible_host }}"
         device_type: cisco_ios

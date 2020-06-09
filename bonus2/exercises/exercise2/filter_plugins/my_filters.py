@@ -18,7 +18,7 @@ def show_ip_arp(output):
             continue
         mac_address = line.split()[2]
         arp_list.append(mac_address)
-        
+
     return arp_list
 
 

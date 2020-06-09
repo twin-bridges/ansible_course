@@ -1,9 +1,9 @@
 ---
-- name: Netmiko module
-  hosts: cisco
+- name: Troubleshooting modules
+  hosts: cisco1
   gather_facts: False
   tasks:
-    - name: Netmiko testing
+    - name: Module troubleshooting
       broken_module:
         name: Hello
         new: True
