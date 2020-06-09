@@ -1,0 +1,17 @@
+---
+- name: Exercise2
+  hosts: cisco
+  gather_facts: False
+
+  tasks:
+    - name: Executing command
+      ios_command:
+        commands: show ip arp
+      register: output
+
+    - set_fact:
+        output: "{{ output.stdout[0] }}"
+
+    - debug:
+        msg: "{{ output | arp_dict }}"
+

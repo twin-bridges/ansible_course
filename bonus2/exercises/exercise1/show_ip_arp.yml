@@ -1,0 +1,16 @@
+---
+- name: Exercise1
+  hosts: arista
+  gather_facts: False
+
+  tasks:
+    - name: Executing command
+      ios_command:
+        commands: show ip arp
+      register: output
+
+    - set_fact:
+        show_arp: "{{ output.stdout[0] }}"
+
+    - debug:
+        msg: "{{ show_arp | show_ip_arp }}"

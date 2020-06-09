@@ -1,0 +1,17 @@
+---
+- name: Exercise3
+  hosts: localhost
+  gather_facts: False
+
+  tasks:
+    - name: Test filter1
+      debug:
+        msg: "{{ 'heLLo World' | filter1 }}"
+
+    - name: Test filter2
+      debug:
+        msg: "{{ 'heLLo World' | filter2 }}"
+
+    - name: Test filter3
+      debug:
+        msg: "{{ 'heLLo World' | filter3 }}"

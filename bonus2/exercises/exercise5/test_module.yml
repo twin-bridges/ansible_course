@@ -1,0 +1,9 @@
+---
+- name: Exercise5
+  hosts: localhost
+  gather_facts: False
+  tasks:
+    - name: Exercise5
+      my_module:
+        my_string: hello world
+
