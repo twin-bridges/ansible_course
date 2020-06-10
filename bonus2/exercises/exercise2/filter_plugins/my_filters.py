@@ -1,5 +1,6 @@
 """
-$ netmiko-show --cmd "show ip arp" arista5
+Reference output from an Arista switch
+----------------
 Address         Age (min)  Hardware Addr   Interface
 10.220.88.1           N/A  0062.ec29.70fe  Vlan1, Ethernet1
 10.220.88.28          N/A  00aa.fc05.b513  Vlan1, not learned

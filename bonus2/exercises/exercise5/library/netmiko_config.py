@@ -43,7 +43,7 @@ def main():
     net_connect = ConnectHandler(
         host=host, device_type=device_type, username=username, password=password
     )
-    result['changed'] = True
+    result["changed"] = True
     output = net_connect.send_config_set(config_list)
     result["output"] = output
     module.exit_json(**result)

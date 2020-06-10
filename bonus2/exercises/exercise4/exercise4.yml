@@ -1,9 +1,9 @@
 ---
-- name: Exercise5
+- name: Exercise4
   hosts: localhost
   gather_facts: False
   tasks:
-    - name: Exercise5
+    - name: Convert string to upper case
       my_module:
         my_string: hello world
 

@@ -1,4 +1,6 @@
 """
+Reference output from a Cisco router
+----------------
 Internet  10.220.88.1            17   0062.ec29.70fe  ARPA   FastEthernet4
 Internet  10.220.88.20            -   c89c.1dea.0eb6  ARPA   FastEthernet4
 Internet  10.220.88.22          185   a093.5141.b780  ARPA   FastEthernet4
