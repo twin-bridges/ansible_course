@@ -1,12 +1,12 @@
 """
 Interface              IP-Address      OK? Method Status                Protocol
-GigabitEthernet1       10.0.2.15       YES DHCP   up                    up      
-GigabitEthernet2       unassigned      YES unset  up                    up      
-GigabitEthernet3       unassigned      YES unset  up                    up      
-GigabitEthernet4       unassigned      YES unset  up                    up      
-GigabitEthernet5       unassigned      YES unset  up                    up      
-GigabitEthernet6       unassigned      YES unset  up                    up      
-GigabitEthernet7       unassigned      YES unset  up                    up      
+GigabitEthernet1       10.0.2.15       YES DHCP   up                    up
+GigabitEthernet2       unassigned      YES unset  up                    up
+GigabitEthernet3       unassigned      YES unset  up                    up
+GigabitEthernet4       unassigned      YES unset  up                    up
+GigabitEthernet5       unassigned      YES unset  up                    up
+GigabitEthernet6       unassigned      YES unset  up                    up
+GigabitEthernet7       unassigned      YES unset  up                    up
 """
 import re
 
