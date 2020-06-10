@@ -16,29 +16,17 @@ ANSIBLE_INV = {
     },
     "arista": {
         "hosts": ["arista5", "arista6", "arista7", "arista8"],
-        "vars": {
-            "ansible_network_os": "eos",
-        },
+        "vars": {"ansible_network_os": "eos",},
     },
     "cisco": {
         "hosts": ["cisco1", "cisco2", "cisco5", "cisco6"],
-        "vars": {
-            "ansible_network_os": "ios",
-        },
+        "vars": {"ansible_network_os": "ios",},
     },
     "juniper": {
         "hosts": ["srx1"],
-        "vars": {
-            "ansible_network_os": "junos",
-            "ansible_connection": "netconf",
-        },
+        "vars": {"ansible_network_os": "junos", "ansible_connection": "netconf",},
     },
-    "nxos": {
-        "hosts": ["nxos1", "nxos2"],
-        "vars": {
-            "ansible_network_os": "nxos",
-        },
-    },
+    "nxos": {"hosts": ["nxos1", "nxos2"], "vars": {"ansible_network_os": "nxos",},},
     "local": {"hosts": ["localhost"], "vars": {"ansible_connection": "local"}},
 }
 

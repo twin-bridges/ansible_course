@@ -36,7 +36,7 @@ def test_bonus2_ex1():
     assert std_err == ""
     assert return_code == 0
     std_out = std_out.lower()
-    assert std_out.count("hello world") == 3 
+    assert std_out.count("hello world") == 3
 
 
 def test_bonus2_ex2():

@@ -16,9 +16,7 @@ ANSIBLE_INV = {
     },
     "arista": {
         "hosts": ["arista5", "arista6", "arista7", "arista8"],
-        "vars": {
-            "ansible_network_os": "eos",
-        },
+        "vars": {"ansible_network_os": "eos",},
     },
     "local": {"hosts": ["localhost"], "vars": {"ansible_connection": "local"}},
 }
