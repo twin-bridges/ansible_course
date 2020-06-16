@@ -283,7 +283,7 @@ def test_class2_ex3d():
     ]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("Total entries displayed: 4") == 2
+    assert std_out.count("Total entries displayed: ") == 2
     assert (
         "nxos1                      : ok=2    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
