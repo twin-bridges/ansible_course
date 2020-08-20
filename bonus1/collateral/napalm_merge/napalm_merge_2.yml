@@ -1,7 +1,7 @@
 ---
 
 - name: Test napalm merge
-  hosts: arista5:cisco1:srx1:nxos1
+  hosts: arista5:cisco1:vmx1:nxos1
   gather_facts: False
   vars:
     # Added this so I didn't need a custom inventory file.
