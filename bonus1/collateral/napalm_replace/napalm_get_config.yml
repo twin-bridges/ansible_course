@@ -1,6 +1,6 @@
 ---
 - name: Retrieve running configuration
-  hosts: cisco5:srx1
+  hosts: cisco5:vmx1
   gather_facts: False
   tasks:
     - name: get_config

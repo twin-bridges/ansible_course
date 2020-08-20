@@ -1,6 +1,6 @@
 ---
 - name: Juniper Full Config Replace
-  hosts: juniper
+  hosts: vmx1
   gather_facts: False
   tasks:
     - napalm_install_config:
