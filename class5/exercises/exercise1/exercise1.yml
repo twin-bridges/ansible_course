@@ -1,6 +1,6 @@
 ---
 - name: Global configuration
-  hosts: cisco:arista:nxos
+  hosts: cisco:arista:nxos:juniper
   gather_facts: True
   tasks:
     - name: IOS global config
@@ -48,10 +48,6 @@
       when: 'ansible_network_os == "nxos"'
       tags: nxos
 
-- name: Global configuration
-  hosts: juniper
-  gather_facts: False
-  tasks:
     - name: Juniper global config
       junos_config:
         lines:
@@ -60,4 +56,5 @@
           - "set system domain-name {{ domain_name }}"
           - "set system ntp server {{ ntp_server1 }}"
           - "set system ntp server {{ ntp_server2 }}"
+      when: 'ansible_network_os == "junos"'
       tags: junos

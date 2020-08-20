@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 
 
@@ -320,11 +321,10 @@ def test_class2_ex5a():
     cmd_list = ["ansible-playbook", "exercise5a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert "vlan.0                  up    up   inet     10.220.88.39/24" in std_out
-    assert (
-        "srx1                       : ok=2    changed=0    unreachable=0    failed=0    "
-        "skipped=0    rescued=0    ignored=0" in std_out
-    )
+    assert re.search(r"fxp0.0\s+up\s+up.*172.30.0.221/24", std_out)
+    assert re.search(r"fxp0.0\s+up\s+up.*172.30.0.156/24", std_out)
+    assert re.search(r"^vmx1.*ok=2.*failed=0", std_out, flags=re.M)
+    assert re.search(r"^vmx2.*ok=2.*failed=0", std_out, flags=re.M)
     assert std_err == ""
     assert return_code == 0
 
@@ -334,14 +334,10 @@ def test_class2_ex5b():
     cmd_list = ["ansible-playbook", "exercise5b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert (
-        "Primary IP: vlan.0                  up    up   inet     10.220.88.39/24"
-        in std_out
-    )
-    assert (
-        "srx1                       : ok=2    changed=0    unreachable=0    failed=0    "
-        "skipped=0    rescued=0    ignored=0" in std_out
-    )
+    assert re.search(r"fxp0.0.*172.30.0.221/24", std_out)
+    assert re.search(r"fxp0.0.*172.30.0.156/24", std_out)
+    assert re.search(r"^vmx1.*ok=2.*failed=0", std_out, flags=re.M)
+    assert re.search(r"^vmx2.*ok=2.*failed=0", std_out, flags=re.M)
     assert std_err == ""
     assert return_code == 0
 
@@ -351,11 +347,10 @@ def test_class2_ex5c():
     cmd_list = ["ansible-playbook", "exercise5c.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert '"msg": "Primary IP: 10.220.88.39/24"' in std_out
-    assert (
-        "srx1                       : ok=3    changed=0    unreachable=0    failed=0    "
-        "skipped=0    rescued=0    ignored=0" in std_out
-    )
+    assert re.search(r"Primary IP.*172.30.0.221/24", std_out)
+    assert re.search(r"Primary IP.*172.30.0.156/24", std_out)
+    assert re.search(r"^vmx1.*ok=3.*failed=0", std_out, flags=re.M)
+    assert re.search(r"^vmx2.*ok=3.*failed=0", std_out, flags=re.M)
     assert std_err == ""
     assert return_code == 0
 
