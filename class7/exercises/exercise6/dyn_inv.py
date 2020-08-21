@@ -23,7 +23,7 @@ ANSIBLE_INV = {
         "vars": {"ansible_network_os": "ios"},
     },
     "juniper": {
-        "hosts": ["srx1"],
+        "hosts": ["vmx1", "vmx2"],
         "vars": {"ansible_network_os": "junos", "ansible_connection": "netconf"},
     },
     "nxos": {"hosts": ["nxos1", "nxos2"], "vars": {"ansible_network_os": "nxos"}},
@@ -40,7 +40,8 @@ HOST_VARS = {
     "cisco2": {"ansible_host": "cisco2.lasthop.io"},
     "cisco5": {"ansible_host": "cisco5.lasthop.io"},
     "cisco6": {"ansible_host": "cisco6.lasthop.io"},
-    "srx1": {"ansible_host": "srx1.lasthop.io"},
+    "vmx1": {"ansible_host": "vmx1.lasthop.io"},
+    "vmx2": {"ansible_host": "vmx2.lasthop.io"},
     "nxos1": {"ansible_host": "nxos1.lasthop.io"},
     "nxos2": {"ansible_host": "nxos2.lasthop.io"},
 }

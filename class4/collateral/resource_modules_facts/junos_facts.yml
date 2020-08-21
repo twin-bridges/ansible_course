@@ -1,18 +1,18 @@
 ---
 - name: RM Facts
-  hosts: srx1
+  hosts: vmx1
   gather_facts: True
   module_defaults:
     junos_facts:
       gather_network_resources:
         - vlans
-#        - interfaces
-#        - l2_interfaces
-#        - l3_interfaces
-#        - lacp
-#        - lldp_global
-#        - lldp_interfaces
-#        - lag_interfaces
+        - interfaces
+        - l2_interfaces
+        - l3_interfaces
+        - lacp
+        - lldp_global
+        - lldp_interfaces
+        - lag_interfaces
 
   tasks:
     - name: Test
