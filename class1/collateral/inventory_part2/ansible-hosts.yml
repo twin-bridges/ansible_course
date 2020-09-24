@@ -32,8 +32,10 @@ all:
 
     juniper:
       hosts:
-        srx1:
-          ansible_host: srx1.lasthop.io
+        vmx1:
+          ansible_host: vmx1.lasthop.io
+        vmx2:
+          ansible_host: vmx2.lasthop.io
       vars:
         ansible_network_os: junos
 

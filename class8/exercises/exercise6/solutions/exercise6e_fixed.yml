@@ -7,7 +7,7 @@
   tasks:
     - name: Executing command
       junos_command:
-        commands: show lldp neighbors
+        commands: show interfaces terse
       register: output
 
     - debug:

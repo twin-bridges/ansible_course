@@ -8,4 +8,4 @@
       register: interfaces
 
     - debug:
-        msg: "Primary IP: {{ interfaces['stdout_lines'][0][-1] }}"
+        msg: "{{ interfaces['stdout_lines'][0][21] }}"

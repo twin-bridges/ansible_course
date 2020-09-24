@@ -47,7 +47,11 @@ def test_class3_ex1a():
         in std_out
     )
     assert (
-        "srx1                       : ok=1    changed=0    unreachable=0    failed=0    skipped=3"
+        "vmx1                       : ok=1    changed=0    unreachable=0    failed=0    skipped=3"
+        in std_out
+    )
+    assert (
+        "vmx2                       : ok=1    changed=0    unreachable=0    failed=0    skipped=3"
         in std_out
     )
     assert std_err == ""
@@ -107,7 +111,11 @@ def test_class3_ex1b_junos():
     cmd_list = ["ansible-playbook", "exercise1b.yml", "--tags", "junos"]
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     assert (
-        "srx1                       : ok=1    changed=0    unreachable=0    failed=0    skipped=0"
+        "vmx1                       : ok=1    changed=0    unreachable=0    failed=0    skipped=0"
+        in std_out
+    )
+    assert (
+        "vmx2                       : ok=1    changed=0    unreachable=0    failed=0    skipped=0"
         in std_out
     )
     assert std_err == ""

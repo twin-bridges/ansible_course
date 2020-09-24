@@ -1,6 +1,6 @@
 ---
 - name: Global configuration
-  hosts: cisco:arista:nxos
+  hosts: cisco:arista:nxos:juniper
   gather_facts: True
   tasks:
     - name: Global config
@@ -12,17 +12,20 @@
         var: config.splitlines()
 
     - name: Global config
+      vars:
+          # cli_config requires network_cli (Juniper defaults to netconf in inventory)
+          ansible_connection: network_cli
       cli_config:
         config: "{{ config }}"
 
-- name: Global configuration
-  hosts: juniper
-  gather_facts: False
-  tasks:
-    - name: Global config
-      vars:
-          # cli_config requires network_cli
-          ansible_connection: network_cli
-      cli_config:
-        config: "{{ lookup('template', 'templates/{{ ansible_network_os }}/global.j2') }}"
-      tags: juniper
+#- name: Global configuration
+#  hosts: juniper
+#  gather_facts: False
+#  tasks:
+#    - name: Global config
+#      vars:
+#          # cli_config requires network_cli
+#          ansible_connection: network_cli
+#      cli_config:
+#        config: "{{ lookup('template', 'templates/{{ ansible_network_os }}/global.j2') }}"
+#      tags: juniper

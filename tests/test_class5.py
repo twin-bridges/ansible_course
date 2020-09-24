@@ -46,10 +46,10 @@ def test_class5_ex1():
         "arista8",
         "nxos1",
         "nxos2",
+        "vmx1",
+        "vmx2",
     ]:
-        assert std_out.count(device) == 6
-    for device in ["srx1"]:
-        assert std_out.count(device) == 2
+        assert std_out.count(device) == 7
 
     assert std_err == ""
     assert return_code == 0
@@ -71,7 +71,8 @@ def test_class5_ex1_idempotent():
         "arista8",
         "nxos1",
         "nxos2",
-        "srx1",
+        "vmx1",
+        "vmx2",
     ]:
         pattern = rf"^{device}.*changed=0 .*$"
         assert re.search(pattern, std_out, flags=re.M)
@@ -97,7 +98,8 @@ def test_class5_ex2():
         "arista8",
         "nxos1",
         "nxos2",
-        "srx1",
+        "vmx1",
+        "vmx2",
     ]:
         pattern = rf"^{device}.*changed=0 .*$"
         assert re.search(pattern, std_out, flags=re.M)
