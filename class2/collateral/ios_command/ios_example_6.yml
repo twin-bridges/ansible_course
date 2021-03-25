@@ -3,15 +3,15 @@
   hosts: cisco
   gather_facts: False
   tasks:
-    - ios_facts:
+    - cisco.ios.ios_facts:
 
-    - debug:
+    - ansible.builtin.debug:
         var: ansible_net_model
 
     - name: Executing command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show ip int brief
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output

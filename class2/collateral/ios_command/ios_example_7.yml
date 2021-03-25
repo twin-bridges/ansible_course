@@ -3,9 +3,9 @@
   hosts: cisco
   gather_facts: False
   tasks:
-    - ios_command:
+    - cisco.ios.ios_command:
         commands: show ip int brief
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output["stdout_lines"][0][1]

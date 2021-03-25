@@ -3,7 +3,7 @@
   hosts: cisco5:cisco6
   gather_facts: False
   tasks:
-    - ios_command:
+    - cisco.ios.ios_command:
         commands:
           - command: clear counters gigabitEthernet1
             # Regular expression for "prompt"--simplify
@@ -12,12 +12,12 @@
             answer: "y"
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output
 
-    - ios_command:
+    - cisco.ios.ios_command:
         commands: show interfaces gigabitEthernet1
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ output.stdout[0] }}"

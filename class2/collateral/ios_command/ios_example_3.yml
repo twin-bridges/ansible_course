@@ -3,12 +3,12 @@
   hosts: cisco
   gather_facts: False
   tasks:
-    - ios_facts:
+    - cisco.ios.ios_facts:
 
-    - debug:
+    - ansible.builtin.debug:
         var: ansible_net_model
 
-    - debug:
+    - ansible.builtin.debug:
         msg:
           - "{{ ansible_net_serialnum }}"
           - "{{ ansible_net_system }}"

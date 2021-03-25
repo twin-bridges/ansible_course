@@ -3,4 +3,4 @@
   hosts: cisco
   gather_facts: no
   tasks:
-    - ios_facts:
+    - cisco.ios.ios_facts:

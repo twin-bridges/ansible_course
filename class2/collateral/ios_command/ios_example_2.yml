@@ -2,4 +2,4 @@
 - name: IOS Example
   hosts: cisco
   tasks:
-    - ios_facts:
+    - cisco.ios.ios_facts:

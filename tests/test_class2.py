@@ -1,16 +1,43 @@
 import os
 import re
-import subprocess
+import pytest
+from pathlib import Path
 
-from utilities import remove_ansible_warnings
+from utilities import subprocess_runner, remove_ansible_warnings
 
 
-def subprocess_runner(cmd_list, exercise_dir):
-    with subprocess.Popen(
-        cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=exercise_dir
-    ) as proc:
-        std_out, std_err = proc.communicate()
-    return (std_out.decode(), std_err.decode(), proc.returncode)
+TEST_CASES = [
+    "../class2/collateral/cli_command/cli_command_1.yml",
+    "../class2/collateral/eos_command/eos_example_1.yml",
+    "../class2/collateral/eos_command/eos_example_2.yml",
+    "../class2/collateral/eos_command/eos_example_3.yml",
+    "../class2/collateral/eos_command/eos_example_4.yml",
+    "../class2/collateral/eos_command/eos_example_5.yml",
+    "../class2/collateral/eos_command/eos_example_6.yml",
+    "../class2/collateral/hostvars/test1/simple_pb1.yml",
+    "../class2/collateral/hostvars/test1/simple_pb2.yml",
+    "../class2/collateral/hostvars/test2/simple_pb2.yml",
+    "../class2/collateral/ios_command/ios_example_1.yml",
+    "../class2/collateral/ios_command/ios_example_2.yml",
+    "../class2/collateral/ios_command/ios_example_3.yml",
+    "../class2/collateral/ios_command/ios_example_4.yml",
+    "../class2/collateral/ios_command/ios_example_5.yml",
+    "../class2/collateral/ios_command/ios_example_6.yml",
+    "../class2/collateral/ios_command/ios_example_7.yml",
+    "../class2/collateral/ios_command/ios_example_8.yml",
+]
+
+
+@pytest.mark.parametrize("test_case", TEST_CASES)
+def test_runner_collateral(test_case):
+    path_obj = Path(test_case)
+    script = path_obj.name
+    script_dir = path_obj.parents[0]
+    cmd_list = ["ansible-playbook", script]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, script_dir)
+    std_err = remove_ansible_warnings(std_err)
+    assert return_code == 0
+    assert std_err == ""
 
 
 def test_class2_ex1a():
