@@ -104,6 +104,7 @@ venv.bak/
 .mypy_cache/
 *.swp
 
+class3/collateral/jinja2/CFGS/*.txt
 class5/examples/backup/backup/*
 class5/collateral/ios_config/backup/*
 bonus1/collateral/napalm_merge/DIFFS/*.txt
