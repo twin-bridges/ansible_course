@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
    - name: Clear Logging Buffer
-     ios_command:
+     cisco.ios.ios_command:
        commands:
          - command: clear logging
            prompt: confirm
@@ -12,5 +12,5 @@
      register: clear_log_output
 
    - name: Print clear log output
-     debug:
+     ansible.builtin.debug:
        var: clear_log_output

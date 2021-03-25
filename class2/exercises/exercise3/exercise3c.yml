@@ -4,12 +4,12 @@
   gather_facts: False
   tasks:
     - name: Gather show version output
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands:
           - show version
           - show lldp neighbors
       register: show_output
 
     - name: Print gathered output
-      debug:
+      ansible.builtin.debug:
         var: show_output["stdout_lines"][1]

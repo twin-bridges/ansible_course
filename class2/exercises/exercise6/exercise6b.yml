@@ -4,20 +4,20 @@
   gather_facts: False
   tasks:
     - name: Gather show ip arp output
-      eos_command:
+      arista.eos.eos_command:
         commands: show ip arp
       register: show_ip_arp
 
     - name: Print show ip arp output
-      debug:
+      ansible.builtin.debug:
         var: show_ip_arp
 
     - name: Gather show ip arp output | json
-      eos_command:
+      arista.eos.eos_command:
         commands: show ip arp | json
       register: show_ip_arp_json
 
     - name: Print show ip arp output json
-      debug:
+      ansible.builtin.debug:
         var: show_ip_arp_json
 

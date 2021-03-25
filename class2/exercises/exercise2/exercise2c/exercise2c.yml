@@ -4,5 +4,5 @@
   gather_facts: False
   tasks:
     - name: Print BGP ASN for cisco hosts
-      debug:
+      ansible.builtin.debug:
         msg: "The ASN for host {{ inventory_hostname }} is {{ bgp_asn }}, the router-id is {{ bgp_router_id }}"

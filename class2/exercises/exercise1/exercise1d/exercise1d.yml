@@ -5,21 +5,21 @@
   vars_files: my_vars.yml
   tasks:
     - name: Print arista5 ansible_facts
-      debug:
+      ansible.builtin.debug:
         var: ansible_facts
 
     - name: Print arista5 net_all_ipv4_addresses
-      debug:
+      ansible.builtin.debug:
         var: net_all_ipv4_addresses
 
     - name: Print arista5 ansible_network_os
-      debug:
+      ansible.builtin.debug:
         var: ansible_network_os
 
     - name: Print arista5 ansible_host
-      debug:
+      ansible.builtin.debug:
         var: ansible_host
 
     - name: Print desired eos version
-      debug:
+      ansible.builtin.debug:
         var: desired_eos_version

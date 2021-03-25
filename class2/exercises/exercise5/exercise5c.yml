@@ -3,12 +3,12 @@
   hosts: juniper
   gather_facts: False
   tasks:
-    - junos_command:
+    - junipernetworks.junos.junos_command:
         commands: show interfaces terse
       register: interfaces
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         intf_line: "{{ interfaces['stdout_lines'][0][21] }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "Primary IP: {{ intf_line.split()[-1] }}"
