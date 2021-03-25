@@ -1,12 +1,22 @@
-import subprocess
+import pytest
+from pathlib import Path
+from utilities import subprocess_runner, remove_ansible_warnings
+
+TEST_CASES = [
+    "../class1/collateral/playbook_structure/simple_pb.yml",
+]
 
 
-def subprocess_runner(cmd_list, exercise_dir):
-    with subprocess.Popen(
-        cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=exercise_dir
-    ) as proc:
-        std_out, std_err = proc.communicate()
-    return (std_out.decode(), std_err.decode(), proc.returncode)
+@pytest.mark.parametrize("test_case", TEST_CASES)
+def test_runner_collateral(test_case):
+    path_obj = Path(test_case)
+    script = path_obj.name
+    script_dir = path_obj.parents[0]
+    cmd_list = ["ansible-playbook", script]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, script_dir)
+    std_err = remove_ansible_warnings(std_err)
+    assert return_code == 0
+    assert std_err == ""
 
 
 def test_class1_ex1a():

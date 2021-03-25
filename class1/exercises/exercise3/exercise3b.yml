@@ -3,5 +3,5 @@
   hosts: localhost
   gather_facts: False
   tasks:
-    - debug:
+    - ansible.builtin.debug:
         var: ansible_host

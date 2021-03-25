@@ -3,8 +3,8 @@
   hosts: arista:cisco:nxos1
   gather_facts: False
   tasks:
-    - ping:
+    - ansible.builtin.ping:
 
-    - ping:
+    - ansible.builtin.ping:
 
-    - ping:
+    - ansible.builtin.ping:

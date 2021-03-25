@@ -2,5 +2,5 @@
 - name: Exercise 3a
   hosts: localhost
   tasks:
-    - debug:
+    - ansible.builtin.debug:
         var: ansible_host
