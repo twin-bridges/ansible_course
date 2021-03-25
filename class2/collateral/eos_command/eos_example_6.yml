@@ -5,11 +5,11 @@
 
   tasks:
     - name: "Show command (list of commands)"
-      eos_command:
+      arista.eos.eos_command:
         commands: 
           - show interfaces
           - show arp
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output

@@ -3,7 +3,7 @@
   hosts: cisco:arista
   gather_facts: False
   tasks:
-    - cli_command:
+    - ansible.netcommon.cli_command:
         command: show ip int brief
       register: output
 

@@ -5,15 +5,15 @@
 
   tasks:
     - name: SSH Fact Gathering
-      eos_facts:
+      arista.eos.eos_facts:
 
     - name: EAPI Fact Gathering
       vars:
         ansible_connection: httpapi
-      eos_facts:
+      arista.eos.eos_facts:
 
     - name: Execute Show Command (eapi)
       vars:
         ansible_connection: httpapi
-      eos_command:
+      arista.eos.eos_command:
         commands: show arp

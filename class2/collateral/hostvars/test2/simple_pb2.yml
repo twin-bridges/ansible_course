@@ -3,5 +3,5 @@
   hosts: cisco1:cisco2
   gather_facts: False
   tasks:
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ as_number }} --> {{ bgp_router_id }}"

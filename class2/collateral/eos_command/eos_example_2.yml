@@ -3,8 +3,8 @@
   hosts: arista5
   gather_facts: False
   tasks:
-    - eos_facts:
+    - arista.eos.eos_facts:
 
-    - eos_facts:
+    - arista.eos.eos_facts:
       vars: 
         ansible_connection: httpapi

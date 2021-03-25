@@ -5,9 +5,9 @@
 
   tasks:
     - name: Show command using pipe json
-      eos_command:
+      arista.eos.eos_command:
         commands: show interfaces | json
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output.stdout[0]["interfaces"]

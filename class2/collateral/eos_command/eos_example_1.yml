@@ -2,4 +2,4 @@
 - name: EOS Example
   hosts: arista
   tasks:
-    - eos_facts:
+    - arista.eos.eos_facts:
