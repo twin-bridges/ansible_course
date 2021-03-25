@@ -3,23 +3,23 @@
   hosts: cisco
   gather_facts: False
   tasks:
-    - ios_facts:
+    - cisco.ios.ios_facts:
       tags: facts_only
 
-    - debug:
+    - ansible.builtin.debug:
         var: ansible_net_model
       tags: facts_only
 
-    - ios_command:
+    - cisco.ios.ios_command:
         commands: show ip int brief
       tags: show_ip
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output
       tags: show_ip
 
-    - debug:
+    - ansible.builtin.debug:
         msg: Hello world
       tags:
         - facts_only

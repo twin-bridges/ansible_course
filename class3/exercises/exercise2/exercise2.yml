@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Gather show vlan id
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: "show vlan id {{ item }}"
       register: vlans 
       loop:
@@ -14,5 +14,5 @@
         - 4
 
     - name: 'Only print the output of "show vlan id 4"'
-      debug:
+      ansible.builtin.debug:
         var: vlans["results"][3]["stdout_lines"]

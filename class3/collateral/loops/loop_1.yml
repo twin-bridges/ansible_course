@@ -3,7 +3,7 @@
   hosts: local
   tasks:
     - name: Test with_items
-      debug:
+      ansible.builtin.debug:
         msg: Hello world
       with_items:
         - 10.10.10.1
@@ -13,7 +13,7 @@
         - 10.10.50.1
 
     - name: Test loop
-      debug:
+      ansible.builtin.debug:
         msg: Hello world (loop)
       loop:
         - 10.10.10.1

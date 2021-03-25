@@ -3,10 +3,10 @@
   hosts: cisco5
   gather_facts: False
   tasks:
-    - ios_command:
+    - cisco.ios.ios_command:
         commands:
           - show run | inc ntp
       register: output
     
-    - debug:
+    - ansible.builtin.debug:
         var: output

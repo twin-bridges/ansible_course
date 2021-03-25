@@ -8,16 +8,16 @@
 
   tasks:
     - name: Example of list flattening
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item }}"
       with_items: "{{ net_devices }}"
 
     - name: Do not flatten
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item }}"
       with_list: "{{ net_devices }}"
 
     - name: No flattening
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item }}"
       loop: "{{ net_devices }}"

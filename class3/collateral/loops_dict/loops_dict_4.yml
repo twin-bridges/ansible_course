@@ -15,11 +15,11 @@
 
   tasks:
     - name: Test with_dict
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item.value.ip_addr }}"
       with_dict: "{{ my_devices }}"
 
     - name: Test loop
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item.value['ip_addr'] }}"
       loop: "{{ my_devices | dict2items }}"

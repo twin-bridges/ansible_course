@@ -1,12 +1,50 @@
-import subprocess
+import pytest
+from pathlib import Path
+
+from utilities import subprocess_runner, remove_ansible_warnings
 
 
-def subprocess_runner(cmd_list, exercise_dir):
-    with subprocess.Popen(
-        cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=exercise_dir
-    ) as proc:
-        std_out, std_err = proc.communicate()
-    return (std_out.decode(), std_err.decode(), proc.returncode)
+TEST_CASES = [
+    "../class3/collateral/conditionals/test_when_1.yml",
+    "../class3/collateral/conditionals/test_when_2.yml",
+    "../class3/collateral/conditionals/test_when_3.yml",
+    "../class3/collateral/conditionals/test_when_4.yml",
+    "../class3/collateral/conditionals/test_when_5.yml",
+    "../class3/collateral/conditionals/test_when_6.yml",
+    "../class3/collateral/conditionals/test_when_7.yml",
+    "../class3/collateral/conditionals/test_when_8.yml",
+    "../class3/collateral/conditionals/test_when_9.yml",
+    "../class3/collateral/jinja2/j2_conditional.yml",
+    "../class3/collateral/jinja2/j2_includes.yml",
+    "../class3/collateral/jinja2/j2_loop.yml",
+    "../class3/collateral/jinja2/j2_loop_dict.yml",
+    "../class3/collateral/jinja2/j2_test.yml",
+    "../class3/collateral/jinja2_modular/j2_test.yml",
+    "../class3/collateral/loops/loop_1.yml",
+    "../class3/collateral/loops/loop_2.yml",
+    "../class3/collateral/loops/loop_3.yml",
+    "../class3/collateral/loops_and_when/loop_and_when_1.yml",
+    "../class3/collateral/loops_and_when/loop_and_when_2.yml",
+    "../class3/collateral/loops_dict/loops_dict_1.yml",
+    "../class3/collateral/loops_dict/loops_dict_2.yml",
+    "../class3/collateral/loops_dict/loops_dict_3.yml",
+    "../class3/collateral/loops_dict/loops_dict_4.yml",
+    "../class3/collateral/tags_limit/ios_config_ex.yml",
+    "../class3/collateral/tags_limit/ios_example.yml",
+    "../class3/collateral/tags_limit/retrieve_ntp.yml",
+]
+
+
+@pytest.mark.parametrize("test_case", TEST_CASES)
+def test_runner_collateral(test_case):
+    path_obj = Path(test_case)
+    script = path_obj.name
+    script_dir = path_obj.parents[0]
+    cmd_list = ["ansible-playbook", script]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, script_dir)
+    std_err = remove_ansible_warnings(std_err)
+    assert return_code == 0
+    assert std_err == ""
 
 
 def test_class3_ex1a():

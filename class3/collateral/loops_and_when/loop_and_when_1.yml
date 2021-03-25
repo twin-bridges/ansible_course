@@ -10,13 +10,13 @@
         - 10.10.50.1
   tasks:
     - name: Test with_items
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item }}"
       with_items: "{{ my_devices }}"
       when: False
 
     - name: Test using loop
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item }}"
       loop: "{{ my_devices }}"
       when: True

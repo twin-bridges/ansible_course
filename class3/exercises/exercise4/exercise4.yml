@@ -3,6 +3,6 @@
   hosts: arista
   gather_facts: False
   tasks:
-    - template:
+    - ansible.builtin.template:
         src: arista.j2
         dest: "./CFGS/{{ inventory_hostname }}.txt"
