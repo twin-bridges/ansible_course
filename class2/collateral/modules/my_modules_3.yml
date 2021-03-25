@@ -2,7 +2,7 @@
 - name: Simple Playbook
   hosts: servers
   tasks:
-    - ping:
+    - ansible.builtin.ping:
 
-    - debug:
+    - ansible.builtin.debug:
         msg: Hello World

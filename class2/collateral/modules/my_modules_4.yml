@@ -2,13 +2,13 @@
 - name: Simple Playbook
   hosts: servers
   tasks:
-    - ping:
+    - ansible.builtin.ping:
 
-    - debug:
+    - ansible.builtin.debug:
         msg: Hello World
 
     - name: Install Netmiko
-      pip: 
+      ansible.builtin.pip: 
         name: netmiko
         virtualenv: /home/ktbyers/VENV/py3_venv
-        version: 2.4.2
+        version: 3.3.3

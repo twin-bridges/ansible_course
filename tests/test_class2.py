@@ -25,6 +25,13 @@ TEST_CASES = [
     "../class2/collateral/ios_command/ios_example_6.yml",
     "../class2/collateral/ios_command/ios_example_7.yml",
     "../class2/collateral/ios_command/ios_example_8.yml",
+    "../class2/collateral/modules/my_modules_1.yml",
+    "../class2/collateral/priv_escalation/enable.yml",
+    "../class2/collateral/priv_escalation/enable_2.yml",
+    "../class2/collateral/setfact/simple_pb.yml",
+    # "../class2/collateral/setfact/test_prompt.yml",
+    "../class2/collateral/variables/simple_pb.yml",
+    "../class2/collateral/variables/simple_pb_1.yml",
 ]
 
 

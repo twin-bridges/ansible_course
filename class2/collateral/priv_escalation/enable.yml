@@ -4,9 +4,9 @@
   hosts: cisco1
   gather_facts: False
   tasks:
-    - ios_command:
+    - cisco.ios.ios_command:
         commands: show run
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output

@@ -3,12 +3,11 @@
   hosts: cisco5
   gather_facts: False
   tasks:
-
     - name: Test setting a fact
-      set_fact:
+      ansible.builtin.set_fact:
         bgp_asn: 22
         bgp_router_id: 172.31.101.102
 
     - name: Debug fact
-      debug:
+      ansible.builtin.debug:
         msg: "{{ bgp_asn }} --> {{ bgp_router_id }}"

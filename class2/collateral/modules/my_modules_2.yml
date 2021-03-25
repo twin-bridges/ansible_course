@@ -2,4 +2,4 @@
 - name: Simple Playbook
   hosts: servers
   tasks:
-    - ping:
+    - ansible.builtin.ping:

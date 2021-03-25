@@ -6,9 +6,9 @@
   become: yes
   become_method: enable
   tasks:
-    - ios_command:
+    - cisco.ios.ios_command:
         commands: show run
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output
