@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Merge provided configuration with device configuration
-      nxos_vlans:
+      cisco.nxos.nxos_vlans:
         config:
           - name: Blue10
             vlan_id: "10"

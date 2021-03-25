@@ -3,20 +3,20 @@
   gather_facts: False
   tasks:
     - name: Show interface config (eos)
-      eos_command:
+      arista.eos.eos_command:
         commands:
           - show run int Loopback99
       register: output
       tags: eos
       when: "ansible_network_os == 'eos'"
 
-    - debug:
+    - ansible.builtin.debug:
         var: output["stdout_lines"]
       tags: eos
       when: "ansible_network_os == 'eos'"
 
     - name: Show interface config (nxos)
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands:
           - show run int Ethernet1/3
           - show run int Ethernet1/4
@@ -24,13 +24,13 @@
       tags: nxos
       when: "ansible_network_os == 'nxos'"
 
-    - debug:
+    - ansible.builtin.debug:
         var: output["stdout_lines"]
       tags: nxos
       when: "ansible_network_os == 'nxos'"
 
     - name: no switchport config
-      nxos_config:
+      cisco.nxos.nxos_config:
         parents: "interface {{ item }}"
         lines:
           - no switchport

@@ -3,16 +3,16 @@
   hosts: nxos
   gather_facts: True
   tasks:
-    - debug:
+    - ansible.builtin.debug:
         var: ansible_facts
 
     - name: Test Assert
-      assert:
+      ansible.builtin.assert:
         that:
           - True
           - ansible_facts.net_model == "Nexus9000 9000v Chassis"
           - ansible_facts.net_hostname == "nxos1"
 
     - name: Test debug task
-      debug:
+      ansible.builtin.debug:
         msg: After assert task

@@ -3,7 +3,7 @@
   gather_facts: False
   tasks:
     - name: Update l2 interface config
-      nxos_l2_interfaces:
+      cisco.nxos.nxos_l2_interfaces:
         config:
           - name: Ethernet1/3
             access:

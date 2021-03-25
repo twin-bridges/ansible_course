@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Ensure mode is trunk
-      eos_l2_interface:
+      arista.eos.eos_l2_interface:
         name: Ethernet7
         mode: trunk
         native_vlan: "7"

@@ -3,7 +3,7 @@
   gather_facts: False
   tasks:
     - name: Update l2 interface config
-      eos_l2_interfaces:
+      arista.eos.eos_l2_interfaces:
         config:
           - name: Ethernet6
             access:

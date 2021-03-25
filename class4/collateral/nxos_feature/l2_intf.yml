@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Configure 'switchport'
-      nxos_interface:
+      cisco.nxos.nxos_interface:
         name: "{{ item }}"
         mode: layer2
       loop:
@@ -12,7 +12,7 @@
         - Ethernet1/4
 
     - name: Ensure mode is trunk
-      nxos_l2_interface:
+      cisco.nxos.nxos_l2_interface:
         name: Ethernet1/4
         mode: trunk
         native_vlan: "4"

@@ -3,27 +3,27 @@
   gather_facts: False
   tasks:
     - name: Show interface config (ios)
-      ios_command:
+      cisco.ios.ios_command:
         commands:
           - show run int Fa0
       register: output
       tags: ios
       when: "ansible_network_os == 'ios'"
 
-    - debug:
+    - ansible.builtin.debug:
         var: output["stdout_lines"]
       tags: ios
       when: "ansible_network_os == 'ios'"
 
     - name: Show interface config (nxos)
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands:
           - show run int Ethernet1/4
       register: output
       tags: nxos
       when: "ansible_network_os == 'nxos'"
 
-    - debug:
+    - ansible.builtin.debug:
         var: output["stdout_lines"]
       tags: nxos
       when: "ansible_network_os == 'nxos'"

@@ -3,7 +3,7 @@
   hosts: nxos
   tasks:
     - name: Configure NEXUS VLANs
-      nxos_vlan:
+      cisco.nxos.nxos_vlan:
         vlan_id: "{{ item.vlan_id }}"
         admin_state: "{{ item.admin_state }}"
         name: "{{ item.name }}"
@@ -12,6 +12,6 @@
 
   handlers:
     - name: write mem
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: copy run start
       changed_when: True

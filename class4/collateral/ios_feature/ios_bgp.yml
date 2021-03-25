@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Testing BGP configuration
-      ios_bgp:
+      cisco.ios.ios_bgp:
         config:
           bgp_as: 42
           router_id: 10.220.88.20

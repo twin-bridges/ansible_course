@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Layer-2 interface (using net_l2_interface)
-      net_l2_interface:
+      ansible.netcommon.net_l2_interface:
         name: Ethernet7
         mode: trunk
         native_vlan: "7"

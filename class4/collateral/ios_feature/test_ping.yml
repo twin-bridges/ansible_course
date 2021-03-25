@@ -4,5 +4,5 @@
   gather_facts: False
   tasks:
     - name: Test reachability
-      ios_ping:
+      cisco.ios.ios_ping:
         dest: 10.220.88.1

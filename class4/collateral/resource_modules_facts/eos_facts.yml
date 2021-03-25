@@ -16,11 +16,11 @@
 
   tasks:
     - name: Test
-      debug:
+      ansible.builtin.debug:
         var: ansible_network_resources
       tags: rm_all
 
     - name: VLANs only
-      debug:
+      ansible.builtin.debug:
         var: ansible_network_resources.vlans
       tags: vlans

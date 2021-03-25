@@ -3,7 +3,7 @@
   gather_facts: False
   tasks:
     - name: Update l3 interface config
-      eos_l3_interfaces:
+      arista.eos.eos_l3_interfaces:
         config:
           - name: Loopback99
             ipv4:

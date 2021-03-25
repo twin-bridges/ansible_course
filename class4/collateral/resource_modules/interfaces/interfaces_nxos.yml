@@ -3,7 +3,7 @@
   gather_facts: False
   tasks:
     - name: Update interface config
-      nxos_interfaces:
+      cisco.nxos.nxos_interfaces:
         config:
           - name: Ethernet1/4
             description: 'Testing Ansible configuration'
@@ -11,7 +11,7 @@
         state: merged
 
     - name: Configure ports to be switchports
-      nxos_interfaces:
+      cisco.nxos.nxos_interfaces:
         config:
           - name: "{{ item }}"
             enabled: True

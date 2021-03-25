@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Configure the login banner
-      ios_banner:
+      cisco.ios.ios_banner:
         banner: login
         text: |
           *****************************************
@@ -16,14 +16,14 @@
       tags: banner_add
 
     - name: Configure the login banner
-      ios_banner:
+      cisco.ios.ios_banner:
         banner: login
         text: "{{ lookup('file', './ios_banner.txt') }}"
         state: present
       tags: banner_add_file
 
     - name: Configure the login banner
-      ios_banner:
+      cisco.ios.ios_banner:
         banner: login
         state: absent
       tags: banner_remove

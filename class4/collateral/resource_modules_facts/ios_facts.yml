@@ -16,5 +16,5 @@
 
   tasks:
     - name: Test
-      debug:
+      ansible.builtin.debug:
         var: ansible_network_resources

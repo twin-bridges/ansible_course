@@ -3,7 +3,7 @@
   gather_facts: False
   tasks:
     - name: Update l3 interface config
-      nxos_l3_interfaces:
+      cisco.nxos.nxos_l3_interfaces:
         config:
           - name: Ethernet1/4
             ipv4:
@@ -15,7 +15,7 @@
   gather_facts: False
   tasks:
     - name: Update l3 interface config
-      nxos_l3_interfaces:
+      cisco.nxos.nxos_l3_interfaces:
         config:
           - name: Ethernet1/4
             ipv4:
