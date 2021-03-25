@@ -8,6 +8,6 @@
 
   tasks:
     - name: This variable is defined
-      debug:
+      ansible.builtin.debug:
         msg: Variable defined
       when: version is defined

@@ -7,6 +7,6 @@
 
   tasks:
     - name: Testing string equality
-      debug:
+      ansible.builtin.debug:
         msg: whatever
       when: my_str == 'whatever'

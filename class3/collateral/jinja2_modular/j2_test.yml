@@ -3,6 +3,6 @@
   hosts: cisco1
   gather_facts: False
   tasks:
-    - template:
+    - ansible.builtin.template:
         src: modular_template.j2
         dest: "./CFGS/{{ inventory_hostname }}.txt"

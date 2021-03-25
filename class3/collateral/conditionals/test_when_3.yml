@@ -5,12 +5,12 @@
 
   tasks:
     - name: Hard-coded to False
-      debug:
+      ansible.builtin.debug:
         msg: Hello World is False
       when: False
 
     - name: Hard-coded to True
-      debug:
+      ansible.builtin.debug:
         msg: Hello World is True
       when: True
 

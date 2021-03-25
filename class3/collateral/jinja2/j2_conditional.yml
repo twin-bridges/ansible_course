@@ -10,6 +10,6 @@
     dhcp_netmask: 255.255.255.0
     dhcp_gateway: 192.168.200.1
   tasks:
-    - template:
+    - ansible.builtin.template:
         src: dhcp_config.j2
         dest: "./CFGS/{{ inventory_hostname }}-dhcp.txt"

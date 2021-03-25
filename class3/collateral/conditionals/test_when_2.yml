@@ -4,7 +4,7 @@
   gather_facts: False
 
   tasks:
-    - debug:
+    - ansible.builtin.debug:
         msg: Hello World
       when: False
 

@@ -13,6 +13,6 @@
       - GigabitEthernet7
 
   tasks:
-    - template:
+    - ansible.builtin.template:
         src: int_config.j2
         dest: "./CFGS/{{ inventory_hostname }}-interfaces.txt"

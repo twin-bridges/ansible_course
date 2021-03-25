@@ -7,10 +7,10 @@
     version: "Cisco IOS running version 15.2"
 
   tasks:
-    - command: /bin/false
+    - ansible.builtin.command: /bin/false
       register: result
       ignore_errors: True
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "Hello world (failed result)"
       when: result is failed

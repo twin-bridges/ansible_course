@@ -9,6 +9,6 @@
 
   tasks:
     - name: Substring in larger string
-      debug:
+      ansible.builtin.debug:
         msg: This is Cisco IOS
       when: "'Cisco IOS' in version"

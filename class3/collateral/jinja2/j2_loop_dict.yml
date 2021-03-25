@@ -9,6 +9,6 @@
       GigabitEthernet3: {"mode": "access", "access_vlan": 40}
       GigabitEthernet4: {"mode": "access", "access_vlan": 50}
   tasks:
-    - template:
+    - ansible.builtin.template:
         src: int_config2.j2
         dest: "./CFGS/{{ inventory_hostname }}-interfaces.txt"
