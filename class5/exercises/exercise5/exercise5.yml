@@ -5,16 +5,16 @@
   gather_facts: False
   tasks:
     - name: Execute show users command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show users
       register: output
 
     - name: View connected users
-      debug:
+      ansible.builtin.debug:
         var: output.stdout[0]
 
     - name: Verify connected users
-      assert:
+      ansible.builtin.assert:
         that:
           - '"student1" in output.stdout[0]'
 

@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Config with hierarchy
-      ios_config:
+      cisco.ios.ios_config:
         before: no ip access-list extended TEST-ANSIBLE1
         parents: ip access-list extended TEST-ANSIBLE1
         lines:
@@ -22,11 +22,11 @@
         replace: block
 
     - name: Verify ACL
-      ios_command: 
+      cisco.ios.ios_command: 
         commands: show access-list TEST-ANSIBLE1
       register: output
 
     - name: View ACL
-      debug: 
+      ansible.builtin.debug: 
         var: output.stdout_lines[0]
 

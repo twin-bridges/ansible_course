@@ -4,7 +4,7 @@
   gather_facts: True
   tasks:
     - name: IOS global config
-      ios_config:
+      cisco.ios.ios_config:
         lines:
           - "ip name-server {{ dns_server1 }}"
           - "ip name-server {{ dns_server2 }}"
@@ -16,7 +16,7 @@
             ansible_facts.net_iostype == "IOS"
 
     - name: IOS-XE global config
-      ios_config:
+      cisco.ios.ios_config:
         lines:
           - "ip name-server {{ dns_server1 }} {{ dns_server2 }}"
           - "ip domain name {{ domain_name }}"
@@ -27,7 +27,7 @@
             ansible_facts.net_iostype == "IOS-XE"
 
     - name: EOS global config
-      eos_config:
+      arista.eos.eos_config:
         lines:
           - "ip name-server {{ dns_server1 }}"
           - "ip name-server {{ dns_server2 }}"
@@ -38,7 +38,7 @@
       when: 'ansible_network_os == "eos"'
 
     - name: NX-OS global config
-      nxos_config:
+      cisco.nxos.nxos_config:
         lines:
           - "ip domain-name {{ domain_name }}"
           - "ip name-server {{ dns_server1 }} {{ dns_server2 }}"
@@ -49,7 +49,7 @@
       tags: nxos
 
     - name: Juniper global config
-      junos_config:
+      junipernetworks.junos.junos_config:
         lines:
           - "set system name-server {{ dns_server1 }}"
           - "set system name-server {{ dns_server2 }}"

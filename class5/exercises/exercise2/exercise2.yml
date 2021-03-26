@@ -4,18 +4,18 @@
   gather_facts: True
   tasks:
     - name: Global config
-      set_fact:
+      ansible.builtin.set_fact:
         config: "{{ lookup('template', 'templates/{{ ansible_network_os }}/global.j2') }}"
 
     - name: View the generated configuration
-      debug:
+      ansible.builtin.debug:
         var: config.splitlines()
 
     - name: Global config
       vars:
           # cli_config requires network_cli (Juniper defaults to netconf in inventory)
           ansible_connection: network_cli
-      cli_config:
+      ansible.netcommon.cli_config:
         config: "{{ config }}"
 
 #- name: Global configuration
@@ -26,6 +26,6 @@
 #      vars:
 #          # cli_config requires network_cli
 #          ansible_connection: network_cli
-#      cli_config:
+#      ansible.netcommon.cli_config:
 #        config: "{{ lookup('template', 'templates/{{ ansible_network_os }}/global.j2') }}"
 #      tags: juniper
