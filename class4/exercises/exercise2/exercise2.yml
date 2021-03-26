@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Configure system parameters
-      ios_system:
+      cisco.ios.ios_system:
         hostname: "{{ hostname }}"
         domain_name: "{{ domain_name }}"
         name_servers:

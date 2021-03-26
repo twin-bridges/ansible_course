@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Ensure interface set to routed mode (not idempotent)
-      nxos_interfaces:
+      cisco.nxos.nxos_interfaces:
         config:
           - name: "{{ intf_name }}"
             enabled: True
@@ -12,7 +12,7 @@
         state: merged
 
     - name: Configure IPv4 Address
-      nxos_l3_interfaces:
+      cisco.nxos.nxos_l3_interfaces:
         config:
           - name: "{{ intf_name }}"
             ipv4:
@@ -20,11 +20,11 @@
         state: merged
 
     - name: Ping across interfaces
-      net_ping:
+      ansible.net_common.net_ping:
         dest: "{{ peer_ip }}"
       register: output
 
     - name: Verify at least four ping responses received
-      assert:
+      ansible.builtin.assert:
         that:
           - output.packets_rx >= 4

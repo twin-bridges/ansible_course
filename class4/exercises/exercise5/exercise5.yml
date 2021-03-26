@@ -4,19 +4,19 @@
   gather_facts: False
   tasks:
     - name: Ensure interface configured for layer2
-      nxos_interfaces:
+      cisco.nxos.nxos_interfaces:
         config:
           - name: "{{ intf_name }}"
             mode: "{{ intf_mode }}"
         state: merged
 
     - name: Set switchport mode to trunking (using deprecated module due to issues in newer resource module)
-      nxos_l2_interface:
+      cisco.nxos.nxos_l2_interface:
         name: "{{ intf_name }}"
         mode: "{{ switchport_mode }}"
 
     - name: Configure trunk native VLAN
-      nxos_l2_interfaces:
+      cisco.nxos.nxos_l2_interfaces:
         config:
           - name: "{{ intf_name }}"
             trunk:
@@ -24,15 +24,15 @@
         state: merged
 
     - name: Gather show information from NX-OS devices
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: 'show interface {{ intf_name }} trunk | json'
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         trunk_dict: "{{ output.stdout[0].TABLE_interface.ROW_interface }}"
 
     - name: "Verify {{ intf_name }} is trunking and has correct native VLAN"
-      assert:
+      ansible.builtin.assert:
         that:
           - trunk_dict.status == 'trunking'
           - trunk_dict.native == "{{ native_vlan }}"

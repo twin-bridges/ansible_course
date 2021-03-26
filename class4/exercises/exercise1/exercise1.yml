@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Configure login banner on Cisco IOS
-      ios_banner:
+      cisco.ios.ios_banner:
         banner: login
         text: |
           **********************************************************
@@ -17,6 +17,6 @@
  
   handlers:
     - name: write mem
-      ios_command:
+      cisco.ios.ios_command:
         commands: write mem
       changed_when: True
