@@ -3,9 +3,9 @@
   hosts: local
   tasks:
     - name: Load variables from file into my_var
-      include_vars:
+      ansible.builtin.include_vars:
         file: some_vars.yml
         name: my_var
 
-    - debug:
+    - ansible.builtin.debug:
        var: my_var

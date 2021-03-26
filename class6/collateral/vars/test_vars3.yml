@@ -3,9 +3,9 @@
   hosts: local
   tasks:
     - name: Recurse directory for variables
-      include_vars:
+      ansible.builtin.include_vars:
         dir: test_dir
         name: my_var
 
-    - debug:
+    - ansible.builtin.debug:
        var: my_var

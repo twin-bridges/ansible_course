@@ -3,7 +3,7 @@
   hosts: local
   tasks:
     - name: Include vars from file
-      include_vars: some_vars.yml
+      ansible.builtin.include_vars: some_vars.yml
 
-    - debug:
+    - ansible.builtin.debug:
        var: key1

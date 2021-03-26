@@ -4,21 +4,21 @@
   gather_facts: True
   tasks:
     - name: Include IOS tasks
-      include_tasks: "example_tasks/{{ ansible_facts.net_iostype }}/tasks.yml"
+      ansible.builtin.include_tasks: "example_tasks/{{ ansible_facts.net_iostype }}/tasks.yml"
       when: ansible_facts.net_iostype is defined and 
             ansible_facts.net_iostype == "IOS"
 
     - name: Include IOS-XE tasks
-      include_tasks: "example_tasks/{{ ansible_facts.net_iostype }}/tasks.yml"
+      ansible.builtin.include_tasks: "example_tasks/{{ ansible_facts.net_iostype }}/tasks.yml"
       when: ansible_facts.net_iostype is defined and
             ansible_facts.net_iostype == "IOS-XE"
 
     - name: Include EOS tasks
-      include_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml"
+      ansible.builtin.include_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml"
       when: 'ansible_network_os == "eos"'
 
     - name: Include NX-OS tasks
-      include_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml"
+      ansible.builtin.include_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml"
       when: 'ansible_network_os == "nxos"'
 
 - name: Global configuration using includes
@@ -26,4 +26,4 @@
   gather_facts: False
   tasks:
     - name: Include Junos tasks
-      include_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml"
+      ansible.builtin.include_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml"

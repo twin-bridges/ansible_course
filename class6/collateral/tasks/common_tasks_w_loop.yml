@@ -1,5 +1,5 @@
 - name: In common_tasks.yml
-  debug:
+  ansible.builtin.debug:
     msg: "Variable from loop: {{ item }}"
   loop:
     - 10.1.1.1
@@ -7,7 +7,7 @@
     - 10.1.1.3
     - 10.1.1.4
 
-- debug:
+- ansible.builtin.debug:
     msg: Hello world
   loop:
     - 10.1.1.1

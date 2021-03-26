@@ -1,6 +1,6 @@
 - name: In common_tasks.yml
-  debug:
+  ansible.builtin.debug:
     msg: "Variable from loop: {{ item }}"
 
-- debug:
+- ansible.builtin.debug:
     msg: Hello world

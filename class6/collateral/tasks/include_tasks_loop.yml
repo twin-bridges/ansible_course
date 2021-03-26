@@ -2,7 +2,7 @@
 - hosts: local
   tasks:
 #    - name: Runtime with loop
-#      include_tasks: common_tasks.yml
+#      ansible.builtin.include_tasks: common_tasks.yml
 #      loop:
 #        - 10.1.1.1
 #        - 10.1.1.2
@@ -10,8 +10,8 @@
 #        - 10.1.1.4
 
     - name: Import (pre-processed at playbook parsing) - will fail
-      import_tasks: common_tasks.yml
-      # import_tasks: common_tasks_w_loop.yml
+      ansible.builtin.import_tasks: common_tasks.yml
+      # ansible.builtin.import_tasks: common_tasks_w_loop.yml
       loop:
         - 10.1.1.1
         - 10.1.1.2

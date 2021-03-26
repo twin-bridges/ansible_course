@@ -1,27 +1,37 @@
-import subprocess
 import re
 import pytest
+from pathlib import Path
+from utilities import subprocess_runner, remove_ansible_warnings
+
+TEST_CASES = [
+    "../class6/collateral/roles_test/test_pb1.yml",
+    "../class6/collateral/roles_test/test_pb2.yml",
+    "../class6/collateral/roles_test/test_pb3.yml",
+    "../class6/collateral/roles_test/test_pb4.yml",
+    "../class6/collateral/roles_test/test_pb5.yml",
+    "../class6/collateral/tasks/include_import_tags.yml",
+    "../class6/collateral/tasks/include_import_when.yml",
+    "../class6/collateral/tasks/include_tasks_loop.yml",
+    "../class6/collateral/tasks/standalone_pb.yml",
+    "../class6/collateral/tasks/standalone_pb2.yml",
+    "../class6/collateral/tasks/standalone_pb3.yml",
+    "../class6/collateral/tasks/standalone_pb4.yml",
+    "../class6/collateral/vars/test_vars1.yml",
+    "../class6/collateral/vars/test_vars2.yml",
+    "../class6/collateral/vars/test_vars3.yml",
+]
 
 
-def subprocess_runner(cmd_list, exercise_dir):
-    with subprocess.Popen(
-        cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=exercise_dir
-    ) as proc:
-        std_out, std_err = proc.communicate()
-    return (std_out.decode(), std_err.decode(), proc.returncode)
-
-
-def remove_ansible_warnings(std_err):
-    """Remove the specified warnings from std_err."""
-    warning_list = [
-        r"^.WARNING.: Ignoring timeout.10. for .*$",
-    ]
-
-    # Remove warnings one at a time from std_err
-    for ansible_warn in warning_list:
-        std_err = re.sub(ansible_warn, "", std_err, flags=re.M)
-
-    return std_err.strip()
+@pytest.mark.parametrize("test_case", TEST_CASES)
+def test_runner_collateral(test_case):
+    path_obj = Path(test_case)
+    script = path_obj.name
+    script_dir = path_obj.parents[0]
+    cmd_list = ["ansible-playbook", script]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, script_dir)
+    std_err = remove_ansible_warnings(std_err)
+    assert return_code == 0
+    assert std_err == ""
 
 
 @pytest.mark.parametrize("exercise", ["exercise1a.yml", "exercise1b.yml"])

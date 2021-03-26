@@ -1,5 +1,5 @@
 - name: IOS-XE global config
-  ios_config:
+  cisco.ios.ios_config:
     lines:
       - "ip name-server {{ dns_server1 }} {{ dns_server2 }}"
       - "ip domain name {{ domain_name }}"

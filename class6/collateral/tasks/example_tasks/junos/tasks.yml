@@ -1,5 +1,5 @@
 - name: Juniper global config
-  junos_config:
+  junipernetworks.junos.junos_config:
     lines:
       - "set system name-server {{ dns_server1 }}"
       - "set system name-server {{ dns_server2 }}"

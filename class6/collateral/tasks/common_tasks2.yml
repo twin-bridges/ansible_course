@@ -1,9 +1,9 @@
 - name: In common_tasks2.yml
-  debug:
+  ansible.builtin.debug:
     msg: Hello world
   tags: 
     - foo2
 
 - name: Second task
-  debug:
+  ansible.builtin.debug:
     msg: Hello world2

@@ -1,7 +1,7 @@
 - name: Set IP Address to 10.1.1.1
-  set_fact:
+  ansible.builtin.set_fact:
     ip_address: 10.1.1.1
 
 - name: Print IP Address
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ip_address }}"
