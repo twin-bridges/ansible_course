@@ -9,5 +9,5 @@
         optional_args:
           port: 8443
 
-    - debug:
+    - ansible.builtin.debug:
         var: napalm_bgp_neighbors

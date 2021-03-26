@@ -8,6 +8,6 @@
         filter: config
 
     - name: Save the config locally
-      copy:
+      ansible.builtin.copy:
         content: "{{ napalm_config.running }}"
         dest: "{{ inventory_hostname }}.txt"

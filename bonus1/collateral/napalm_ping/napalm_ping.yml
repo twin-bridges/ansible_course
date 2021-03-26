@@ -8,12 +8,12 @@
         destination: 8.8.8.8
       register: ping_output
 
-    - debug:
+    - ansible.builtin.debug:
         msg: 
           - "Pings sent: {{ ping_output.ping_results.success.probes_sent }}"
           - "Packet loss: {{ ping_output.ping_results.success.packet_loss }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "------- PING FAILED --------"
       when: ping_output.ping_results.success.packet_loss > 1
 

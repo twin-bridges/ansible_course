@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Template from a common template
-      template:
+      ansible.builtin.template:
         src: "templates/{{ ansible_network_os }}_include/arista-tpl.j2"
         dest: "CFGS/{{ inventory_hostname }}-load.txt"
       tags: template

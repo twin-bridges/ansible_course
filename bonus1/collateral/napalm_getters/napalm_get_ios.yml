@@ -9,7 +9,7 @@
         # filter: facts,interfaces,lldp_neighbors
         # filter: lldp_neighbors
 
-    - debug:
+    - ansible.builtin.debug:
         var: napalm_facts
         # var: napalm_lldp_neighbors
         # var: napalm_interfaces

@@ -7,6 +7,6 @@
       napalm_get_facts:
         filter: facts,interfaces
 
-    - debug:
+    - ansible.builtin.debug:
         var: napalm_facts
 

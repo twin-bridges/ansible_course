@@ -8,5 +8,5 @@
         filter: facts,interfaces
         dev_os: nxos_ssh
 
-    - debug:
+    - ansible.builtin.debug:
         var: napalm_facts

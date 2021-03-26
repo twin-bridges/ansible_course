@@ -17,5 +17,5 @@
           port: "{{ napalm_port[ansible_network_os] }}"
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: napalm_lldp_neighbors

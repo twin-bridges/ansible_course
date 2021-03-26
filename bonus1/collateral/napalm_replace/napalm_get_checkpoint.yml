@@ -10,6 +10,6 @@
           port: 8443
 
     - name: Save the checkpoint
-      copy:
+      ansible.builtin.copy:
         content: "{{ napalm_checkpoint_file }}"
         dest: "{{ inventory_hostname }}.txt"
