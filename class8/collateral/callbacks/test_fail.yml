@@ -8,10 +8,10 @@
 
   tasks:
     - name: Executing command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show ip int brief
       # register: output
 
     - name: Playbook will fail here 'output' is not defined
-      set_fact:
+      ansible.builtin.set_fact:
         show_ip: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"

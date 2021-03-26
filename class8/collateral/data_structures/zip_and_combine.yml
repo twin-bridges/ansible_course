@@ -8,27 +8,27 @@
 
   tasks:
     - name: Executing command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show ip int brief
       register: output
 
     - name: Parse with TextFSM
-      set_fact:
+      ansible.builtin.set_fact:
         show_ip: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
 
     - name: Extract two lists from returned data
-      set_fact:
+      ansible.builtin.set_fact:
         ip_addr: "{{ show_ip  | map(attribute='IPADDR') | list }}"
         interfaces: "{{ show_ip  | map(attribute='INTF') | list }}"
 
     - name: Create list of lists using zip
-      set_fact:
+      ansible.builtin.set_fact:
         new_struct: "{{ interfaces | zip(ip_addr) | list }}"
 
     - name: Create a dictionary with intf_name as the key
-      set_fact:
+      ansible.builtin.set_fact:
         ip_dict: "{{ ip_dict | default({}) | combine({item[0]: item[1]}) }}"
       loop: "{{ new_struct }}"
 
-    - debug:
+    - ansible.builtin.debug:
         var: ip_dict

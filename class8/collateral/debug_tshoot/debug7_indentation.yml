@@ -6,7 +6,7 @@
 
   tasks:
     - name: Invalid indentation
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show interface
          wait_for: True
       register: output

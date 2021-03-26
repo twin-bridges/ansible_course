@@ -12,10 +12,10 @@
           6135303865373766310a303839346130633038386431393438623062373533636264643063646565
           6430
   tasks:
-    - ios_facts:
+    - cisco.ios.ios_facts:
 
-    - debug:
+    - ansible.builtin.debug:
         var: ansible_net_model
 
-    - ios_command:
+    - cisco.ios.ios_command:
         commands: show ip int brief

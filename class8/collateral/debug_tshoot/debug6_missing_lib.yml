@@ -9,5 +9,5 @@
       napalm_get_facts:
         filter: "arp_table"
 
-    - debug:
+    - ansible.builtin.debug:
         var: napalm_arp_table

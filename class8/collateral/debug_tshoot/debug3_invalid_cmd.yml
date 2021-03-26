@@ -6,9 +6,9 @@
 
   tasks:
     - name: Executing invalid command
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show bogus
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output

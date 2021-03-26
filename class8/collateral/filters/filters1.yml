@@ -10,34 +10,34 @@
       key4: val4
 
   tasks:
-    - debug:
+    - ansible.builtin.debug:
         var: number
       when: number | int == 22
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ my_dict | to_nice_yaml(indent=4) }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ my_dict | to_nice_json(indent=4) }}"
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         data: "{{ lookup('file', 'ip_addresses.yml') | from_yaml }}"
 
-    - debug:
+    - ansible.builtin.debug:
         var: data.ip_addresses.la
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         locations: "{{ lookup('file', 'locations.json') | from_json }}"
 
-    - debug:
+    - ansible.builtin.debug:
         var: locations["seattle"]
 
     - name: Default value
-      debug:
+      ansible.builtin.debug:
         msg: "{{ unknown_var | default('Hello') }}"
 
     - name: touch files with an optional mode
-      file:
+      ansible.builtin.file:
         dest: "{{ item.path }}"
         state: touch
         mode: "{{ item.mode | default(omit) }}"

@@ -6,14 +6,14 @@
 
   tasks:
     - name: Executing cmd
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show interface
       register: output
 
     - name: 'Print a string literal named "output"'
-      debug:
+      ansible.builtin.debug:
         msg: output
 
     - name: Invalid escaping missing quotes
-      debug:
+      ansible.builtin.debug:
         msg: {{ output }}

@@ -8,9 +8,9 @@
     - name: Executing 'show interface' command
       vars:
         ansible_ssh_pass: invalid_pass
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show interface
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output

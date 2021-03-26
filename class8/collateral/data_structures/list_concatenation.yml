@@ -8,18 +8,18 @@
 
   tasks:
     - name: Executing 'show ip int brief' command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show ip int brief
       register: output
 
     - name: Parse with textfsm
-      set_fact:
+      ansible.builtin.set_fact:
         show_ip: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
 
     - name: Create a list of interfaces
-      set_fact:
+      ansible.builtin.set_fact:
         intf_list: "{{ intf_list | default([]) + [item['INTF']] }}"
       loop: "{{ show_ip }}"
 
-    - debug:
+    - ansible.builtin.debug:
         var: intf_list

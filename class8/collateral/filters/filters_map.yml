@@ -8,16 +8,16 @@
 
   tasks:
     - name: Executing command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show ip int brief
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         show_ip: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ show_ip }}"
 
-    - debug:
+    - ansible.builtin.debug:
 #        msg: "{{ show_ip  | map(attribute='IPADDR') | list }}"
         msg: "{{ show_ip  | map(attribute='INTF') | list }}"

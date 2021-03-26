@@ -6,7 +6,7 @@
 
   tasks:
     - name: Invalid module name
-      nxos_command1:
+      cisco.nxos.nxos_command1:
         commands: show interface
       register: output
 
