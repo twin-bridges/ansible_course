@@ -1,14 +1,14 @@
 - name: IOS global config
-  ios_config:
+  cisco.ios.ios_config:
     src: ntp-default.j2
   when: 'ansible_network_os == "ios"'
 
 - name: NX-OS global config
-  nxos_config:
+  cisco.nxos.nxos_config:
     src: ntp-nxos.j2
   when: 'ansible_network_os == "nxos"'
 
 - name: EOS global config
-  eos_config:
+  arista.eos.eos_config:
     src: ntp-default.j2
   when: 'ansible_network_os == "eos"'

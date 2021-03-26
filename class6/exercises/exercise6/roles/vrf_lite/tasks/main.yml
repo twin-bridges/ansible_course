@@ -1,12 +1,12 @@
 - name: Debugging of Template
-  set_fact:
+  ansible.builtin.set_fact:
     vrf_config: "{{ lookup('template', 'vrf_lite.j2') }}"
   tags: never
 
-- debug:
+- ansible.builtin.debug:
     msg: "{{ vrf_config.splitlines() }}"
   tags: never
 
 - name: Push configuration
-  ios_config:
+  cisco.ios.ios_config:
     src: vrf_lite.j2

@@ -1,5 +1,5 @@
 - name: IOS global config
-  ios_config:
+  cisco.ios.ios_config:
     lines:
       - "ip name-server {{ dns_server1 }}"
       - "ip name-server {{ dns_server2 }}"

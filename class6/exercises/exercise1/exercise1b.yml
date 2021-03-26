@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
     - name: Loops, Include, and Dynamic Name (exercise1b)
-      include_tasks: "{{ my_tasks }}"
+      ansible.builtin.include_tasks: "{{ my_tasks }}"
       loop:
         - 10.1.1.1
         - 10.1.1.2

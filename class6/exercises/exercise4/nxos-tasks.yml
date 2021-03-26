@@ -1,5 +1,5 @@
 - name: NX-OS global config
-  nxos_config:
+  cisco.nxos.nxos_config:
     lines:
       - "ip domain-name {{ domain_name }}"
       - "ip name-server {{ dns_server1 }} {{ dns_server2 }}"

@@ -1,14 +1,14 @@
 - name: Print Hello1
-  debug:
+  ansible.builtin.debug:
     msg: "Hello1"
   tags: foo1
 
 - name: Print Hello2
-  debug:
+  ansible.builtin.debug:
     msg: "Hello2"
   tags: foo2
 
 - name: Print Hello3
-  debug:
+  ansible.builtin.debug:
     msg: "Hello3"
   tags: foo3

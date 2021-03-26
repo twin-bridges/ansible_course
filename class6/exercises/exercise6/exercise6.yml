@@ -4,5 +4,5 @@
   gather_facts: False
   tasks:
     - name: VRF Lite Role
-      import_role: 
+      ansible.builtin.import_role: 
         name: vrf_lite

@@ -1,5 +1,5 @@
 - name: Print out IP address
-  debug:
+  ansible.builtin.debug:
     msg: "IP Addr: {{ item }}"
   loop:
     - 10.1.1.1

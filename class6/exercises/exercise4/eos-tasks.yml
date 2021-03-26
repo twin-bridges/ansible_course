@@ -1,5 +1,5 @@
 - name: EOS global config
-  eos_config:
+  arista.eos.eos_config:
     lines:
       - "ip name-server {{ dns_server1 }}"
       - "ip name-server {{ dns_server2 }}"
