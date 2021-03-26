@@ -10,18 +10,19 @@
 
   tasks:
     - name: Executing command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show ip int brief
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         show_ip: "{{ output.stdout[0] }}"
 
+    # Only abbreviated name works: needs migrated to 'cli_parse'
     - name: TextFSM test
       textfsm_parser:
         file: "{{ fsm_template }}"
         content: "{{ show_ip }}"
         name: show_ip_parsed
 
-    - debug:
+    - ansible.builtin.debug:
         var: show_ip_parsed

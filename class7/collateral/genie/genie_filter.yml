@@ -10,15 +10,15 @@
   tasks:
 
     - name: Executing command
-      ios_command:
+      cisco.ios.ios_command:
         commands: "{{ command }}"
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         output_struct: "{{ output.stdout[0] | clay584.genie.parse_genie(command=command, os='iosxe') }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ output_struct }}"

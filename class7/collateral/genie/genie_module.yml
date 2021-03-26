@@ -18,5 +18,5 @@
     register: output
 
   - name: Display Output
-    debug:
+    ansible.builtin.debug:
       msg: "{{ output }}"

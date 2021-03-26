@@ -4,41 +4,41 @@
   gather_facts: False
   tasks:
     - name: Generate interface configuration
-      template:
+      ansible.builtin.template:
         src: interfaces.j2
         dest: "./CFGS/{{ inventory_hostname }}/01-{{ inventory_hostname }}-intf.txt"
 
     - name: Set the BGP peer IP using hostvar
-      set_fact:
+      ansible.builtin.set_fact:
         bgp_peer_ip: "{{ hostvars['nxos2']['eth1_4_ip_address'] }}"
       when: "inventory_hostname == 'nxos1'"
 
     - name: Set the BGP peer IP using hostvars
-      set_fact:
+      ansible.builtin.set_fact:
         bgp_peer_ip: "{{ hostvars['nxos1']['eth1_4_ip_address'] }}"
       when: "inventory_hostname == 'nxos2'"
 
     - name: Generate BGP configuration
-      template:
+      ansible.builtin.template:
         src: bgp.j2
         dest: "./CFGS/{{ inventory_hostname }}/02-{{ inventory_hostname }}-bgp.txt"
 
     - name: Assemble the two parts into one configuration change file
-      assemble:
+      ansible.builtin.assemble:
         src: "./CFGS/{{ inventory_hostname }}/"
         dest: "./CFGS/{{ inventory_hostname }}-config.txt"
 
     - name: Deploy configurations to devices
-      nxos_config:
+      cisco.nxos.nxos_config:
         src: "./CFGS/{{ inventory_hostname }}-config.txt"
 
     - name: Verify BGP State
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show ip bgp summary
       register: output
       tags: bgp_out
 
     - name: Show BGP Session
-      debug:
+      ansible.builtin.debug:
         var: output.stdout_lines[0]
       tags: bgp_out

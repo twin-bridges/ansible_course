@@ -7,20 +7,20 @@
 
   tasks:
     - name: Executing command
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show ip bgp summary
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         show_bgp: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
 
     - name: Display returned data structure
-      debug:
+      ansible.builtin.debug:
         msg: "{{ show_bgp[0] }}"
       when: show_bgp != []
 
     - name: Testing BGP is up
-      assert:
+      ansible.builtin.assert:
         that:
           - "'Shut' not in show_bgp[0]['STATE_PFXRCD']"
           - "'Idle' not in show_bgp[0]['STATE_PFXRCD']"

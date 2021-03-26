@@ -9,18 +9,18 @@
 
   tasks:
     - name: Executing command
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: "{{ command }}"
       register: output
 
     - name: Display output as a string
-      debug:
+      ansible.builtin.debug:
         var: output
 
     - name: Use Genie to convert to structured data
-      set_fact:
+      ansible.builtin.set_fact:
         output_struct: "{{ output.stdout[0] | clay584.genie.parse_genie(command=command, os=ansible_network_os) }}"
 
     - name: Display output as structured data
-      debug:
+      ansible.builtin.debug:
         msg: "{{ output_struct }}"

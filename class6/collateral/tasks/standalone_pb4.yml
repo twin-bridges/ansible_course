@@ -1,5 +1,5 @@
 ---
-- name: Global configuration using includes
+- name: "Global configuration using includes (will fail)"
   hosts: cisco:arista:nxos
   gather_facts: True
   tasks:
@@ -11,7 +11,7 @@
       ansible.builtin.import_tasks: "example_tasks/{{ ansible_network_os }}/tasks.yml"
       when: 'ansible_network_os in ["eos", "nxos"]'
 
-- name: Global configuration using includes
+- name: "Global configuration using includes (will fail)"
   hosts: juniper
   gather_facts: False
   tasks:

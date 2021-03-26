@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Merge provided configuration with device configuration
-      eos_vlans:
+      arista.eos.eos_vlans:
         config:
           - name: Blue300
             vlan_id: 300
@@ -17,6 +17,6 @@
   gather_facts: True
   tasks:
     - name: name-server for IOS
-      ios_config:
+      cisco.ios.ios_config:
         lines:
           - "ip name-server 8.8.8.8"

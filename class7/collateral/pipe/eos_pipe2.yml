@@ -4,14 +4,14 @@
   gather_facts: False
   tasks:
     - name: Executing command
-      eos_command:
+      arista.eos.eos_command:
         commands:
           - command: show version
             output: json
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         show_ver: "{{ output['stdout'][0] }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "OS Version: {{ show_ver.version }}"

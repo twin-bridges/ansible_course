@@ -3,7 +3,7 @@
   hosts: cisco1
   gather_facts: False
   tasks:
-    - debug:
+    - ansible.builtin.debug:
         # var: inventory_hostname
         # var: groups
         var: hostvars

@@ -3,13 +3,13 @@
   hosts: cisco1
   gather_facts: True
   tasks:
-    - debug:
+    - ansible.builtin.debug:
         var: hostvars
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ hostvars['cisco5'] }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: 
           - "Cisco1: {{ hostvars['cisco1']['bgp_router_id'] }}"
           - "Cisco2: {{ hostvars['cisco2']['bgp_router_id'] }}"

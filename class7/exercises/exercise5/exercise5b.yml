@@ -5,23 +5,23 @@
 
   tasks:
     - name: Executing command
-      eos_command:
+      arista.eos.eos_command:
         commands: show version
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         output: "{{ output.stdout[0] }}"
 
     - name: "Display 'show version' output as a string"
-      debug:
+      ansible.builtin.debug:
         msg: "{{ output.splitlines() }}"
 
     - name: Parse show version using regular expressions
-      set_fact:
+      ansible.builtin.set_fact:
         os_list: "{{ output | regex_search('^Software image version: (\\S+).*$', '\\1', multiline=True) }}"
 
     - name: Display software version per device
-      debug:
+      ansible.builtin.debug:
         msg:
           - "-----------------------"
           - "{{ inventory_hostname }}:"

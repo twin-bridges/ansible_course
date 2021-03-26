@@ -4,12 +4,12 @@
   gather_facts: False
   tasks:
     - name: Executing command
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show version | json
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         show_ver: "{{ output['stdout'][0] }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "Platform: {{ show_ver.chassis_id }}"

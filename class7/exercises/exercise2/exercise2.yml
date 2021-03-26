@@ -7,7 +7,7 @@
         - name: Attempt configuration using an invalid password
           vars:
             ansible_ssh_pass: "foobar"
-          eos_config:
+          arista.eos.eos_config:
             lines:
               - "ip name-server {{ dns_server1 }}"
               - "ip name-server {{ dns_server2 }}"
@@ -17,7 +17,7 @@
           vars:
             # Use environment variable to avoid checking password in.
             ansible_ssh_pass: "{{ lookup('env', 'ANSIBLE_PASSWORD') }}"
-          eos_config:
+          arista.eos.eos_config:
             lines:
               - "ip name-server {{ dns_server1 }}"
               - "ip name-server {{ dns_server2 }}"

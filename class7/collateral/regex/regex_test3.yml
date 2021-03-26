@@ -5,21 +5,21 @@
 
   tasks:
     - name: Executing command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show version
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         output: "{{ output.stdout[0] }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ output.splitlines() }}"
 
     - name: Show Version (return capture group1)
-      debug:
+      ansible.builtin.debug:
         msg: "{{ output | regex_search('^Processor board ID (\\S+).*$', '\\1', multiline=True) }}"
 
     - name: Show Version (return capture group-named)
-      debug:
+      ansible.builtin.debug:
         msg: "{{ output | regex_search('^Processor board ID (?P<serial_num>\\S+).*$', '\\g<serial_num>', multiline=True) }}"
 

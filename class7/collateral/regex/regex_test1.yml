@@ -5,26 +5,26 @@
 
   tasks:
     - name: Executing command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show ip int brief
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         output: "{{ output.stdout[0] }}"
 
     - name: Strip header information
-      set_fact:
+      ansible.builtin.set_fact:
         show_ip: "{{ output | regex_replace('Interface.*Protocol') | trim }}"
 
-    - debug: 
+    - ansible.builtin.debug: 
         msg: "{{ show_ip.splitlines() }}"
 
     - name: Extract interface and IP columns
-      set_fact:
+      ansible.builtin.set_fact:
         show_ip_list: "{{ show_ip | regex_findall('^(\\S+)\\s+(\\S+)', multiline=True) }}"
 
     - name: Show interfaces with IP addresses
-      debug:
+      ansible.builtin.debug:
         msg: "{{ item }}"
       loop: "{{ show_ip_list }}"
       when: "item[1] != 'unassigned'"

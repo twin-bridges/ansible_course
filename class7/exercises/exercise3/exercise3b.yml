@@ -9,20 +9,20 @@
 
   tasks:
     - name: Executing command
-      eos_command:
+      arista.eos.eos_command:
         commands: "{{ command }}"
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         var: output
 
     # This is only needed so our automated tests work properly
     - name: "Set home directory as ntc_parse doesn't understand ~"
-      set_fact:
+      ansible.builtin.set_fact:
         textfsm_index: "{{ inventory_dir }}/{{textfsm_rel_path }}"
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         output_parsed: "{{ output.stdout[0] | ntc_parse(command, platform, textfsm_index ) }}"
 
-    - debug:
+    - ansible.builtin.debug:
         var: output_parsed

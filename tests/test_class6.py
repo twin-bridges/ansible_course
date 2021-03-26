@@ -15,7 +15,8 @@ TEST_CASES = [
     "../class6/collateral/tasks/standalone_pb.yml",
     "../class6/collateral/tasks/standalone_pb2.yml",
     "../class6/collateral/tasks/standalone_pb3.yml",
-    "../class6/collateral/tasks/standalone_pb4.yml",
+    # Expected to fail
+    # "../class6/collateral/tasks/standalone_pb4.yml",
     "../class6/collateral/vars/test_vars1.yml",
     "../class6/collateral/vars/test_vars2.yml",
     "../class6/collateral/vars/test_vars3.yml",

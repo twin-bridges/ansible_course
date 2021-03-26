@@ -5,17 +5,17 @@
   tasks:
     - block:
         - name: Executing command
-          ios_command:
+          cisco.ios.ios_command:
             commands: show ip int brief
           register: output
           failed_when: True
     
-        - set_fact:
+        - ansible.builtin.set_fact:
             show_ip: "{{ output.stdout[0] }}"
     
-        - debug:
+        - ansible.builtin.debug:
             msg: "{{ show_ip.splitlines() }}"
       when: 'ansible_network_os == "ios"'
       rescue:
-        - debug:
+        - ansible.builtin.debug:
             msg: "An error happened...I want to do something."
