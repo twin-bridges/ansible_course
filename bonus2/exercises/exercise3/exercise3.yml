@@ -5,13 +5,13 @@
 
   tasks:
     - name: Executing command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show ip arp
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         output: "{{ output.stdout[0] }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ output | arp_dict }}"
 

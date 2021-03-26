@@ -1,8 +1,8 @@
 - name: Obtain current 'boot system' values (before changes)
-  import_tasks: current_bootsystem.yml
+  ansible.builtin.import_tasks: current_bootsystem.yml
 
 - name: Prompt to continue
-  pause: 
+  ansible.builtin.pause: 
     prompt: |
 
       >>>>>>>>>>>>>>>>>>
@@ -14,7 +14,7 @@
       >>>>>>>>>>>>>>>>>>
 
 - name: Update 'boot system' to new value
-  ios_config:
+  cisco.ios.ios_config:
     lines:
       - no boot system
       - "boot system flash {{ primary_image.name }}"

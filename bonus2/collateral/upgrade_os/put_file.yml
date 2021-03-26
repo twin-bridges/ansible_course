@@ -3,7 +3,7 @@
   hosts: cisco1
   tasks:
     - name: Copy file
-      net_put:
+      ansible.netcommon.net_put:
         src: my_file1.txt
         dest : flash:/my_file1.txt
         protocol: scp

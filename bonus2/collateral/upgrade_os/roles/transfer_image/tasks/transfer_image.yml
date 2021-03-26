@@ -1,12 +1,12 @@
 - name: Destination PATH
-  debug:
+  ansible.builtin.debug:
     msg: "{{ dest_filesystem }}/{{ primary_image.name }}"
 
 - name: Transfer image file
   vars:
     # Transfer takes forever and a half
     ansible_command_timeout: 21600
-  net_put:
+  ansible.netcommon.net_put:
     src: "{{ primary_image.name }}"
     dest: "{{ dest_filesystem }}/{{ primary_image.name }}"
     protocol: scp

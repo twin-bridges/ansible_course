@@ -1,13 +1,13 @@
 - name: Obtain current 'boot system' values (after changes)
-  ios_command:
+  cisco.ios.ios_command:
     commands: "show run | inc boot.system.*bin"
   register: boot_output
 
 - name: Process Boot Variable
-  set_fact:
+  ansible.builtin.set_fact:
     boot_var: "{{ boot_output.stdout_lines[0] }}"
 
 - name: Display the current boot section
-  debug:
+  ansible.builtin.debug:
     var: boot_var
 

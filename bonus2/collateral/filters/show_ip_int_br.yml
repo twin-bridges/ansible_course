@@ -5,13 +5,13 @@
 
   tasks:
     - name: Executing command
-      ios_command:
+      cisco.ios.ios_command:
         commands: show ip int brief
       register: output
 
     # I mislabeled this variable 'show_ver' in the video
-    - set_fact:
+    - ansible.builtin.set_fact:
         show_ip: "{{ output.stdout[0] }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ show_ip | show_ip_filter }}"

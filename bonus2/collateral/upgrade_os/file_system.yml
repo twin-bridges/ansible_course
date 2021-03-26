@@ -12,29 +12,29 @@
 
   tasks:
     - name: Set the destination file_system to use for file-transfer
-      set_fact:
+      ansible.builtin.set_fact:
         dest_filesystem: "{{ ansible_facts.net_filesystems[0] }}"
 
-    - debug:
+    - ansible.builtin.debug:
         var: dest_filesystem
 
     - name: Verify file_system is an allowed file-system
-      assert:
+      ansible.builtin.assert:
         that:
           - dest_filesystem in allowed_filesystems
 
     - name: Verify sufficient space for the image
-      set_fact:
+      ansible.builtin.set_fact:
         available_space_kb: "{{ ansible_facts.net_filesystems_info[dest_filesystem]['spacefree_kb'] }}"
 
     - name: Convert to Bytes
-      set_fact:
+      ansible.builtin.set_fact:
         available_space: "{{ available_space_kb | int * 1024 }}"
 
-    - debug:
+    - ansible.builtin.debug:
         var: available_space
 
     - name: Verify space available
-      assert:
+      ansible.builtin.assert:
         that:
           - available_space | int > image_size + extra_space

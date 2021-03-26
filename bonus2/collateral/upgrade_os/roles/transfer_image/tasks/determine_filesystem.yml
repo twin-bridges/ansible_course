@@ -1,13 +1,13 @@
 - name: Select the file-system to use.
-  set_fact:
+  ansible.builtin.set_fact:
     dest_filesystem: "{{ ansible_facts.net_filesystems[0] }}"
 
 - name: Display the file-system selected.
-  debug:
+  ansible.builtin.debug:
     var: dest_filesystem
 
 - name: Verify file_system is allowed.
-  assert:
+  ansible.builtin.assert:
     that:
       - dest_filesystem in allowed_filesystems
     success_msg: "Using file-system: {{ dest_filesystem }}"

@@ -1,7 +1,7 @@
 - name: Update to boot settings to use new image file
-  import_tasks: update_bootsystem.yml
+  ansible.builtin.import_tasks: update_bootsystem.yml
   tags: bootsystem
 
 - name: Reload the device
-  import_tasks: reload_device.yml
+  ansible.builtin.import_tasks: reload_device.yml
   tags: reload

@@ -1,10 +1,10 @@
 - name: Perform MD5 (returns 'md5_hash' variable)
-  import_role:
+  ansible.builtin.import_role:
     name: file_operations
     tasks_from: md5
 
 - name: Verify remote MD5 is correct
-  assert:
+  ansible.builtin.assert:
     that:
       - md5_hash == primary_image.md5
     fail_msg: "MD5-hash on remote device is not correct {{ md5_hash }} != {{ primary_image.md5 }}"
