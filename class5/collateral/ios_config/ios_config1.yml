@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Global config
-      ios_config:
+      cisco.ios.ios_config:
         lines:
           - ip domain name bogus.com
           - ntp server 130.126.24.24

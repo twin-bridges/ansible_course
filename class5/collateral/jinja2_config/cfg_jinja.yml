@@ -10,19 +10,19 @@
 
   tasks:
     - name: Generate IKE configuration
-      template:
+      ansible.builtin.template:
         src: ike_template.j2
         dest: cisco_cfg_ike.txt
       tags: two_stage
 
     - name: Push templated config
-      ios_config:
+      cisco.ios.ios_config:
         src: cisco_cfg_ike.txt
         save_when: changed
       tags: two_stage
 
     - name: Generate and deploy
-      ios_config:
+      cisco.ios.ios_config:
         src: ike_template.j2
         save_when: changed
       tags: one_stage

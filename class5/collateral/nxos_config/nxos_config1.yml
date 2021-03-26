@@ -10,7 +10,7 @@
     # ansible_httpapi_port=8443
 
   tasks:
-    - nxos_config:
+    - cisco.nxos.nxos_config:
         lines:
           - "ip domain-name {{ domain_name }}"
           - "ip name-server {{ dns_server1 }} {{ dns_server2 }}"

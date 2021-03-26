@@ -3,7 +3,7 @@
   hosts: cisco1:cisco2
   gather_facts: False
   tasks:
-    - cli_config:
+    - ansible.netcommon.cli_config:
         config: | 
           ip domain name {{ domain_name }}
           ntp server {{ ntp_server1 }}

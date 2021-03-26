@@ -5,5 +5,5 @@
   vars:
     ansible_connection: network_cli
   tasks:
-    - cli_config:
+    - ansible.netcommon.cli_config:
         config: "{{ lookup('template', 'templates/{{ ansible_network_os }}/base_config.j2') }}"

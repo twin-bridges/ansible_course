@@ -5,14 +5,14 @@
 
   tasks:
     - name: Check the startup-config against the running-config
-      ios_config:
+      cisco.ios.ios_config:
         diff_against: startup
         diff_ignore_lines:
           - ntp clock .*
           - certificate self-signed .*
       tags: diff_against
 
-    - ios_config:
+    - cisco.ios.ios_config:
         lines:
           - "ip domain name {{ domain_name }}"
           - "ip name-server {{ dns_server1 }}"
@@ -24,6 +24,6 @@
       tags: ios_config
 
 #    - name: Check against a reference configuration
-#      ios_config:
+#      cisco.ios.ios_config:
 #        diff_against: intended
 #        intended_config: "{{ lookup('file', 'cisco1_config.txt') }}"

@@ -1,26 +1,43 @@
-import subprocess
 import re
+import pytest
+from pathlib import Path
+
+from utilities import subprocess_runner, remove_ansible_warnings
+
+TEST_CASES = [
+    "../class5/collateral/cli_config/cli_config1.yml",
+    "../class5/collateral/cli_config/cli_config2.yml",
+    "../class5/collateral/cli_config/cli_config3.yml",
+    "../class5/collateral/collections/coll_pb1.yml",
+    "../class5/collateral/collections/coll_pb2.yml",
+    "../class5/collateral/hierarchy/eos_config.yml",
+    "../class5/collateral/hierarchy/ios_config1.yml",
+    "../class5/collateral/hierarchy/ios_config2.yml",
+    "../class5/collateral/ios_config/ios_config1.yml",
+    "../class5/collateral/ios_config/ios_config2.yml",
+    "../class5/collateral/ios_config/ios_config3.yml",
+    "../class5/collateral/ios_config/ios_config4.yml",
+    "../class5/collateral/ios_config/ios_config5.yml",
+    "../class5/collateral/ios_config/ios_config6.yml",
+    "../class5/collateral/ios_config/ios_config7.yml",
+    "../class5/collateral/ios_config/show_cmd.yml",
+    "../class5/collateral/jinja2_config/cfg_jinja.yml",
+    "../class5/collateral/junos_config/junos_config1.yml",
+    "../class5/collateral/nxos_config/nxos_config1.yml",
+    "../class5/collateral/ssh_keys/ios_config1.yml",
+]
 
 
-def subprocess_runner(cmd_list, exercise_dir):
-    with subprocess.Popen(
-        cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=exercise_dir
-    ) as proc:
-        std_out, std_err = proc.communicate()
-    return (std_out.decode(), std_err.decode(), proc.returncode)
-
-
-def remove_ansible_warnings(std_err):
-    """Remove the specified warnings from std_err."""
-    warning_list = [
-        r"^.WARNING.: Ignoring timeout.10. for .*$",
-    ]
-
-    # Remove warnings one at a time from std_err
-    for ansible_warn in warning_list:
-        std_err = re.sub(ansible_warn, "", std_err, flags=re.M)
-
-    return std_err.strip()
+@pytest.mark.parametrize("test_case", TEST_CASES)
+def test_runner_collateral(test_case):
+    path_obj = Path(test_case)
+    script = path_obj.name
+    script_dir = path_obj.parents[0]
+    cmd_list = ["ansible-playbook", script]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, script_dir)
+    std_err = remove_ansible_warnings(std_err)
+    assert return_code == 0
+    assert std_err == ""
 
 
 def test_class5_ex1():

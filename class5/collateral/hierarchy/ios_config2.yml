@@ -4,12 +4,12 @@
   gather_facts: False
   tasks:
     - name: Ensure interface exists
-      ios_config:
+      cisco.ios.ios_config:
         lines:
           - interface Loopback99
 
     - name: Config with hierarchy
-      ios_config:
+      cisco.ios.ios_config:
         before: no interface Loopback99
         parents: interface Loopback99
         lines:

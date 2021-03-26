@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Config with hierarchy
-      ios_config:
+      cisco.ios.ios_config:
         before: no ip access-list extended TEST99
         parents: ip access-list extended TEST99
         lines:
