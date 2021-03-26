@@ -4,19 +4,19 @@
   gather_facts: False
   tasks:
     - name: Generate interface configuration
-      template:
+      ansible.builtin.template:
         src: interfaces.j2
         dest: "./CFGS/{{ inventory_hostname }}/01-{{ inventory_hostname }}-intf.txt"
       tags: build
 
     - name: Generate BGP configuration
-      template:
+      ansible.builtin.template:
         src: bgp.j2
         dest: "./CFGS/{{ inventory_hostname }}/02-{{ inventory_hostname }}-bgp.txt"
       tags: build
 
     - name: Assemble the two parts into one configuration change file
-      assemble:
+      ansible.builtin.assemble:
         src: "./CFGS/{{ inventory_hostname }}/"
         dest: "./CFGS/{{ inventory_hostname }}-config.txt"
       tags: build
@@ -37,7 +37,7 @@
       tags: verify
 
     - name: Verify that BGP is up and two prefixes received
-      debug:
+      ansible.builtin.debug:
         msg: 
           - "UP: {{ napalm_bgp_neighbors.global.peers[bgp_peer_ip].is_up }}"
           - "Rcvd Prefixes: {{ napalm_bgp_neighbors.global.peers[bgp_peer_ip].address_family.ipv4.received_prefixes }}"

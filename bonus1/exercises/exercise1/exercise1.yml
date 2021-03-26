@@ -11,7 +11,7 @@
 
   tasks:
     - name: Ensure 'BUP' directory exists
-      file:
+      ansible.builtin.file:
         path: BUP
         state: directory
         mode: '0755'
@@ -19,7 +19,7 @@
       run_once: True
 
     - name: Ensure ansible_network_os subdirectory exists
-      file:
+      ansible.builtin.file:
         path: "BUP/{{ ansible_network_os }}"
         state: directory
         mode: '0755'
@@ -32,6 +32,6 @@
             port: "{{ napalm_port[ansible_network_os] }}"
 
     - name: Save the configuration file
-      copy:
+      ansible.builtin.copy:
         content: "{{ napalm_config.running }}"
         dest: "BUP/{{ ansible_network_os}}/{{ inventory_hostname }}.txt"

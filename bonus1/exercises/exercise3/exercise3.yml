@@ -5,19 +5,19 @@
   tasks:
 
     - name: Generate VLAN configuration
-      template:
+      ansible.builtin.template:
         src: "templates/{{ ansible_network_os }}/vlans.j2"
         dest: "ASSEMBLE/{{ ansible_network_os }}/10-vlan.cfg"
       tags: build
 
     - name: Generate interface configuration
-      template:
+      ansible.builtin.template:
         src: "templates/{{ ansible_network_os }}/interfaces.j2"
         dest: "ASSEMBLE/{{ ansible_network_os }}/20-interfaces.cfg"
       tags: build
 
     - name: Assemble the configuration
-      assemble:
+      ansible.builtin.assemble:
         src: "ASSEMBLE/{{ ansible_network_os }}/"
         dest: "CFGS/{{ ansible_network_os }}.cfg"
       tags: build

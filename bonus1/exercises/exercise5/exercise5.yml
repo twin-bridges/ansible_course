@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Generate full configurations from a template
-      template:
+      ansible.builtin.template:
         src: "templates/{{ inventory_hostname }}.j2"
         dest: "CFGS/{{ inventory_hostname }}-load.txt"
       tags: build
