@@ -4,21 +4,21 @@
 
   tasks:
     - name: Retrieve the switching table as JSON
-      eos_command:
+      arista.eos.eos_command:
         commands: show mac address-table | json
       register: output
 
     - name: Retrieve unicast switching table from data structure
-      set_fact:
+      ansible.builtin.set_fact:
         switch_table: "{{ output.stdout[0].unicastTable.tableEntries }}"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ item }}"
       loop: "{{ switch_table }}"
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         switch_table_list: "{{ switch_table_list | default([]) + [item.macAddress] }}"
       loop: "{{ switch_table }}"
 
-    - debug:
+    - ansible.builtin.debug:
         var: switch_table_list

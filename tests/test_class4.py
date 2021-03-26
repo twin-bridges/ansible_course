@@ -6,6 +6,7 @@ from utilities import subprocess_runner, remove_ansible_warnings
 
 
 TEST_CASES = [
+    "../class4/collateral/resource_modules/l3_interfaces/l3_nxos.yml",
     "../class4/collateral/assert/assert.yml",
     "../class4/collateral/eos_feature/l2_intf.yml",
     "../class4/collateral/eos_feature/show_intf.yml",
@@ -28,7 +29,6 @@ TEST_CASES = [
     "../class4/collateral/resource_modules/l2_interfaces/show_intf.yml",
     "../class4/collateral/resource_modules/l3_interfaces/l3_eos.yml",
     "../class4/collateral/resource_modules/l3_interfaces/l3_ios.yml",
-    "../class4/collateral/resource_modules/l3_interfaces/l3_nxos.yml",
     "../class4/collateral/resource_modules/l3_interfaces/show_intf.yml",
     "../class4/collateral/resource_modules/vlans/vlans_eos.yml",
     "../class4/collateral/resource_modules/vlans/vlans_eos_override.yml",

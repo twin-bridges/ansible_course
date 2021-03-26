@@ -8,21 +8,21 @@
 
   tasks:
     - name: Executing command
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show lldp neighbors
       register: output
 
     - name: TextFSM conversion
-      set_fact:
+      ansible.builtin.set_fact:
         show_lldp: "{{ output.stdout[0] | parse_cli_textfsm(fsm_template) }}"
 
     - name: Create LLDP mapping of local interface to remote neighbor
-      set_fact:
+      ansible.builtin.set_fact:
         lldp_map: "{{ lldp_map | default({}) | combine({item['LOCAL_INTERFACE']: item['NEIGHBOR']}) }}"
       loop: "{{ show_lldp }}"
       # Make the output more readable
       loop_control:
         label: ""
 
-    - debug:
+    - ansible.builtin.debug:
         var: lldp_map

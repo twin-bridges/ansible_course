@@ -3,8 +3,8 @@
   hosts: arista
   gather_facts: False
   tasks:
-    - debug:
+    - ansible.builtin.debug:
         var: ntp_server1
 
-    - debug:
+    - ansible.builtin.debug:
         var: domain_name

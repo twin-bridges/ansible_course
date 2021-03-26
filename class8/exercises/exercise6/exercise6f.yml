@@ -8,13 +8,13 @@
 
   tasks:
     - name: Executing command
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show lldp neighbors
       register: output
 
     - name: TextFSM conversion
-      set_fact:
+      ansible.builtin.set_fact:
         show_lldp: "{{ output.stdout[0] }} | parse_cli_textfsm(fsm_template)"
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ show_lldp }}"

@@ -6,9 +6,9 @@
 
   tasks:
     - name: Executing command
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show interfaces terse
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ output }}"

@@ -26,31 +26,31 @@
   gather_facts: False
   tasks:
     - name: Retrieve the switching table as JSON
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show vlan | json
       register: output
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         vlan_dict: "{{ output.stdout[0].TABLE_vlanbrief.ROW_vlanbrief }}"
 
     - name: Use map to extract two relevant fields
-      set_fact:
+      ansible.builtin.set_fact:
         vlans: "{{ vlan_dict | map(attribute='vlanshowbr-vlanid') | list }}"
 
-    - debug:
+    - ansible.builtin.debug:
         var: vlans
 
     - name: Common VLANs
-      debug:
+      ansible.builtin.debug:
         msg: "Common VLANs: {{ vlans | intersect(hostvars['nxos2']['vlans']) }}"
       when: inventory_hostname == 'nxos1'
 
     - name: Unique VLANs nxos1
-      debug:
+      ansible.builtin.debug:
         msg: "Unique VLANs nxos1: {{ vlans | difference(hostvars['nxos2']['vlans']) }}"
       when: inventory_hostname == 'nxos1'
 
     - name: Unique VLANs nxos2
-      debug:
+      ansible.builtin.debug:
         msg: "Unique VLANs nxos2: {{ vlans | difference(hostvars['nxos1']['vlans']) }}"
       when: inventory_hostname == 'nxos2'

@@ -6,9 +6,9 @@
 
   tasks:
     - name: Executing command
-      junos_command:
+      junipernetworks.junos.junos_command:
         commands: show interfaces terse
       register: output
 
-    - debug:
+    - ansible.builtin.debug:
         msg: "{{ output }}"

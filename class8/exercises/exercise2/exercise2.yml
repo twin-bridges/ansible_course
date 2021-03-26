@@ -8,10 +8,10 @@
 
   tasks:
     - name: EOS using environment variable
-      eos_command:
+      arista.eos.eos_command:
         commands: show vlan
       register: output
 
     - name: Show Output
-      debug:
+      ansible.builtin.debug:
         var: output.stdout_lines[0]

@@ -8,7 +8,7 @@
 
   tasks:
     - name: Executing command
-      nxos_command:
+      cisco.nxos.nxos_command:
         commands: show lldp neighbors
       register: output
 

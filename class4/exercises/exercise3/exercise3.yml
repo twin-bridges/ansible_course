@@ -20,7 +20,7 @@
         state: merged
 
     - name: Ping across interfaces
-      ansible.net_common.net_ping:
+      ansible.netcommon.net_ping:
         dest: "{{ peer_ip }}"
       register: output
 
