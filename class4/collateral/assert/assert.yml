@@ -1,6 +1,6 @@
 ---
 - name: Test Assert
-  hosts: nxos
+  hosts: nxos1
   gather_facts: True
   tasks:
     - ansible.builtin.debug:

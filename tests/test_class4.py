@@ -1,13 +1,55 @@
 import os
-import subprocess
+import pytest
+from pathlib import Path
+
+from utilities import subprocess_runner, remove_ansible_warnings
 
 
-def subprocess_runner(cmd_list, exercise_dir):
-    with subprocess.Popen(
-        cmd_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=exercise_dir
-    ) as proc:
-        std_out, std_err = proc.communicate()
-    return (std_out.decode(), std_err.decode(), proc.returncode)
+TEST_CASES = [
+    "../class4/collateral/assert/assert.yml",
+    "../class4/collateral/eos_feature/l2_intf.yml",
+    "../class4/collateral/eos_feature/show_intf.yml",
+    "../class4/collateral/handlers_wrmem/nxos_vlan_1.yml",
+    "../class4/collateral/handlers_wrmem/nxos_vlan_2.yml",
+    "../class4/collateral/handlers_wrmem/nxos_vlan_3.yml",
+    "../class4/collateral/ios_feature/banner.yml",
+    "../class4/collateral/ios_feature/ios_bgp.yml",
+    "../class4/collateral/ios_feature/test_ping.yml",
+    "../class4/collateral/net_modules/net_l2_intf.yml",
+    "../class4/collateral/net_modules/net_ping.yml",
+    "../class4/collateral/nxos_feature/show_intf.yml",
+    "../class4/collateral/nxos_feature/l2_intf.yml",
+    "../class4/collateral/resource_modules/interfaces/interfaces_ios.yml",
+    "../class4/collateral/resource_modules/interfaces/interfaces_nxos.yml",
+    "../class4/collateral/resource_modules/interfaces/interfaces_simple.yml",
+    "../class4/collateral/resource_modules/interfaces/show_intf.yml",
+    "../class4/collateral/resource_modules/l2_interfaces/l2_eos.yml",
+    "../class4/collateral/resource_modules/l2_interfaces/l2_nxos.yml",
+    "../class4/collateral/resource_modules/l2_interfaces/show_intf.yml",
+    "../class4/collateral/resource_modules/l3_interfaces/l3_eos.yml",
+    "../class4/collateral/resource_modules/l3_interfaces/l3_ios.yml",
+    "../class4/collateral/resource_modules/l3_interfaces/l3_nxos.yml",
+    "../class4/collateral/resource_modules/l3_interfaces/show_intf.yml",
+    "../class4/collateral/resource_modules/vlans/vlans_eos.yml",
+    "../class4/collateral/resource_modules/vlans/vlans_eos_override.yml",
+    "../class4/collateral/resource_modules/vlans/vlans_nxos.yml",
+    "../class4/collateral/resource_modules_facts/eos_facts.yml",
+    "../class4/collateral/resource_modules_facts/ios_facts.yml",
+    "../class4/collateral/resource_modules_facts/junos_facts.yml",
+    "../class4/collateral/resource_modules_facts/nxos_facts.yml",
+]
+
+
+@pytest.mark.parametrize("test_case", TEST_CASES)
+def test_runner_collateral(test_case):
+    path_obj = Path(test_case)
+    script = path_obj.name
+    script_dir = path_obj.parents[0]
+    cmd_list = ["ansible-playbook", script]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, script_dir)
+    std_err = remove_ansible_warnings(std_err)
+    assert return_code == 0
+    assert std_err == ""
 
 
 def test_class4_ex1():
