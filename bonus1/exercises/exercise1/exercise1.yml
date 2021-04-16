@@ -26,7 +26,7 @@
       tags: dir
 
     - name: Retrieve the Configurations
-      napalm_get_facts:
+      napalm.napalm.get_facts:
         filter: config
         optional_args:
             port: "{{ napalm_port[ansible_network_os] }}"

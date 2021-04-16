@@ -23,7 +23,7 @@
       tags: build
 
     - name: "Deploy configuration to the device (merge)"
-      napalm_install_config:
+      napalm.napalm.install_config:
         replace_config: False
         commit_changes: False
         config_file: "CFGS/{{ ansible_network_os }}.cfg"

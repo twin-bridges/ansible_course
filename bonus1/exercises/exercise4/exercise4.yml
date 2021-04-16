@@ -22,7 +22,7 @@
       tags: build
 
     - name: Install the configurations using NAPALM merge
-      napalm_install_config:
+      napalm.napalm.install_config:
         replace_config: False
         commit_changes: True
         config_file: "./CFGS/{{ inventory_hostname }}-config.txt"
@@ -31,7 +31,7 @@
       tags: deploy
 
     - name: Verify the BGP configuration (retrieve get_bgp_neighbors)
-      napalm_get_facts:
+      napalm.napalm.get_facts:
         filter: bgp_neighbors
         dev_os: nxos_ssh
       tags: verify

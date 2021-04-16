@@ -5,7 +5,7 @@
     - name: Gather NAPALM facts
       vars:
         ansible_connection: local
-      napalm_get_facts: 
+      napalm.napalm.get_facts: 
         filter: "arp_table"
 
     - ansible.builtin.debug:

@@ -10,7 +10,7 @@
       tags: build
 
     - name: Use NAPALM to perform full configuration replace
-      napalm_install_config:
+      napalm.napalm.install_config:
         replace_config: True
         commit_changes: False
         config_file: "CFGS/{{ inventory_hostname }}-load.txt"

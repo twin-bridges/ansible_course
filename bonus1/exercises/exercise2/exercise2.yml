@@ -6,7 +6,7 @@
   tasks:
 
     - name: Retrieve the LLDP neighbor table
-      napalm_get_facts:
+      napalm.napalm.get_facts:
         filter: lldp_neighbors
 
     - name: Create single string representing output data to print
