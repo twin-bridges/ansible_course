@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: NAPALM ping
-      napalm_ping: 
+      napalm.napalm.ping: 
         destination: 8.8.8.8
       register: ping_output
 

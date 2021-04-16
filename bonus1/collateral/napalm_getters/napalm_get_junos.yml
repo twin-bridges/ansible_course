@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Retrieve get_facts, get_interfaces
-      napalm_get_facts:
+      napalm.napalm.get_facts:
         filter: facts,interfaces
 
     - ansible.builtin.debug:

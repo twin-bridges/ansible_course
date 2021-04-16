@@ -11,7 +11,7 @@
         junos: 830
   tasks:
     - name: LLDP
-      napalm_get_facts:
+      napalm.napalm.get_facts:
         filter: lldp_neighbors
         optional_args:
           port: "{{ napalm_port[ansible_network_os] }}"

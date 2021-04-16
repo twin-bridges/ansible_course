@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: Retrieve checkpoint
-      napalm_get_facts:
+      napalm.napalm.get_facts:
         filter: checkpoint_file
         optional_args:
           port: 8443

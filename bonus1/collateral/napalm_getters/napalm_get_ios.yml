@@ -2,9 +2,12 @@
 - name: NAPALM get_facts and get_interfaces
   hosts: cisco5
   gather_facts: False
+  #collections:
+  #  - napalm.napalm
+
   tasks:
     - name: napalm get_facts
-      napalm_get_facts:
+      napalm.napalm.get_facts:
         filter: facts
         # filter: facts,interfaces,lldp_neighbors
         # filter: lldp_neighbors

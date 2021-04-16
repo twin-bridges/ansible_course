@@ -4,7 +4,7 @@
   gather_facts: False
   tasks:
     - name: get_config
-      napalm_get_facts:
+      napalm.napalm.get_facts:
         filter: config
 
     - name: Save the config locally
