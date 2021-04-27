@@ -29,6 +29,7 @@ TEST_CASES = [
     "../class4/collateral/resource_modules/l2_interfaces/show_intf.yml",
     "../class4/collateral/resource_modules/l3_interfaces/l3_eos.yml",
     "../class4/collateral/resource_modules/l3_interfaces/l3_ios.yml",
+    "../class4/collateral/resource_modules/l3_interfaces/l3_nxos.yml",
     "../class4/collateral/resource_modules/l3_interfaces/show_intf.yml",
     "../class4/collateral/resource_modules/vlans/vlans_eos.yml",
     "../class4/collateral/resource_modules/vlans/vlans_eos_override.yml",

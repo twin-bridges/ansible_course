@@ -5,7 +5,8 @@
   vars:
     platform: "cisco_ios"
     command: "show ip int brief"
-    textfsm_rel_path: "ntc-templates/templates/"
+    # ntc-templates >= 2.x changed this
+    textfsm_rel_path: "ntc-templates/ntc_templates/templates"
 
   tasks:
     - name: Executing command
