@@ -1,6 +1,6 @@
 ---
 - name: NAPALM Ping
-  hosts: arista:cisco:juniper
+  hosts: arista:cisco1:cisco2:juniper
   gather_facts: False
   tasks:
     - name: NAPALM ping
