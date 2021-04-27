@@ -9,7 +9,7 @@
 
     - name: Print arista5 net_all_ipv4_addresses
       ansible.builtin.debug:
-        var: net_all_ipv4_addresses
+        var: ansible_facts.net_all_ipv4_addresses
 
     - name: Print arista5 ansible_network_os
       ansible.builtin.debug:
