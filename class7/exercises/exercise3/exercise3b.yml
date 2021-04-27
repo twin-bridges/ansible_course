@@ -5,7 +5,7 @@
   vars:
     platform: "arista_eos"
     command: "show vlan"
-    textfsm_rel_path: "ntc-templates/templates/"
+    textfsm_rel_path: "ntc-templates/ntc_templates/templates/"
 
   tasks:
     - name: Executing command
