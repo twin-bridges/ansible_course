@@ -6,7 +6,6 @@ from utilities import subprocess_runner, remove_ansible_warnings
 
 
 TEST_CASES = [
-    "../class4/collateral/resource_modules/l3_interfaces/l3_nxos.yml",
     "../class4/collateral/assert/assert.yml",
     "../class4/collateral/eos_feature/l2_intf.yml",
     "../class4/collateral/eos_feature/show_intf.yml",
