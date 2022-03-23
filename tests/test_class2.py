@@ -52,7 +52,7 @@ def test_class2_ex1a():
     cmd_list = ["ansible-playbook", "exercise1a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("10.220.88.32") == 3
+    assert std_out.count("10.220.88.32") == 4
     assert (
         "arista5                    : ok=3    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -68,7 +68,7 @@ def test_class2_ex1b():
     cmd_list = ["ansible-playbook", "exercise1b.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("10.220.88.32") == 3
+    assert std_out.count("10.220.88.32") == 4
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
     assert (
         "arista5                    : ok=5    changed=0    unreachable=0    failed=0    "
@@ -84,7 +84,7 @@ def test_class2_ex1c():
     cmd_list = ["ansible-playbook", "exercise1c.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("10.220.88.32") == 3
+    assert std_out.count("10.220.88.32") == 4
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
     assert '"ansible_network_os": "eos"' in std_out
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
@@ -104,7 +104,7 @@ def test_class2_ex1d():
     cmd_list = ["ansible-playbook", "exercise1d.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("10.220.88.32") == 3
+    assert std_out.count("10.220.88.32") == 4
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
     assert '"ansible_network_os": "eos"' in std_out
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
@@ -124,7 +124,7 @@ def test_class2_ex1e():
     cmd_list = ["ansible-playbook", "exercise1e.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("10.220.88.32") == 3
+    assert std_out.count("10.220.88.32") == 4
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
     assert '"ansible_network_os": "eos"' in std_out
     assert '"ansible_host": "arista5.lasthop.io"' in std_out

@@ -6,7 +6,9 @@ from ansible.module_utils.basic import AnsibleModule
 def main():
 
     # Define your modules arguments
-    module_args = dict(my_string=dict(type="str", required=True),)
+    module_args = dict(
+        my_string=dict(type="str", required=True),
+    )
 
     # Create an instance of the AnsibleModule class
     module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
