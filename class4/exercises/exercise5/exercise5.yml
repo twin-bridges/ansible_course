@@ -10,15 +10,11 @@
             mode: "{{ intf_mode }}"
         state: merged
 
-    - name: Set switchport mode to trunking (using deprecated module due to issues in newer resource module)
-      cisco.nxos.nxos_l2_interface:
-        name: "{{ intf_name }}"
-        mode: "{{ switchport_mode }}"
-
-    - name: Configure trunk native VLAN
+    - name: Configure trunk mode and native VLAN
       cisco.nxos.nxos_l2_interfaces:
         config:
           - name: "{{ intf_name }}"
+            mode: "{{ switchport_mode }}"
             trunk:
               native_vlan: "{{ native_vlan }}"
         state: merged
