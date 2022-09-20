@@ -2,7 +2,9 @@
 - name: Exercise 1d
   hosts: arista5
   gather_facts: True
+  gather_subset: all
   vars_files: my_vars.yml
+
   tasks:
     - name: Print arista5 ansible_facts
       ansible.builtin.debug:
