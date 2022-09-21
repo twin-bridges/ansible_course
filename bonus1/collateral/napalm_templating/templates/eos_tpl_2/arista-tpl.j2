@@ -6,7 +6,9 @@ transceiver qsfp default-mode 4x10G
 hostname {{ inventory_hostname }}
 ip name-server vrf default {{ dns_server1 }}
 ip name-server vrf default {{ dns_server2 }}
-ip domain-name {{ domain_name }}
+!
+! Newer Arista EOS requires different form for domain-name
+dns domain {{ domain_name }}
 !
 ntp server {{ ntp_server1 }}
 ntp server {{ ntp_server2 }}

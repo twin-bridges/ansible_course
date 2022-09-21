@@ -10,4 +10,5 @@ vlans_common:
     admin_state: up
     name: PINK
 
-vlans: "{{ vlans_common }} + {{ vlans_unique|default([]) }}"
+# Ansible 5.x -> 6.x had a minor syntax change on what is allowed here
+vlans: "{{ vlans_common + vlans_unique|default([]) }}"

@@ -2,6 +2,8 @@
 - name: Exercise 1c
   hosts: arista5
   gather_facts: True
+  gather_subset: all
+
   tasks:
     - name: Print arista5 ansible_facts
       ansible.builtin.debug:

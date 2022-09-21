@@ -6,7 +6,9 @@ transceiver qsfp default-mode 4x10G
 hostname arista8
 ip name-server vrf default 8.8.8.8
 ip name-server vrf default 8.8.4.4
-ip domain-name lasthop.io
+!
+! Newer Arista EOS requires different form for domain-name
+dns domain lasthop.io
 !
 ntp server 130.126.24.24
 ntp server 152.2.21.1

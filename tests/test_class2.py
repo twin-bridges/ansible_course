@@ -317,7 +317,7 @@ def test_class2_ex4a():
     ]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("Clear logging buffer [confirm]") == 2
+    assert std_out.count("Clear logging buffer [confirm]") >= 1
     assert (
         "cisco6                     : ok=2    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -370,7 +370,7 @@ def test_class2_ex6a():
     cmd_list = ["ansible-playbook", "exercise6a.yml"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert std_out.count("Address         Age (min)  Hardware Addr   Interface") == 8
+    assert std_out.count("Address         Age (sec)  Hardware Addr   Interface") == 8
     assert (
         "arista5                    : ok=2    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
