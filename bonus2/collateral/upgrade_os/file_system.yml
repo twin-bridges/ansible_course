@@ -9,6 +9,9 @@
     image_size: 10000000
     extra_space: 10000000
   gather_facts: True
+  # Ansible 6.x reduced the information available in network fact gathering.
+  # So here I increase it to grab the facts we need.
+  gather_subset: all
 
   tasks:
     - name: Set the destination file_system to use for file-transfer
