@@ -16,6 +16,7 @@ def remove_ansible_warnings(output, warning_list=None):
     if warning_list is None:
         warning_list = [
             r"^.WARNING.: Ignoring timeout.10. for .*$",
+            r"^.WARNING.: ansible-pylibssh not installed, falling back to paramiko.*$",
         ]
 
     # Remove warnings one at a time from std_err
