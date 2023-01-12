@@ -9,6 +9,10 @@
     image_size: 10000000
     extra_space: 10000000
   gather_facts: True
+  # Ansible changed the default network facts at some point (dropping net_filesystems)
+  # Consequently had to increase the level of facts returned.
+  gather_subset:
+      - all
 
   tasks:
     - name: Set the destination file_system to use for file-transfer
