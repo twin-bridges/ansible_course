@@ -1,14 +1,14 @@
 ---
 vlans_common:
   - vlan_id: 550 
-    admin_state: up
     name: BLACK
+    enabled: True
   - vlan_id: 551 
-    admin_state: up
     name: ORANGE
+    enabled: True
   - vlan_id: 552 
-    admin_state: up
     name: PINK
+    enabled: True
 
 # Ansible 5.x -> 6.x had a minor syntax change on what is allowed here
 vlans: "{{ vlans_common + vlans_unique|default([]) }}"

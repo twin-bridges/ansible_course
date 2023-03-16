@@ -1,5 +1,5 @@
 ---
 vlans_unique:
   - vlan_id: 559
-    admin_state: up
     name: BROWN
+    enabled: True

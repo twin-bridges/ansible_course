@@ -1,16 +1,23 @@
 ---
+# cisco.nxos.nxos_vlan was removed in ansible-core 2.13
+# Replaced with "nxos_vlans"
+# You can downgrade to older versions of Ansible to
+# see the previous behavior.
 - name: NXOS Example
   hosts: nxos
   tasks:
+
+    # nxos_vlans takes the vlans as a list of vlans with the
+    # arguments as specified in host_vars and group_vars.
+    # There is no 'loop' you just specify them all at once.
     - name: Configure NEXUS VLANs
-      cisco.nxos.nxos_vlan:
-        vlan_id: "{{ item.vlan_id }}"
-        admin_state: "{{ item.admin_state }}"
-        name: "{{ item.name }}"
-      loop: "{{ vlans }}"
+      cisco.nxos.nxos_vlans:
+        config: "{{ vlans }}"
+        state: merged
 
     - name: write mem
       cisco.nxos.nxos_command:
         commands: copy run start
       changed_when: True
       tags: wr_mem
+
