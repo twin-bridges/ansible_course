@@ -1,10 +1,17 @@
 ---
+# arista.eos.eos_l2_interface was removed in ansible-core 2.13
+# Replaced with "eos_l2_interfaces"
+# You can downgrade to older versions of Ansible to
+# see the previous behavior.
 - name: Interface configuration
   hosts: arista5
   gather_facts: False
   tasks:
     - name: Ensure mode is trunk
-      arista.eos.eos_l2_interface:
-        name: Ethernet7
-        mode: trunk
-        native_vlan: "7"
+      arista.eos.eos_l2_interfaces:
+        config:
+        - name: Ethernet7
+          mode: trunk
+          trunk:
+            native_vlan: 7
+        state: merged
