@@ -3,17 +3,27 @@
   hosts: nxos1
   gather_facts: False
   tasks:
+    # nxos_interface was removed in ansible-core 2.13.
+    # It was weplaced with "nxos_interfaces".
+    # You can downgrade to older versions of Ansible to see the previous behavior.
     - name: Configure 'switchport'
-      cisco.nxos.nxos_interface:
-        name: "{{ item }}"
-        mode: layer2
-      loop:
-        - Ethernet1/3
-        - Ethernet1/4
+      cisco.nxos.nxos_interfaces:
+        config:
+        - name: Ethernet1/3
+          mode: layer2
+        - name: Ethernet1/4
+          mode: layer2
+        state: merged
 
+    # nxos_l2_interface was removed in ansible-core 2.13.
+    # It was weplaced with "nxos_l2_interfaces".
+    # You can downgrade to older versions of Ansible to see the previous behavior.
     - name: Ensure mode is trunk
-      cisco.nxos.nxos_l2_interface:
-        name: Ethernet1/4
-        mode: trunk
-        native_vlan: "4"
-      tags: trunk
+      cisco.nxos.nxos_l2_interfaces:
+        config:
+        - name: Ethernet1/4
+          mode: trunk
+          trunk:
+            native_vlan: 4
+        state: merged
+
