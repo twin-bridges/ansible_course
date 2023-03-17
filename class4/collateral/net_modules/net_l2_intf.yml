@@ -1,10 +1,18 @@
 ---
+# net_l2_interface was removed in ansible-core 2.13.
+# It was weplaced with platform-specific "{platform}_l2_interfaces"
+# You can downgrade to older versions of Ansible to see the previous behavior.
 - name: Interface configuration
   hosts: arista5
   gather_facts: False
   tasks:
-    - name: Layer-2 interface (using net_l2_interface)
-      ansible.netcommon.net_l2_interface:
-        name: Ethernet7
-        mode: trunk
-        native_vlan: "7"
+
+    - name: Layer-2 interface (converted to eos_l2_interfaces)
+      arista.eos.eos_l2_interfaces:
+        config:
+        - name: Ethernet7
+          mode: trunk
+          trunk:
+            native_vlan: 7
+        state: merged
+
