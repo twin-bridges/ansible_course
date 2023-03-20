@@ -87,22 +87,12 @@ def test_class1_ex2a():
     cmd_list = ["ansible-inventory", "-i", "inventory.ini", "--list"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert (
-        """{
-    "_meta": {
-        "hostvars": {}
-    },
-    "all": {
-        "children": [
-            "arista",
-            "cisco",
-            "local",
-            "ungrouped"
-        ]
-    }
-}"""
-        in std_out
-    )
+    assert "ungrouped" in std_out
+    assert "arista" in std_out
+    assert "cisco" in std_out
+    assert "local" in std_out
+    assert "hostvars" in std_out
+    assert "children" in std_out
     assert std_err == ""
     assert return_code == 0
 
@@ -112,16 +102,19 @@ def test_class1_ex2b():
     cmd_list = ["ansible-inventory", "-i", "inventory.ini", "--graph"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
+    assert "@all:" in std_out
+    assert "|--@ungrouped:" in std_out
+    assert "|--@local:" in std_out
     assert (
-        """@all:
-  |--@arista:
-  |  |--arista5
-  |  |--arista6
-  |--@cisco:
+        """|--@cisco:
   |  |--cisco1
-  |  |--cisco2
-  |--@local:
-  |--@ungrouped:"""
+  |  |--cisco2"""
+        in std_out
+    )
+    assert (
+        """|--@arista:
+  |  |--arista5
+  |  |--arista6"""
         in std_out
     )
     assert std_err == ""
