@@ -3,7 +3,7 @@
   hosts: nxos
   gather_facts: False
   vars:
-    fsm_template: "cisco_nxos_show_ip_bgp_summary.template"
+    fsm_template: "cisco_nxos_show_ip_bgp_summary.textfsm"
 
   tasks:
     - name: Executing command
