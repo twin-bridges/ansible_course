@@ -31,4 +31,4 @@
       ansible.builtin.assert:
         that:
           - trunk_dict.status == 'trunking'
-          - trunk_dict.native == "{{ native_vlan }}"
+          - trunk_dict.native == native_vlan
