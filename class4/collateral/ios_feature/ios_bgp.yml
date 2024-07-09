@@ -3,21 +3,26 @@
   hosts: cisco1
   gather_facts: False
   tasks:
+    # cisco.ios.ios_bgp was removed in Ansible 10
+    # ios_bgp_global is an alternative/replacement module to use
     - name: Testing BGP configuration
-      cisco.ios.ios_bgp:
+      cisco.ios.ios_bgp_global:
         config:
-          bgp_as: 42
-          router_id: 10.220.88.20
-          log_neighbor_changes: True
+          as_number: 42
+          bgp:
+            router_id:
+              address: 10.220.88.20
+            log_neighbor_changes: true
           # neighbor 10.220.88.38 remote-as 44
-          neighbors:
-            - neighbor: 10.220.88.38
+          neighbor:
+            - address: 10.220.88.38
               remote_as: 44
-              timers:
-                keepalive: 300
-                holdtime: 360
-                min_neighbor_holdtime: 360
           networks:
-            - prefix: 192.0.2.0
-              masklen: 23
-        operation: override
+            - address: 192.0.2.0
+              netmask: 255.255.254.0
+          timers:
+            keepalive: 300
+            holdtime: 360
+            min_holdtime: 360
+        state: merged
+
