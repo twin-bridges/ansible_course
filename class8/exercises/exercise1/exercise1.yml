@@ -22,7 +22,7 @@
       loop: "{{ show_lldp }}"
       # Make the output more readable
       loop_control:
-        label: ""
+        label: "."
 
     - ansible.builtin.debug:
         var: lldp_map

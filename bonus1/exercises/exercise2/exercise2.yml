@@ -14,7 +14,7 @@
         lldp_str: "{{ lldp_str | default('') + item.key + ': ' + item.value[0].hostname + '\n' }}"
       loop: "{{ napalm_lldp_neighbors | dict2items }}"
       loop_control:
-        label: ""
+        label: "."
 
     - ansible.builtin.debug:
         msg: |

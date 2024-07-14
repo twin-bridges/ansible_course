@@ -16,9 +16,10 @@
       ansible.builtin.set_fact:
         show_ip: "{{ output | regex_replace('Interface.*Protocol') | trim }}"
 
+    # Null-string no longer works in newer ansible(?)
     - name: Extract interface name
       ansible.builtin.debug:
         msg: "{{ item | regex_search('^\\S+') }}"
       loop: "{{ show_ip.splitlines() }}"
       loop_control:
-        label: ""
+        label: "."
