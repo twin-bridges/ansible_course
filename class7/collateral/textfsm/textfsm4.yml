@@ -1,0 +1,19 @@
+---
+- name: TextFSM Example4
+  hosts: cisco5
+  gather_facts: False
+  vars:
+    fsm_template: "cisco_ios_show_ip_interface_brief.template"
+
+  tasks:
+    # no need to fetch raw output as 'cli_parse' does this inherently
+    - name: cli_parse TextFSM test
+      ansible.utils.cli_parse:
+        command: show ip interface brief
+        parser:
+          name: ansible.utils.textfsm
+          os: cisco_ios
+        set_fact: show_ip_parsed
+
+    - ansible.builtin.debug:
+        var: show_ip_parsed
