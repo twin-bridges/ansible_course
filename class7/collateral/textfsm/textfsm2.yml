@@ -17,6 +17,7 @@
     - ansible.builtin.set_fact:
         show_ip: "{{ output.stdout[0] }}"
 
+    # see textfsm4.yml for 'cli_parse' example
     # Only abbreviated name works: needs migrated to 'cli_parse'
     - name: TextFSM test
       textfsm_parser:
