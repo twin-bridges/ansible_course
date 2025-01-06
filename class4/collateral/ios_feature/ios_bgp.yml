@@ -13,9 +13,11 @@
             router_id:
               address: 10.220.88.20
             log_neighbor_changes: true
-          # neighbor 10.220.88.38 remote-as 44
-          neighbor:
-            - address: 10.220.88.38
+          # ios_bgp_global syntax change in version >= 9.0.0
+          # neighbor -> neighbors
+          # address -> neighbor_address
+          neighbors:
+            - neighbor_address: 10.220.88.38
               remote_as: 44
           networks:
             - address: 192.0.2.0
