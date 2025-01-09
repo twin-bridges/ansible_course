@@ -1,5 +1,5 @@
 
-### Common Ansible Connection Options (Network Automation)
+### Common Ansible Connection Options (network automation)
 
 ```ini
 ansible_connection=local
@@ -8,7 +8,7 @@ ansible_connection=httpapi
 ansible_connection=netconf
 ```
 
-### Other Common Connection Options (especially with server autoamtion)
+### Other Common Connection Options (especially with server automation)
 
 ```ini
 ansible_connection=smart     (SSH or Paramiko)
