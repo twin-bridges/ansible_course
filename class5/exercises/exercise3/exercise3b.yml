@@ -8,7 +8,8 @@
         before: no ip access-list extended TEST-ANSIBLE1
         parents: ip access-list extended TEST-ANSIBLE1
         lines:
-          - deny ip host 10.1.1.9 any
+          # Spacing has to exactly match what is shown in "show run"
+          - deny   ip host 10.1.1.9 any
           - permit ip host 10.1.1.1 any
           - permit ip host 10.1.1.2 any
           - permit ip host 10.1.1.3 any
