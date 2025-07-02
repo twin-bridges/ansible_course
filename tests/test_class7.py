@@ -13,7 +13,6 @@ TEST_CASES = [
     "../class7/collateral/pipe/eos_pipe.yml",
     "../class7/collateral/pipe/eos_pipe2.yml",
     "../class7/collateral/pipe/nxos_pipe.yml",
-    "../class7/collateral/textfsm/textfsm1.yml",
     "../class7/collateral/textfsm/textfsm2.yml",
     "../class7/collateral/textfsm/textfsm3.yml",
     "../class7/collateral/genie/genie_module.yml",
@@ -23,6 +22,10 @@ TEST_CASES = [
     "../class7/collateral/regex/regex_test3.yml",
     "../class7/collateral/dynamic_inventory/vlans_eos.yml",
     "../class7/collateral/dynamic_inventory/test_pb.yml",
+]
+
+TEST_CASES_WARNINGS = [
+    "../class7/collateral/textfsm/textfsm1.yml",
 ]
 
 
@@ -36,6 +39,18 @@ def test_runner_collateral(test_case):
     std_err = remove_ansible_warnings(std_err)
     assert return_code == 0
     assert std_err == ""
+
+
+@pytest.mark.parametrize("test_case", TEST_CASES_WARNINGS)
+def test_runner_collateral_warnings(test_case):
+    path_obj = Path(test_case)
+    script = path_obj.name
+    script_dir = path_obj.parents[0]
+    cmd_list = ["ansible-playbook", script]
+    std_out, std_err, return_code = subprocess_runner(cmd_list, script_dir)
+    std_err = remove_ansible_warnings(std_err)
+    assert return_code == 0
+    assert std_err != ""
 
 
 def test_class7_ex1():
@@ -73,7 +88,8 @@ def test_class7_ex3a():
     cmd_list = ["ansible-playbook", "exercise3a.yml"]
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
     std_err = remove_ansible_warnings(std_err)
-    assert std_err == ""
+    # Deprection warning for the parser
+    assert std_err != ""
     assert return_code == 0
     assert re.search(r"nxos1.*ok=4 ", std_out)
     assert re.search(r"nxos2.*ok=4 ", std_out)
