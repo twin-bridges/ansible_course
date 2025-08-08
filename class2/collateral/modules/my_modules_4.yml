@@ -1,14 +1,20 @@
 ---
 - name: Simple Playbook
   hosts: servers
+  vars:
+    user: candor
+    virtualenv: "/home/{{ user }}/VENV/test_venv"
+
   tasks:
     - ansible.builtin.ping:
 
     - ansible.builtin.debug:
         msg: Hello World
 
-    - name: Install Netmiko
-      ansible.builtin.pip: 
+    - name: Install Netmiko into virtual environment
+      ansible.builtin.pip:
         name: netmiko
-        virtualenv: /home/ktbyers/VENV/py3_venv
-        version: 3.3.3
+        version: 4.6.0
+        virtualenv: "{{ virtualenv }}"
+      become: true
+      become_user: "{{ user }}"
