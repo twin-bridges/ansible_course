@@ -1,7 +1,7 @@
 ---
 - name: Print out variables
   hosts: cisco5
-  gather_facts: False
+  gather_facts: false
   tasks:
     - name: Test setting a fact
       ansible.builtin.set_fact:

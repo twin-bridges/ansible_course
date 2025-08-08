@@ -1,13 +1,13 @@
 ---
 - name: Print out variables
   hosts: cisco5
-  gather_facts: False
+  gather_facts: false
   vars_prompt:
     - name: bgp_asn
       prompt: "Enter BGP AS Number"
-      private: yes
+      private: true
 
   tasks:
     - name: Debug fact
       ansible.builtin.debug:
-        msg: "{{ bgp_asn }}" 
+        msg: "{{ bgp_asn }}"
