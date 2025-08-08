@@ -1,0 +1,17 @@
+---
+- name: Testing collections
+  hosts: cisco1
+  gather_facts: False
+  tasks:
+    - clay584.genie.learn_genie:
+        host: "{{ ansible_host }}"
+        port: 22
+        protocol: ssh
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        os: ios
+        feature: interface
+      register: output
+
+    - debug:
+        var: output
