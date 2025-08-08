@@ -8,13 +8,9 @@
   vars_files:
     - my_vars.yml
   tasks:
-    - name: Debuggiing...
+    - name: Debugging...
       ansible.builtin.debug:
         msg: "{{ ip_addr1 }}"
-
-    - name: Var from inventory
-      ansible.builtin.debug:
-        msg: "{{ ansible_host }}"
 
     - name: Var from inventory
       ansible.builtin.debug:
