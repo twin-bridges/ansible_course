@@ -1,7 +1,7 @@
 ---
 - name: Print out variables
   hosts: cisco1:cisco2
-  gather_facts: False
+  gather_facts: false
   tasks:
     - ansible.builtin.debug:
         msg: "{{ as_number }}"
