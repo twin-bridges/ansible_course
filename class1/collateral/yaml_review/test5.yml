@@ -1,0 +1,9 @@
+---
+my_ips:
+  - 1.1.1.1
+  - 2.2.2.2
+  - 3.3.3.3
+  - some_key: some_value
+key2: value2
+ip_addr: 1.1.1.1
+ip_addr2: 2.2.2.2

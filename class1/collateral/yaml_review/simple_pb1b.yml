@@ -1,0 +1,14 @@
+---
+- name: Play1
+  hosts: arista:cisco:nxos1
+  gather_facts: False
+  tasks:
+    - ansible.builtin.ping:
+    - ansible.builtin.ping:
+    - ansible.builtin.ping:
+
+- name: Play2
+  hosts: local
+  gather_facts: True
+  tasks:
+    - ansible.builtin.ping:

@@ -1,0 +1,8 @@
+---
+- name: Hello we're going print this to the screen
+  hosts: arista:cisco:nxos1
+  gather_facts: false
+  tasks:
+    - ansible.builtin.ping:
+    - ansible.builtin.ping:
+    - ansible.builtin.ping:

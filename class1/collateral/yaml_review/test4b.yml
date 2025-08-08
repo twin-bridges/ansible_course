@@ -1,0 +1,8 @@
+---
+key1: value1
+key2: value2
+ip_addr: 1.1.1.1
+rtr1:
+    username: admin
+    passwd: invalid
+    ip_addr: 1.0.0.1
