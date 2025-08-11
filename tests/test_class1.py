@@ -131,7 +131,7 @@ def test_class1_ex2c():
                 "ansible_connection": "network_cli",
                 "ansible_host": "cisco2.lasthop.io",
                 "ansible_network_os": "ios",
-                "ansible_python_interpreter": "~/VENV/py3_venv/bin/python",
+                "ansible_python_interpreter": "/home/kbyers/VENV/py3_venv/bin/python",
                 "ansible_ssh_pass": "bogus",
                 "ansible_user": "pyclass"
             }"""
