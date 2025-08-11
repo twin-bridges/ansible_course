@@ -28,8 +28,8 @@ TEST_CASES = [
     "../class2/collateral/modules/my_modules_1.yml",
     "../class2/collateral/priv_escalation/enable.yml",
     "../class2/collateral/priv_escalation/enable_2.yml",
-    "../class2/collateral/setfact/simple_pb.yml",
-    # "../class2/collateral/setfact/test_prompt.yml",
+    "../class2/collateral/set_fact/simple_pb.yml",
+    # "../class2/collateral/set_fact/test_prompt.yml",
     "../class2/collateral/variables/simple_pb.yml",
     "../class2/collateral/variables/simple_pb_1.yml",
 ]
