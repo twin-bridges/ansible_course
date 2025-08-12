@@ -90,7 +90,7 @@ def test_class2_ex1c():
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
     assert '"ansible_network_os": "eos"' in std_out
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
-    assert '"desired_eos_version": "4.18.3"'
+    assert '"desired_eos_version": "4.34.1F"' in std_out
     assert (
         "arista5                    : ok=6    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -110,7 +110,7 @@ def test_class2_ex1d():
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
     assert '"ansible_network_os": "eos"' in std_out
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
-    assert '"desired_eos_version": "4.21.1"'
+    assert '"desired_eos_version": "4.33.2F"' in std_out
     assert (
         "arista5                    : ok=6    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
@@ -130,8 +130,8 @@ def test_class2_ex1e():
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
     assert '"ansible_network_os": "eos"' in std_out
     assert '"ansible_host": "arista5.lasthop.io"' in std_out
-    assert '"desired_eos_version": "4.21.1"'
-    assert '"device_hostname": "arista5.lab.io"'
+    assert '"desired_eos_version": "4.33.2F"' in std_out
+    assert '"device_hostname": "arista5.lab.io"' in std_out
     assert (
         "arista5                    : ok=8    changed=0    unreachable=0    failed=0    "
         "skipped=0    rescued=0    ignored=0" in std_out
