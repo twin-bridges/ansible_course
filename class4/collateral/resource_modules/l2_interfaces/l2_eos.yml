@@ -6,9 +6,11 @@
       arista.eos.eos_l2_interfaces:
         config:
           - name: Ethernet6
+            mode: access
             access:
               vlan: 20
           - name: Ethernet7
+            mode: trunk
             trunk:
               native_vlan: 7
         state: merged

@@ -2,13 +2,26 @@
   hosts: nxos1
   gather_facts: False
   tasks:
+    - name: Convert ports to 'switchport' mode
+      cisco.nxos.nxos_interfaces:
+        config:
+          - name: Ethernet1/3
+            mode: layer2
+          - name: Ethernet1/4
+            mode: layer2
+        state: merged
+      tags: l2_l3_intf
+
     - name: Update l2 interface config
       cisco.nxos.nxos_l2_interfaces:
         config:
           - name: Ethernet1/3
+            mode: access
             access:
               vlan: 30
           - name: Ethernet1/4
+            mode: trunk
             trunk:
               native_vlan: 20
         state: merged
+      tags: trunk
