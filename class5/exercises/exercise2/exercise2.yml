@@ -11,21 +11,23 @@
       ansible.builtin.debug:
         var: config.splitlines()
 
-    - name: Global config
-      vars:
-          # cli_config requires network_cli (Juniper defaults to netconf in inventory)
-          ansible_connection: network_cli
-      ansible.netcommon.cli_config:
-        config: "{{ config }}"
+    - name: Global config (IOS)
+      cisco.ios.ios_config:
+        lines: "{{ config.splitlines() }}"
+      when: ansible_network_os == 'ios'
 
-#- name: Global configuration
-#  hosts: juniper
-#  gather_facts: False
-#  tasks:
-#    - name: Global config
-#      vars:
-#          # cli_config requires network_cli
-#          ansible_connection: network_cli
-#      ansible.netcommon.cli_config:
-#        config: "{{ lookup('template', 'templates/{{ ansible_network_os }}/global.j2') }}"
-#      tags: juniper
+    - name: Global config (EOS)
+      arista.eos.eos_config:
+        lines: "{{ config.splitlines() }}"
+      when: ansible_network_os == 'eos'
+
+    - name: Global config (NX-OS)
+      cisco.nxos.nxos_config:
+        lines: "{{ config.splitlines() }}"
+      when: ansible_network_os == 'nxos'
+
+    - name: Global config (Junos)
+      junipernetworks.junos.junos_config:
+        lines: "{{ config.splitlines() }}"
+      when: ansible_network_os == 'junos'
+
