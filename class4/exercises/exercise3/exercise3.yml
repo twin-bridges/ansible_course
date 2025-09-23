@@ -3,7 +3,7 @@
   hosts: nxos
   gather_facts: False
   tasks:
-    - name: Ensure interface set to routed mode (not idempotent)
+    - name: Ensure interface set to routed mode
       cisco.nxos.nxos_interfaces:
         config:
           - name: "{{ intf_name }}"
