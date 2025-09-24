@@ -50,7 +50,8 @@
 
 - name: Global configuration
   hosts: juniper
-  gather_facts: False
+  # Fact gathering works on the VMXs
+  gather_facts: true
   tasks:
     - name: Juniper global config
       junipernetworks.junos.junos_config:
