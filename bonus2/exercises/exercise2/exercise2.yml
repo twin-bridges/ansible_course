@@ -5,7 +5,7 @@
 
   tasks:
     - name: Executing command
-      cisco.ios.ios_command:
+      arista.eos.eos_command:
         commands: show ip arp
       register: output
 
