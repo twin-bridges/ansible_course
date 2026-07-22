@@ -5,5 +5,5 @@
 pylama .
 black --check .
 cd tests
-py.test -s -v test_class*
-py.test -s -v test_bonus*
+pytest -p no:pylama -s -v test_class*
+pytest -p no:pylama -s -v test_bonus*
