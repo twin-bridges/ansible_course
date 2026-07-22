@@ -3,6 +3,7 @@
 Ansible dynamic inventory experimentation
 Output dynamic inventory as JSON from statically defined data structures
 """
+
 import argparse
 import json
 

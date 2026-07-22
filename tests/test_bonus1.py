@@ -3,7 +3,6 @@ import pytest
 from pathlib import Path
 from utilities import subprocess_runner, remove_ansible_warnings
 
-
 TEST_CASES = [
     "../bonus1/collateral/napalm_getters/napalm_get_ios.yml",
     "../bonus1/collateral/napalm_getters/napalm_get_eos.yml",

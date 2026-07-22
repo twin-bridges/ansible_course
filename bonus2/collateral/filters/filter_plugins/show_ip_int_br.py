@@ -8,6 +8,7 @@ GigabitEthernet5       unassigned      YES unset  up                    up
 GigabitEthernet6       unassigned      YES unset  up                    up
 GigabitEthernet7       unassigned      YES unset  up                    up
 """
+
 import re
 
 

@@ -3,7 +3,6 @@ import pytest
 from pathlib import Path
 from utilities import subprocess_runner, remove_ansible_warnings
 
-
 TEST_CASES = [
     "../bonus2/collateral/upgrade_os/put_file.yml",
     "../bonus2/collateral/upgrade_os/file_system.yml",

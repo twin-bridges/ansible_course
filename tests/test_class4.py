@@ -4,7 +4,6 @@ from pathlib import Path
 
 from utilities import subprocess_runner, remove_ansible_warnings
 
-
 TEST_CASES = [
     "../class4/collateral/assert/assert.yml",
     "../class4/collateral/eos_feature/l2_intf.yml",

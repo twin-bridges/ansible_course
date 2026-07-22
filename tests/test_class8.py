@@ -3,7 +3,6 @@ import pytest
 from pathlib import Path
 from utilities import subprocess_runner, remove_ansible_warnings
 
-
 TEST_CASES = [
     #    "../class8/collateral/lookups/lookup_examples.yml",
     #    "../class8/collateral/filters/filters_set.yml",

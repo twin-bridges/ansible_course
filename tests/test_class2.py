@@ -5,7 +5,6 @@ from pathlib import Path
 
 from utilities import subprocess_runner, remove_ansible_warnings
 
-
 TEST_CASES = [
     "../class2/collateral/cli_command/cli_command_1.yml",
     "../class2/collateral/eos_command/eos_example_1.yml",

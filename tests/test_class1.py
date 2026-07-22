@@ -105,18 +105,12 @@ def test_class1_ex2b():
     assert "@all:" in std_out
     assert "|--@ungrouped:" in std_out
     assert "|--@local:" in std_out
-    assert (
-        """|--@cisco:
+    assert """|--@cisco:
   |  |--cisco1
-  |  |--cisco2"""
-        in std_out
-    )
-    assert (
-        """|--@arista:
+  |  |--cisco2""" in std_out
+    assert """|--@arista:
   |  |--arista5
-  |  |--arista6"""
-        in std_out
-    )
+  |  |--arista6""" in std_out
     assert std_err == ""
     assert return_code == 0
 
@@ -126,17 +120,14 @@ def test_class1_ex2c():
     cmd_list = ["ansible-inventory", "-i", "inventory.ini", "--list"]
 
     std_out, std_err, return_code = subprocess_runner(cmd_list, exercise_dir=base_path)
-    assert (
-        """            "cisco2": {
+    assert """            "cisco2": {
                 "ansible_connection": "network_cli",
                 "ansible_host": "cisco2.lasthop.io",
                 "ansible_network_os": "ios",
                 "ansible_python_interpreter": "/home/kbyers/VENV/py3_venv/bin/python",
                 "ansible_ssh_pass": "bogus",
                 "ansible_user": "pyclass"
-            }"""
-        in std_out
-    )
+            }""" in std_out
     assert std_err == ""
     assert return_code == 0
 

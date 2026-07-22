@@ -3,7 +3,6 @@ import pytest
 from pathlib import Path
 from utilities import subprocess_runner, remove_ansible_warnings
 
-
 TEST_CASES = [
     "../class7/collateral/hostvars/hostvars1.yml",
     "../class7/collateral/hostvars/hostvars2.yml",

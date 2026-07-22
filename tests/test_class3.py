@@ -3,7 +3,6 @@ from pathlib import Path
 
 from utilities import subprocess_runner, remove_ansible_warnings
 
-
 TEST_CASES = [
     "../class3/collateral/conditionals/test_when_1.yml",
     "../class3/collateral/conditionals/test_when_2.yml",

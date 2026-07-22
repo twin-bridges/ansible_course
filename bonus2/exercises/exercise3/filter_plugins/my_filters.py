@@ -10,6 +10,7 @@ Internet  10.220.88.35          229   00aa.877d.c6e5  ARPA   FastEthernet4
 Internet  10.220.88.37           97   0001.00ff.0001  ARPA   FastEthernet4
 Internet  10.220.88.38           99   0002.00ff.0001  ARPA   FastEthernet4
 """
+
 import re
 
 

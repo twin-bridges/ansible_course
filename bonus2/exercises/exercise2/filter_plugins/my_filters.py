@@ -8,6 +8,7 @@ Address         Age (min)  Hardware Addr   Interface
 10.220.88.37          N/A  0001.00ff.0001  Vlan1, Ethernet1
 10.220.88.38          N/A  0002.00ff.0001  Vlan1, Ethernet1
 """
+
 import re
 
 
